@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drift King School – חבילות חוויית נהיגה</title>
+    <meta name="description" content="דריפט קינג סקול - בית הספר המוביל לדריפטים בישראל. חבילות נהיגת דריפט מקצועיות על מסלול ייעודי עם מדריכים אלופי ישראל.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ===== NAVIGATION ===== -->
+<nav class="navbar" id="navbar">
+    <div class="nav-container">
+        <a href="#" class="nav-logo">
+            <img src="logo.png" alt="Drift King School Logo" class="logo-img">
+        </a>
+        <div class="nav-links">
+            <a href="#packages">חבילות</a>
+            <a href="#advantages">למה אנחנו</a>
+            <a href="#contact">צור קשר</a>
+            <a href="tel:+972537757323" class="nav-cta">
+                <span class="cta-icon">📞</span> קבעו חוויה
+            </a>
+        </div>
+        <button class="hamburger" id="hamburger" aria-label="תפריט">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#packages" onclick="closeMobile()">חבילות</a>
+        <a href="#advantages" onclick="closeMobile()">למה אנחנו</a>
+        <a href="#contact" onclick="closeMobile()">צור קשר</a>
+        <a href="tel:+972537757323" class="nav-cta" onclick="closeMobile()">📞 קבעו חוויה</a>
+    </div>
+</nav>
+
+<!-- ===== HERO SECTION ===== -->
+<section class="hero" id="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-particles" id="heroParticles"></div>
+    <div class="hero-content">
+        <div class="hero-badge">🏆 בית הספר למירוצים הכי גדול בישראל</div>
+        <h1 class="hero-title">
+            <span class="title-line">חווית נהיגה</span>
+            <span class="title-line accent">שלא תשכחו <span class="highlight">לעולם</span></span>
+        </h1>
+        <p class="hero-sub">נהיגת דריפט מקצועית על מסלול ייעודי, עם הדרכה אישית מאלופי ישראל.<br>מתאים לכולם מגיל 14+ ללא ניסיון קודם.</p>
+        <div class="hero-actions">
+            <a href="#packages" class="btn btn-primary skew-btn">
+                <span>לחבילות שלנו</span>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+            </a>
+            <a href="tel:+972537757323" class="btn btn-outline skew-btn">
+                <span>📞 053-775-7323</span>
+            </a>
+        </div>
+        <div class="hero-stats">
+            <div class="stat"><span class="stat-num" data-count="8">0</span><span class="stat-plus">+</span><span class="stat-label">שנות ניסיון</span></div>
+            <div class="stat-divider"></div>
+            <div class="stat"><span class="stat-num" data-count="13">0</span><span class="stat-label">מכוניות מירוץ משופרות</span></div>
+            <div class="stat-divider"></div>
+            <div class="stat"><span class="stat-num" data-count="7000">0</span><span class="stat-plus">+</span><span class="stat-label">לקוחות מרוצים</span></div>
+        </div>
+    </div>
+    <div class="hero-scroll-indicator">
+        <span>גלול למטה</span>
+        <div class="scroll-arrow"></div>
+    </div>
+</section>
+
+<!-- ===== ADVANTAGES ===== -->
+<section class="advantages" id="advantages">
+    <div class="section-container">
+        <div class="section-header">
+            <span class="section-tag">למה דריפט קינג סקול?</span>
+            <h2 class="section-title">חווית הנהיגה <span class="highlight">המושלמת</span></h2>
+        </div>
+        <div class="advantages-grid">
+            <div class="adv-card has-bg" style="--bg-image: url('WhatsApp Image 2024-01-09 at 01.16.27.jpeg');" data-delay="0" onclick="this.classList.toggle('show-image')">
+                <div class="adv-content">
+                    <div class="adv-icon">👨‍🏫</div>
+                    <h3>הדרכה מקצועית</h3>
+                    <p>הדרכה אישית מאלופי ישראל בדריפט עם ליווי צמוד לאורך כל החוויה</p>
+                </div>
+            </div>
+            <div class="adv-card has-bg" style="--bg-image: url('selected cars.JPEG');" data-delay="100" onclick="this.classList.toggle('show-image')">
+                <div class="adv-content">
+                    <div class="adv-icon">🏎️</div>
+                    <h3>רכבי ספורט מובחרים</h3>
+                    <p>רכבי דריפט מקצועיים, מאזדה מיאטה ופורשה 718-S על מסלול ייעודי</p>
+                </div>
+            </div>
+            <div class="adv-card has-bg" style="--bg-image: url('WhatsApp Image 2024-02-26 at 10.42.28 (1).jpeg');" data-delay="200" onclick="this.classList.toggle('show-image')">
+                <div class="adv-content">
+                    <div class="adv-icon">🛡️</div>
+                    <h3>בטיחות מלאה</h3>
+                    <p>מסלול סגור ובטיחותי, הרחק מכבישים ציבוריים, עם ציוד מקצועי</p>
+                </div>
+            </div>
+            <div class="adv-card has-bg" style="--bg-image: url('Gleb-Smirnov-Productions-01714.jpg');" data-delay="300" onclick="this.classList.toggle('show-image')">
+                <div class="adv-content">
+                    <div class="adv-icon">🎯</div>
+                    <h3>מתאים לכולם</h3>
+                    <p>מגיל 14 ומעלה, ללא צורך בניסיון קודם או רישיון</p>
+                </div>
+            </div>
+            <div class="adv-card has-bg" style="--bg-image: url('WhatsApp Image 2024-02-26 at 10.42.27.jpeg');" data-delay="400" onclick="this.classList.toggle('show-image')">
+                <div class="adv-content">
+                    <div class="adv-icon">⛽</div>
+                    <h3>דלק וצמיגים ללא הגבלה</h3>
+                    <p>תשרפו צמיגים ודלק ללא חשש - הכל כלול</p>
+                </div>
+            </div>
+            <div class="adv-card has-bg" style="--bg-image: url('2bb429ee-1154-405d-9e1c-33df6013ea3f (1).jpg');" data-delay="500" onclick="this.classList.toggle('show-image')">
+                <div class="adv-content">
+                    <div class="adv-icon">🏆</div>
+                    <h3>המגרש הכי גדול בארץ</h3>
+                    <p>מסלול המירוצים ומגרש ההחלקה הכי גדול שיש בארץ ישראל</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== PACKAGES ===== -->
+<section class="packages" id="packages">
+    <div class="section-container">
+        <div class="section-header">
+            <span class="section-tag">בחרו את החוויה שלכם עכשיו</span>
+            <h2 class="section-title">חוויות <span class="highlight">דריפט ומסלול</span> ממוקדות</h2>
+            <p class="section-desc">מחבילת התחלה ועד קורס מתקדמים – יש לנו חוויה מושלמת לכל רמה</p>
+        </div>
+
+        <div class="packages-grid">
+
+            <!-- Package 1: Taste Of Drift -->
+            <div class="pkg-card" data-tier="start">
+                <div class="pkg-header">
+                    <h3 class="pkg-name">Taste Of Drift</h3>
+                    <div class="pkg-price">
+                        <span class="price-amount">1,799</span>
+                        <span class="price-currency">₪</span>
+                    </div>
+                </div>
+                <div class="pkg-meta">
+                    <div class="meta-item"><span class="meta-icon">🔄</span><span>2 מקצים</span></div>
+                    <div class="meta-item"><span class="meta-icon">⏱️</span><span>30 דק׳ נהיגה נטו</span></div>
+                    <div class="meta-item"><span class="meta-icon">⏳</span><span>משך: כשעה</span></div>
+                </div>
+                <ul class="pkg-features">
+                    <li>רכב דריפט מקצועי</li>
+                    <li>הדרכה עיונית מקצועית</li>
+                    <li>הדגמות נהיגה וטכניקות שליטה</li>
+                    <li>ליווי צמוד ע"י מדריך מוסמך</li>
+                    <li>צמיגים ודלק ללא הגבלה</li>
+                    <li>צילומים</li>
+                </ul>
+                <a href="tel:+972537757323" class="pkg-cta skew-btn"><span>לפרטים נוספים</span></a>
+            </div>
+
+            <!-- Package 2: Drift Advanced -->
+            <div class="pkg-card" data-tier="advanced">
+                <div class="pkg-header">
+                    <h3 class="pkg-name">Drift Advanced</h3>
+                    <div class="pkg-price">
+                        <span class="price-amount">2,199</span>
+                        <span class="price-currency">₪</span>
+                    </div>
+                </div>
+                <div class="pkg-meta">
+                    <div class="meta-item"><span class="meta-icon">🔄</span><span>3 מקצים</span></div>
+                    <div class="meta-item"><span class="meta-icon">⏱️</span><span>45 דק׳ נהיגה נטו</span></div>
+                    <div class="meta-item"><span class="meta-icon">⏳</span><span>משך: כשעה וחצי</span></div>
+                </div>
+                <ul class="pkg-features">
+                    <li>רכבי דריפטים מקצועיים</li>
+                    <li>הדרכה עיונית מקצועית</li>
+                    <li>הדגמות נהיגה וטכניקות שליטה</li>
+                    <li>ליווי צמוד ע"י מדריך מוסמך</li>
+                    <li>צמיגים ודלק ללא הגבלה</li>
+                    <li>צילומים</li>
+                </ul>
+                <a href="tel:+972537757323" class="pkg-cta skew-btn"><span>לפרטים נוספים</span></a>
+            </div>
+
+            <!-- Package 3: Drift PRO -->
+            <div class="pkg-card" data-tier="basic">
+                <div class="pkg-badge">פופולרי</div>
+                <div class="pkg-header">
+                    <h3 class="pkg-name">Drift PRO</h3>
+                    <div class="pkg-price">
+                        <span class="price-amount">3,399</span>
+                        <span class="price-currency">₪</span>
+                    </div>
+                </div>
+                <div class="pkg-meta">
+                    <div class="meta-item"><span class="meta-icon">🔄</span><span>5 מקצים</span></div>
+                    <div class="meta-item"><span class="meta-icon">⏱️</span><span>75 דק׳ נהיגה נטו</span></div>
+                    <div class="meta-item"><span class="meta-icon">⏳</span><span>משך: כ-3 שעות</span></div>
+                </div>
+                <ul class="pkg-features">
+                    <li>חווית טקסי דריפט</li>
+                    <li>רכבי דריפטים מקצועיים</li>
+                    <li>הדרכה עיונית מקצועית</li>
+                    <li>הדגמות נהיגה וטכניקות שליטה</li>
+                    <li>ליווי צמוד ע"י מדריך מוסמך</li>
+                    <li>צמיגים ודלק ללא הגבלה</li>
+                    <li>צילומים</li>
+                </ul>
+                <a href="tel:+972537757323" class="pkg-cta skew-btn"><span>לפרטים נוספים</span></a>
+            </div>
+
+            <!-- Package 4: Drift + Track -->
+            <div class="pkg-card" data-tier="track">
+                <div class="pkg-header">
+                    <h3 class="pkg-name">Drift + Track</h3>
+                    <div class="pkg-price">
+                        <span class="price-amount">2,199</span>
+                        <span class="price-currency">₪</span>
+                    </div>
+                </div>
+                <div class="pkg-meta">
+                    <div class="meta-item"><span class="meta-icon">🔄</span><span>דריפט + מסלול</span></div>
+                    <div class="meta-item"><span class="meta-icon">⏱️</span><span>15 דק׳ דריפט + 18 ק״מ מסלול</span></div>
+                    <div class="meta-item"><span class="meta-icon">⏳</span><span>משך: כשעה וחצי</span></div>
+                </div>
+                <ul class="pkg-features">
+                    <li>מקצה דריפט (15 דק׳ נטו)</li>
+                    <li>מקצה נהיגת מסלול על מאזדה מיאטה</li>
+                    <li>18 ק״מ נהיגה על המסלול</li>
+                    <li>ליווי צמוד ע"י מדריך מוסמך</li>
+                    <li>צמיגים ודלק ללא הגבלה</li>
+                    <li>צילומים</li>
+                </ul>
+                <a href="tel:+972537757323" class="pkg-cta skew-btn"><span>לפרטים נוספים</span></a>
+            </div>
+
+            <!-- Package 5: Drift + Track Premium -->
+            <div class="pkg-card" data-tier="premium">
+                <div class="pkg-badge">פרימיום</div>
+                <div class="pkg-header">
+                    <h3 class="pkg-name">Drift + Track Premium</h3>
+                    <div class="pkg-price">
+                        <span class="price-amount">2,699</span>
+                        <span class="price-currency">₪</span>
+                    </div>
+                </div>
+                <div class="pkg-meta">
+                    <div class="meta-item"><span class="meta-icon">🔄</span><span>דריפט + מסלול</span></div>
+                    <div class="meta-item"><span class="meta-icon">⏱️</span><span>15 דק׳ דריפט + 18 ק״מ מסלול</span></div>
+                    <div class="meta-item"><span class="meta-icon">⏳</span><span>משך: כשעה וחצי</span></div>
+                </div>
+                <ul class="pkg-features">
+                    <li>מקצה דריפט (15 דק׳ נטו)</li>
+                    <li>מקצה נהיגת מסלול על <strong>פורשה 718-S</strong></li>
+                    <li>18 ק״מ נהיגה על המסלול</li>
+                    <li>ליווי צמוד ע"י מדריך מוסמך</li>
+                    <li>צמיגים ודלק ללא הגבלה</li>
+                    <li>צילומים</li>
+                </ul>
+                <a href="tel:+972537757323" class="pkg-cta skew-btn"><span>לפרטים נוספים</span></a>
+            </div>
+
+            <!-- Package 6: Drift + Track VIP -->
+            <div class="pkg-card" data-tier="vip">
+                <div class="pkg-badge vip-badge">VIP</div>
+                <div class="pkg-header">
+                    <h3 class="pkg-name">Drift + Track VIP</h3>
+                    <div class="pkg-price">
+                        <span class="price-amount">4,499</span>
+                        <span class="price-currency">₪</span>
+                    </div>
+                </div>
+                <div class="pkg-meta">
+                    <div class="meta-item"><span class="meta-icon">🔄</span><span>5 מקצי דריפט + 2 מסלול</span></div>
+                    <div class="meta-item"><span class="meta-icon">⏱️</span><span>60 דק׳ דריפט + 30 ק״מ</span></div>
+                    <div class="meta-item"><span class="meta-icon">⏳</span><span>משך: כ4 שעות</span></div>
+                </div>
+                <ul class="pkg-features">
+                    <li>5 מקצי דריפט (60 דק׳ נטו)</li>
+                    <li>2 מקצי נהיגת מסלול על <strong>פורשה</strong></li>
+                    <li>סה״כ 30 ק״מ נהיגת מסלול</li>
+                    <li>טקסי דריפט</li>
+                    <li>ליווי צמוד ע"י מדריך מוסמך</li>
+                    <li>צמיגים ודלק ללא הגבלה</li>
+                    <li>צילומים</li>
+                </ul>
+                <a href="tel:+972537757323" class="pkg-cta skew-btn"><span>לפרטים נוספים</span></a>
+            </div>
+
+            <!-- Package 7: Drift King -->
+            <div class="pkg-card king-card" data-tier="king">
+                <div class="pkg-badge king-badge">MASTER - חבילת הדגל</div>
+                <div class="king-glow"></div>
+                <div class="pkg-header">
+                    <h3 class="pkg-name">Drift King</h3>
+                    <div class="pkg-price">
+                        <span class="price-amount">6,499</span>
+                        <span class="price-currency">₪</span>
+                    </div>
+                </div>
+                <div class="pkg-meta">
+                    <div class="meta-item"><span class="meta-icon">🔄</span><span>10 מקצים</span></div>
+                    <div class="meta-item"><span class="meta-icon">⏱️</span><span>150 דק׳ נהיגה נטו</span></div>
+                    <div class="meta-item"><span class="meta-icon">⏳</span><span>משך: יום שלם</span></div>
+                </div>
+                <ul class="pkg-features">
+                    <li>10 מקצי נהיגה מקצועית</li>
+                    <li>150 דקות נהיגה נטו</li>
+                    <li>רכבי דריפטי מקצועיים</li>
+                    <li>חווית טקסי דריפט</li>
+                    <li>ליווי צמוד ע"י מדריך מוסמך</li>
+                    <li>הדגמות נהיגה וטכניקות שליטה</li>
+                    <li>לימוד טכניקות מתקדמות</li>
+                    <li>הדרכה עיונית מקצועית</li>
+                    <li>צמיגים ודלק ללא הגבלה</li>
+                    <li>צילומים</li>
+                </ul>
+                <a href="tel:+972537757323" class="pkg-cta king-cta skew-btn"><span>הצטרפו למלכים</span></a>
+            </div>
+
+            <!-- Package 8: Your Own Car -->
+            <div class="pkg-card" data-tier="starter">
+                <div class="pkg-ribbon">על הרכב שלך</div>
+                <div class="pkg-header">
+                    <h3 class="pkg-name">Your Own Car</h3>
+                    <div class="pkg-price">
+                        <span class="price-amount">1,199</span>
+                        <span class="price-currency">₪</span>
+                    </div>
+                </div>
+                <div class="pkg-meta">
+                    <div class="meta-item"><span class="meta-icon">🔄</span><span>2 מקצים</span></div>
+                    <div class="meta-item"><span class="meta-icon">⏱️</span><span>30 דק׳ נהיגה נטו</span></div>
+                    <div class="meta-item"><span class="meta-icon">⏳</span><span>משך: כ-שעתיים</span></div>
+                </div>
+                <ul class="pkg-features">
+                    <li>מדריך מוסמך</li>
+                    <li>חווית טקסי דריפט</li>
+                    <li>הדרכה עיונית מקצועית</li>
+                    <li>הדגמות נהיגה וטכניקות שליטה</li>
+                    <li>צילומים</li>
+                </ul>
+                <a href="tel:+972537757323" class="pkg-cta skew-btn"><span>לפרטים נוספים</span></a>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ===== CTA BANNER ===== -->
+<section class="cta-banner">
+    <div class="cta-bg-effect"></div>
+    <div class="section-container">
+        <h2>מוכנים לשרוף צמיגים? 🔥</h2>
+        <p>החוויות שלנו מתאימות לכל אחד מגיל 14+ ללא צורך בניסיון קודם או רישיון נהיגה</p>
+        <div class="cta-actions">
+            <a href="tel:+972537757323" class="btn btn-primary skew-btn"><span>📞 053-775-7323</span></a>
+            <a href="https://driftkingschool.com/book-online/" target="_blank" class="btn btn-outline skew-btn"><span>קביעת חוויה אונליין</span></a>
+        </div>
+    </div>
+</section>
+
+<!-- ===== CONTACT / FOOTER ===== -->
+<footer class="footer" id="contact">
+    <div class="section-container">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <img src="logo.png" alt="Drift King School Logo" class="logo-img">
+                </div>
+                <p>בית הספר המוביל והוותיק לדריפטים בישראל. חוויות נהיגה מקצועיות על מסלול ייעודי עם מדריכים אלופי ישראל.</p>
+                <div class="footer-social">
+                    <a href="https://www.facebook.com/driftkingschool1/" target="_blank" aria-label="Facebook">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+                    </a>
+                    <a href="https://www.instagram.com/driftkingschool/" target="_blank" aria-label="Instagram">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <h4>קישורים</h4>
+                <a href="https://driftkingschool.com/">בית</a>
+                <a href="https://driftkingschool.com/book-online/">קביעת חוויה</a>
+                <a href="https://driftkingschool.com/shop/">חנות</a>
+                <a href="https://driftkingschool.com/%d7%92%d7%9c%d7%a8%d7%99%d7%94/">גלריה</a>
+                <a href="https://driftkingschool.com/blog/">בלוג</a>
+            </div>
+            <div class="footer-contact">
+                <h4>צרו קשר</h4>
+                <a href="tel:+972537757323">📞 053-775-7323</a>
+                <a href="mailto:Driftkingschool@gmail.com">📧 Driftkingschool@gmail.com</a>
+                <p>📍 מסלול המירוצים מוטור סיטי</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Drift King School. כל הזכויות שמורות.</p>
+        </div>
+    </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
