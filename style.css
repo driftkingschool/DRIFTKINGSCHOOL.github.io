@@ -88,16 +88,21 @@ img { max-width: 100%; }
 .hero {
     position: relative; min-height: 100vh; display: flex; align-items: center; justify-content: center;
     overflow: hidden; text-align: center; padding-top: 80px; padding-bottom: 100px;
-    background: radial-gradient(ellipse at 50% 0%, rgba(230,57,70,0.15) 0%, transparent 60%),
-                radial-gradient(ellipse at 80% 100%, rgba(0,212,255,0.08) 0%, transparent 50%),
-                var(--bg-dark);
+    background: var(--bg-dark);
+}
+.hero-video {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: cover; z-index: 0; opacity: 0.55;
 }
 .hero-overlay {
-    position: absolute; inset: 0;
-    background: url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h60v60H0z' fill='none'/%3E%3Cpath d='M30 0v60M0 30h60' stroke='%23ffffff' stroke-opacity='0.03' stroke-width='1'/%3E%3C/svg%3E");
+    position: absolute; inset: 0; z-index: 1;
+    background:
+        linear-gradient(135deg, rgba(255,0,0,0.18) 0%, transparent 45%, rgba(0,212,255,0.12) 100%),
+        linear-gradient(to bottom, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.25) 50%, rgba(0,0,0,0.75) 100%),
+        url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h60v60H0z' fill='none'/%3E%3Cpath d='M30 0v60M0 30h60' stroke='%23ffffff' stroke-opacity='0.04' stroke-width='1'/%3E%3C/svg%3E");
 }
-.hero-particles { position: absolute; inset: 0; pointer-events: none; }
-.hero-content { position: relative; z-index: 2; padding: 2rem; max-width: 900px; }
+.hero-particles { position: absolute; inset: 0; pointer-events: none; z-index: 2; }
+.hero-content { position: relative; z-index: 3; padding: 2rem; max-width: 900px; }
 .hero-badge {
     display: inline-block; padding: 0.5rem 1.5rem; border-radius: 50px;
     background: rgba(230,57,70,0.15); border: 1px solid rgba(230,57,70,0.3);
