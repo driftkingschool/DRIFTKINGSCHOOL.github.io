@@ -532,10 +532,12 @@ img { max-width: 100%; }
 }
 .logo-intro-video {
     position: absolute;
-    max-width: min(75vw, 480px);
-    max-height: 85vh;
-    width: auto; height: auto;
-    object-fit: contain;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+    background: #ffffff;
     opacity: 1;
     transition: opacity 0.35s ease;
 }
