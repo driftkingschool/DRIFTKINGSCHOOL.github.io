@@ -392,6 +392,22 @@ img { max-width: 100%; }
     box-shadow: var(--shadow-brand);
 }
 
+/* ===== GOLD-BORDERED TIERS ===== */
+.pkg-card[data-tier="advanced"],
+.pkg-card[data-tier="basic"],
+.pkg-card[data-tier="vip"],
+.pkg-card[data-tier="premium"] {
+    border: 2px solid rgba(184,134,11,0.4);
+    box-shadow: 0 4px 20px rgba(184,134,11,0.06);
+}
+.pkg-card[data-tier="advanced"]:hover,
+.pkg-card[data-tier="basic"]:hover,
+.pkg-card[data-tier="vip"]:hover,
+.pkg-card[data-tier="premium"]:hover {
+    border-color: rgba(184,134,11,0.7);
+    box-shadow: 0 16px 44px rgba(184,134,11,0.15);
+}
+
 /* ===== KING CARD ===== */
 .king-card {
     border: 2px solid rgba(184,134,11,0.35) !important;
