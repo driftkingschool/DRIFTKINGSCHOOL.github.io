@@ -35,8 +35,8 @@
     };
 
     const start = () => {
-        setTimeout(flyToTarget, 1050);
-        setTimeout(finish, 2400);
+        setTimeout(flyToTarget, 1100);
+        setTimeout(finish, 2950);
     };
 
     if (navLogo.complete && introImg.complete) {

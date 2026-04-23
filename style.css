@@ -525,7 +525,7 @@ img { max-width: 100%; }
     display: flex; align-items: center; justify-content: center;
     background: #ffffff;
     pointer-events: none;
-    transition: opacity 0.5s ease 1.8s, visibility 0s linear 2.3s;
+    transition: opacity 0.55s ease 2.25s, visibility 0s linear 2.8s;
 }
 .logo-intro.done {
     opacity: 0; visibility: hidden;
@@ -535,10 +535,10 @@ img { max-width: 100%; }
     transform-origin: center center;
     will-change: transform, opacity, filter;
     opacity: 0;
-    animation: logoIntroIn 0.85s cubic-bezier(0.2, 0.85, 0.25, 1) 0.1s forwards;
+    animation: logoIntroIn 0.9s cubic-bezier(0.2, 0.85, 0.25, 1) 0.1s forwards;
 }
 .logo-intro.flying .logo-intro-img {
-    animation: logoIntroFly 1.4s cubic-bezier(0.76, 0, 0.24, 1) forwards;
+    animation: logoIntroFly 1.9s cubic-bezier(0.65, 0, 0.35, 1) forwards;
     opacity: 1;
 }
 @keyframes logoIntroIn {
@@ -548,23 +548,45 @@ img { max-width: 100%; }
     100% { opacity: 1; transform: scale(1); filter: blur(0); }
 }
 @keyframes logoIntroFly {
+    /* Anticipation — נרתע קלות הפוך לכיוון הטיסה */
     0% {
         transform: translate(0, 0) scale(1) rotate(0deg);
+        filter: blur(0) drop-shadow(0 2px 8px rgba(0,0,0,0.12));
     }
-    20% {
-        transform: translate(calc(var(--intro-tx, 0px) * 0.08), calc(var(--intro-ty, 0px) * 0.04)) scale(1.06) rotate(0deg);
-    }
-    55% {
+    12% {
         transform:
-            translate(calc(var(--intro-tx, 0px) * 0.55), calc(var(--intro-ty, 0px) * 0.35))
-            scale(calc((1 - var(--intro-ts, 0.15)) * 0.55 + var(--intro-ts, 0.15)))
-            rotate(-3deg);
+            translate(calc(var(--intro-tx, 0px) * -0.04), calc(var(--intro-ty, 0px) * -0.025))
+            scale(1.08) rotate(0.5deg);
+        filter: blur(0) drop-shadow(0 3px 12px rgba(0,0,0,0.15));
     }
+    /* האצה עם motion blur — כמו דריפט */
+    35% {
+        transform:
+            translate(calc(var(--intro-tx, 0px) * 0.28), calc(var(--intro-ty, 0px) * 0.15))
+            scale(1.02) rotate(-2.5deg);
+        filter: blur(1.5px) drop-shadow(0 4px 16px rgba(227,6,19,0.18));
+    }
+    60% {
+        transform:
+            translate(calc(var(--intro-tx, 0px) * 0.72), calc(var(--intro-ty, 0px) * 0.6))
+            scale(calc((1 - var(--intro-ts, 0.15)) * 0.38 + var(--intro-ts, 0.15)))
+            rotate(-3.5deg);
+        filter: blur(2.5px) drop-shadow(0 3px 12px rgba(28,105,212,0.15));
+    }
+    /* Overshoot — מחליק קצת מעבר ליעד */
+    88% {
+        transform:
+            translate(calc(var(--intro-tx, 0px) * 1.025), calc(var(--intro-ty, 0px) * 1.015))
+            scale(calc(var(--intro-ts, 0.15) * 1.05))
+            rotate(-1deg);
+        filter: blur(0.8px) drop-shadow(0 2px 6px rgba(0,0,0,0.1));
+    }
+    /* Settle — נחיתה מדויקת */
     100% {
         transform:
             translate(var(--intro-tx, 0px), var(--intro-ty, 0px))
-            scale(var(--intro-ts, 0.15))
-            rotate(0deg);
+            scale(var(--intro-ts, 0.15)) rotate(0deg);
+        filter: blur(0) drop-shadow(0 0 0 transparent);
     }
 }
 body:not(.intro-done) .nav-logo .logo-img { opacity: 0; }
