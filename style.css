@@ -519,6 +519,38 @@ img { max-width: 100%; }
 @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes bounce { 0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); } 40% { transform: translateX(-50%) translateY(-10px); } 60% { transform: translateX(-50%) translateY(-5px); } }
 
+/* ===== LOGO INTRO ANIMATION ===== */
+.logo-intro {
+    position: fixed; inset: 0; z-index: 10000;
+    display: flex; align-items: center; justify-content: center;
+    background: #0a0a0a;
+    pointer-events: none;
+    transition: background 0.45s ease 1.25s, opacity 0.3s ease 1.7s, visibility 0s linear 2s;
+}
+.logo-intro.done {
+    background: transparent; opacity: 0; visibility: hidden;
+}
+.logo-intro-img {
+    width: min(55vw, 380px); height: auto;
+    transform-origin: center center;
+    will-change: transform, opacity;
+    opacity: 0;
+    animation: logoIntroIn 0.75s cubic-bezier(0.2, 0.8, 0.2, 1) 0.1s forwards;
+}
+.logo-intro.flying .logo-intro-img {
+    animation: none;
+    transition: transform 1s cubic-bezier(0.7, 0, 0.25, 1);
+    opacity: 1;
+}
+@keyframes logoIntroIn {
+    0%   { opacity: 0; transform: scale(0.55); }
+    60%  { opacity: 1; transform: scale(1.08); }
+    100% { opacity: 1; transform: scale(1); }
+}
+body:not(.intro-done) .nav-logo .logo-img { opacity: 0; }
+.nav-logo .logo-img { transition: opacity 0.25s ease; }
+body:not(.intro-done) { overflow: hidden; }
+
 /* ===== ACCESSIBILITY ===== */
 *:focus-visible {
     outline: 2px solid var(--blue-primary);
@@ -531,6 +563,9 @@ img { max-width: 100%; }
         transition-duration: 0.01ms !important;
     }
     .hero-video { display: none; }
+    .logo-intro { display: none !important; }
+    body:not(.intro-done) .nav-logo .logo-img { opacity: 1; }
+    body:not(.intro-done) { overflow: auto; }
 }
 
 /* ===== RESPONSIVE ===== */

@@ -1,3 +1,76 @@
+// ===== LOGO INTRO ANIMATION =====
+(function logoIntroAnimation() {
+    const intro = document.getElementById('logoIntro');
+    const introImg = document.getElementById('logoIntroImg');
+    const navLogo = document.querySelector('.nav-logo .logo-img');
+    if (!intro || !introImg || !navLogo) return;
+
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduceMotion) {
+        intro.remove();
+        document.body.classList.add('intro-done');
+        return;
+    }
+
+    const flyToTarget = () => {
+        const introRect = introImg.getBoundingClientRect();
+        const targetRect = navLogo.getBoundingClientRect();
+        if (!introRect.width || !targetRect.width) {
+            finish();
+            return;
+        }
+        const dx = (targetRect.left + targetRect.width / 2) - (introRect.left + introRect.width / 2);
+        const dy = (targetRect.top + targetRect.height / 2) - (introRect.top + introRect.height / 2);
+        const scale = targetRect.width / introRect.width;
+        intro.classList.add('flying');
+        introImg.style.transform = `translate(${dx}px, ${dy}px) scale(${scale})`;
+    };
+
+    const finish = () => {
+        intro.classList.add('done');
+        document.body.classList.add('intro-done');
+        setTimeout(() => intro.remove(), 600);
+    };
+
+    const start = () => {
+        setTimeout(flyToTarget, 950);
+        setTimeout(finish, 1950);
+    };
+
+    if (navLogo.complete && introImg.complete) {
+        start();
+    } else {
+        let fired = false;
+        const go = () => { if (!fired) { fired = true; start(); } };
+        if (navLogo.complete) go();
+        else navLogo.addEventListener('load', go, { once: true });
+        if (introImg.complete) go();
+        else introImg.addEventListener('load', go, { once: true });
+        setTimeout(go, 2500);
+    }
+})();
+
+// ===== HERO VIDEO INFINITE LOOP (resilience) =====
+(function heroVideoLoop() {
+    const video = document.querySelector('.hero-video');
+    if (!video) return;
+    const safePlay = () => {
+        const p = video.play();
+        if (p && typeof p.catch === 'function') p.catch(() => {});
+    };
+    video.addEventListener('ended', () => { video.currentTime = 0; safePlay(); });
+    video.addEventListener('pause', () => {
+        if (!document.hidden && !video.ended) safePlay();
+    });
+    video.addEventListener('stalled', safePlay);
+    video.addEventListener('suspend', safePlay);
+    document.addEventListener('visibilitychange', () => {
+        if (!document.hidden) safePlay();
+    });
+    window.addEventListener('focus', safePlay);
+    safePlay();
+})();
+
 // ===== NAVBAR SCROLL =====
 const navbar = document.getElementById('navbar');
 window.addEventListener('scroll', () => {
