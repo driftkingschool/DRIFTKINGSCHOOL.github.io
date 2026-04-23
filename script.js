@@ -22,19 +22,21 @@
         const dx = (targetRect.left + targetRect.width / 2) - (introRect.left + introRect.width / 2);
         const dy = (targetRect.top + targetRect.height / 2) - (introRect.top + introRect.height / 2);
         const scale = targetRect.width / introRect.width;
+        introImg.style.setProperty('--intro-tx', dx + 'px');
+        introImg.style.setProperty('--intro-ty', dy + 'px');
+        introImg.style.setProperty('--intro-ts', scale);
         intro.classList.add('flying');
-        introImg.style.transform = `translate(${dx}px, ${dy}px) scale(${scale})`;
     };
 
     const finish = () => {
         intro.classList.add('done');
         document.body.classList.add('intro-done');
-        setTimeout(() => intro.remove(), 600);
+        setTimeout(() => intro.remove(), 700);
     };
 
     const start = () => {
-        setTimeout(flyToTarget, 950);
-        setTimeout(finish, 1950);
+        setTimeout(flyToTarget, 1050);
+        setTimeout(finish, 2400);
     };
 
     if (navLogo.complete && introImg.complete) {
