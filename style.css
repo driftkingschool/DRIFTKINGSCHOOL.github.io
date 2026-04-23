@@ -264,16 +264,6 @@ img { max-width: 100%; }
     min-height: 280px;
 }
 .adv-card.visible { opacity: 1; transform: translateY(0); }
-.adv-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 20px 60px rgba(0,0,0,0.25);
-    border-color: rgba(255,255,255,0.2);
-}
-.adv-card::before {
-    content: ''; position: absolute; top: 0; right: 0; left: 0; height: 3px;
-    background: var(--gradient-red); opacity: 0; transition: var(--transition); z-index: 5;
-}
-.adv-card:hover::before { opacity: 1; }
 
 /* Blurred background image — default state */
 .adv-card.has-bg::after {
@@ -323,14 +313,6 @@ img { max-width: 100%; }
     stroke-width: 1.6;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
-.adv-card:hover .adv-icon {
-    background: rgba(255,255,255,0.14);
-    border-color: rgba(255,255,255,0.3);
-    transform: translateY(-2px);
-}
-.adv-card:hover .adv-icon svg {
-    stroke: #ff6b6b;
-}
 .adv-card h3 {
     font-size: 1.3rem; font-weight: 800; margin-bottom: 0.8rem;
     color: #ffffff;
@@ -363,11 +345,6 @@ img { max-width: 100%; }
     box-shadow: var(--shadow-sm);
 }
 .pkg-card.visible { opacity: 1; transform: translateY(0); }
-.pkg-card:hover {
-    transform: translateY(-6px);
-    box-shadow: var(--shadow-lg);
-    border-color: var(--border-medium);
-}
 
 /* Ribbon */
 .pkg-ribbon {
@@ -450,11 +427,6 @@ img { max-width: 100%; }
     font-weight: 700; font-size: 0.95rem; transition: var(--transition);
     box-shadow: 0 4px 14px rgba(28,105,212,0.18);
 }
-.pkg-cta:hover {
-    transform: translateY(-1px);
-    box-shadow: var(--shadow-brand);
-}
-
 /* ===== GOLD-BORDERED TIERS ===== */
 .pkg-card[data-tier="basic"],
 .pkg-card[data-tier="vip"],
@@ -462,13 +434,6 @@ img { max-width: 100%; }
     border: 2px solid rgba(184,134,11,0.4);
     box-shadow: 0 4px 20px rgba(184,134,11,0.06);
 }
-.pkg-card[data-tier="basic"]:hover,
-.pkg-card[data-tier="vip"]:hover,
-.pkg-card[data-tier="premium"]:hover {
-    border-color: rgba(184,134,11,0.7);
-    box-shadow: 0 16px 44px rgba(184,134,11,0.15);
-}
-
 /* ===== KING CARD ===== */
 .king-card {
     border: 2px solid rgba(184,134,11,0.35) !important;
@@ -534,12 +499,6 @@ img { max-width: 100%; }
     background: #ffffff; border: 1px solid var(--border-subtle);
     color: var(--text-medium); transition: var(--transition);
 }
-.footer-social a:hover {
-    color: var(--blue-primary);
-    border-color: var(--blue-primary);
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-sm);
-}
 .footer-links h4, .footer-contact h4 {
     font-size: 1rem; font-weight: 700; margin-bottom: 1.3rem;
     color: var(--text-dark); letter-spacing: 0.3px;
@@ -551,7 +510,6 @@ img { max-width: 100%; }
 }
 .footer-contact .icon { stroke: var(--blue-primary); }
 .footer-links a { display: block; }
-.footer-links a:hover, .footer-contact a:hover { color: var(--blue-primary); }
 .footer-bottom {
     padding: 1.8rem 0; border-top: 1px solid var(--border-subtle); text-align: center;
 }
