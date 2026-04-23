@@ -519,75 +519,47 @@ img { max-width: 100%; }
 @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes bounce { 0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); } 40% { transform: translateX(-50%) translateY(-10px); } 60% { transform: translateX(-50%) translateY(-5px); } }
 
-/* ===== LOGO INTRO ANIMATION ===== */
+/* ===== INTRO: SEAL VIDEO → LOGO FLIGHT ===== */
 .logo-intro {
     position: fixed; inset: 0; z-index: 10000;
     display: flex; align-items: center; justify-content: center;
     background: #ffffff;
     pointer-events: none;
-    transition: opacity 0.55s ease 2.25s, visibility 0s linear 2.8s;
+    transition: opacity 0.5s ease, visibility 0s linear 0.5s;
 }
 .logo-intro.done {
     opacity: 0; visibility: hidden;
 }
+.logo-intro-video {
+    position: absolute;
+    max-width: min(75vw, 480px);
+    max-height: 85vh;
+    width: auto; height: auto;
+    object-fit: contain;
+    opacity: 1;
+    transition: opacity 0.35s ease;
+}
+.logo-intro.video-done .logo-intro-video {
+    opacity: 0;
+    pointer-events: none;
+}
 .logo-intro-img {
+    position: absolute;
     width: min(55vw, 380px); height: auto;
     transform-origin: center center;
-    will-change: transform, opacity, filter;
+    transform: translate(0, 0) scale(1);
+    will-change: transform, opacity;
     opacity: 0;
-    animation: logoIntroIn 0.9s cubic-bezier(0.2, 0.85, 0.25, 1) 0.1s forwards;
+    transition: opacity 0.4s ease;
 }
-.logo-intro.flying .logo-intro-img {
-    animation: logoIntroFly 1.9s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+.logo-intro.video-done .logo-intro-img {
     opacity: 1;
 }
-@keyframes logoIntroIn {
-    0%   { opacity: 0; transform: scale(0.5); filter: blur(6px); }
-    55%  { opacity: 1; transform: scale(1.1); filter: blur(0); }
-    80%  { transform: scale(0.97); }
-    100% { opacity: 1; transform: scale(1); filter: blur(0); }
-}
-@keyframes logoIntroFly {
-    /* Anticipation — נרתע קלות הפוך לכיוון הטיסה */
-    0% {
-        transform: translate(0, 0) scale(1) rotate(0deg);
-        filter: blur(0) drop-shadow(0 2px 8px rgba(0,0,0,0.12));
-    }
-    12% {
-        transform:
-            translate(calc(var(--intro-tx, 0px) * -0.04), calc(var(--intro-ty, 0px) * -0.025))
-            scale(1.08) rotate(0.5deg);
-        filter: blur(0) drop-shadow(0 3px 12px rgba(0,0,0,0.15));
-    }
-    /* האצה עם motion blur — כמו דריפט */
-    35% {
-        transform:
-            translate(calc(var(--intro-tx, 0px) * 0.28), calc(var(--intro-ty, 0px) * 0.15))
-            scale(1.02) rotate(-2.5deg);
-        filter: blur(1.5px) drop-shadow(0 4px 16px rgba(227,6,19,0.18));
-    }
-    60% {
-        transform:
-            translate(calc(var(--intro-tx, 0px) * 0.72), calc(var(--intro-ty, 0px) * 0.6))
-            scale(calc((1 - var(--intro-ts, 0.15)) * 0.38 + var(--intro-ts, 0.15)))
-            rotate(-3.5deg);
-        filter: blur(2.5px) drop-shadow(0 3px 12px rgba(28,105,212,0.15));
-    }
-    /* Overshoot — מחליק קצת מעבר ליעד */
-    88% {
-        transform:
-            translate(calc(var(--intro-tx, 0px) * 1.025), calc(var(--intro-ty, 0px) * 1.015))
-            scale(calc(var(--intro-ts, 0.15) * 1.05))
-            rotate(-1deg);
-        filter: blur(0.8px) drop-shadow(0 2px 6px rgba(0,0,0,0.1));
-    }
-    /* Settle — נחיתה מדויקת */
-    100% {
-        transform:
-            translate(var(--intro-tx, 0px), var(--intro-ty, 0px))
-            scale(var(--intro-ts, 0.15)) rotate(0deg);
-        filter: blur(0) drop-shadow(0 0 0 transparent);
-    }
+.logo-intro.flying .logo-intro-img {
+    transform: translate(var(--intro-tx, 0px), var(--intro-ty, 0px)) scale(var(--intro-ts, 0.15));
+    transition:
+        transform 1.7s cubic-bezier(0.45, 0, 0.15, 1),
+        opacity 0.4s ease;
 }
 body:not(.intro-done) .nav-logo .logo-img { opacity: 0; }
 .nav-logo .logo-img { transition: opacity 0.3s ease 0.05s; }

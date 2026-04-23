@@ -1,6 +1,7 @@
-// ===== LOGO INTRO ANIMATION =====
+// ===== INTRO: SEAL VIDEO → LOGO FLIGHT =====
 (function logoIntroAnimation() {
     const intro = document.getElementById('logoIntro');
+    const introVideo = document.getElementById('logoIntroVideo');
     const introImg = document.getElementById('logoIntroImg');
     const navLogo = document.querySelector('.nav-logo .logo-img');
     if (!intro || !introImg || !navLogo) return;
@@ -11,6 +12,15 @@
         document.body.classList.add('intro-done');
         return;
     }
+
+    let finished = false;
+    const finish = () => {
+        if (finished) return;
+        finished = true;
+        intro.classList.add('done');
+        document.body.classList.add('intro-done');
+        setTimeout(() => intro.remove(), 700);
+    };
 
     const flyToTarget = () => {
         const introRect = introImg.getBoundingClientRect();
@@ -26,30 +36,48 @@
         introImg.style.setProperty('--intro-ty', dy + 'px');
         introImg.style.setProperty('--intro-ts', scale);
         intro.classList.add('flying');
+        setTimeout(finish, 1750);
     };
 
-    const finish = () => {
-        intro.classList.add('done');
-        document.body.classList.add('intro-done');
-        setTimeout(() => intro.remove(), 700);
+    // אחרי הסרטון: להציג לוגו, להמתין רגע, ואז להתעופף
+    const afterVideo = () => {
+        intro.classList.add('video-done');
+        // 500ms — הלוגו מתחיל להיות נראה ונותן לעין לקלוט אותו
+        setTimeout(flyToTarget, 650);
     };
 
-    const start = () => {
-        setTimeout(flyToTarget, 1100);
-        setTimeout(finish, 2950);
-    };
-
-    if (navLogo.complete && introImg.complete) {
-        start();
-    } else {
-        let fired = false;
-        const go = () => { if (!fired) { fired = true; start(); } };
-        if (navLogo.complete) go();
-        else navLogo.addEventListener('load', go, { once: true });
-        if (introImg.complete) go();
-        else introImg.addEventListener('load', go, { once: true });
-        setTimeout(go, 2500);
+    // אם אין סרטון (נכשל/חסר) — לעקוף
+    if (!introVideo) {
+        afterVideo();
+        return;
     }
+
+    let videoHandled = false;
+    const handleVideoEnd = () => {
+        if (videoHandled) return;
+        videoHandled = true;
+        afterVideo();
+    };
+
+    introVideo.addEventListener('ended', handleVideoEnd);
+    introVideo.addEventListener('error', handleVideoEnd);
+
+    const tryPlay = () => {
+        const p = introVideo.play();
+        if (p && typeof p.catch === 'function') {
+            p.catch(() => handleVideoEnd());
+        }
+    };
+
+    if (introVideo.readyState >= 2) {
+        tryPlay();
+    } else {
+        introVideo.addEventListener('loadeddata', tryPlay, { once: true });
+        introVideo.addEventListener('canplay', tryPlay, { once: true });
+    }
+
+    // fallback: אם הסרטון לא סיים תוך 4 שניות — דלג
+    setTimeout(handleVideoEnd, 4000);
 })();
 
 // ===== HERO VIDEO INFINITE LOOP (resilience) =====
