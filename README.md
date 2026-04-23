@@ -25,7 +25,7 @@
 ├── index.html          עמוד יחיד
 ├── style.css           טמה לבנה-יוקרתית (BMW-inspired)
 ├── script.js           חלקיקים, scroll, mobile menu
-├── hero-bg.mp4         סרטון רקע ל-hero (45MB — לדחוס בעתיד)
+├── hero-bg.mp4         סרטון רקע ל-hero (11MB, H.264 CRF 28)
 ├── logo.png
 └── *.jpg               תמונות רקע לכרטיסי יתרונות
 ```
@@ -64,5 +64,6 @@ Deploy אוטומטי — האתר החי מתעדכן תוך 1-2 דקות.
 
 ## Known Tech Debt
 
-- `hero-bg.mp4` — 45MB, כבד למובייל. דחיסה ל-8MB דרך ffmpeg CRF 28 תחסוך ~80% bandwidth.
-- ללא Google Analytics / Hotjar — אין מדידת המרה נכון לעכשיו.
+- `hero-bg.mp4` — נדחס מ-45MB ל-11MB (H.264 CRF 28, preset slow). המקור שמור ב-`archive/` לוקלית (לא ב-git).
+- GA4 — בלוק gtag מוטמע ב-`<head>` אך לא פעיל: ממתין ל-Measurement ID אמיתי במקום `G-XXXXXXXXXX`.
+- טסטימוניאלים — אין סקשן עדיין, ממתין ל-3-4 ציטוטים + שמות + תמונות לקוחות.
