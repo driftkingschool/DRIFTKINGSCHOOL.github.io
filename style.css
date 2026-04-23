@@ -148,7 +148,7 @@ img { max-width: 100%; }
     margin-bottom: 1.5rem; backdrop-filter: blur(10px);
     animation: fadeInDown 0.8s ease;
 }
-.hero-badge .icon { fill: #ffd700; stroke: none; }
+.hero-badge .icon { stroke: #ffd700; fill: none; stroke-width: 1.8; }
 .hero-title {
     font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 900; line-height: 1.15;
     margin-bottom: 1.5rem; color: #ffffff;
@@ -394,9 +394,17 @@ img { max-width: 100%; }
 /* Package Header */
 .pkg-header { margin-bottom: 1.4rem; padding-bottom: 1.4rem; border-bottom: 1px solid var(--border-subtle); }
 .pkg-name {
-    font-size: 1.35rem; font-weight: 800; margin-bottom: 0.9rem;
+    font-size: 1.35rem; font-weight: 800; margin-bottom: 0.35rem;
     color: var(--text-dark); letter-spacing: -0.2px;
 }
+.pkg-subtitle {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    font-weight: 500;
+    margin-bottom: 1rem;
+    letter-spacing: 0.2px;
+}
+.king-card .pkg-subtitle { color: var(--gold); font-weight: 600; }
 .pkg-price { display: flex; align-items: baseline; gap: 0.3rem; }
 .price-amount {
     font-size: 2.4rem; font-weight: 900;
@@ -448,14 +456,12 @@ img { max-width: 100%; }
 }
 
 /* ===== GOLD-BORDERED TIERS ===== */
-.pkg-card[data-tier="advanced"],
 .pkg-card[data-tier="basic"],
 .pkg-card[data-tier="vip"],
 .pkg-card[data-tier="premium"] {
     border: 2px solid rgba(184,134,11,0.4);
     box-shadow: 0 4px 20px rgba(184,134,11,0.06);
 }
-.pkg-card[data-tier="advanced"]:hover,
 .pkg-card[data-tier="basic"]:hover,
 .pkg-card[data-tier="vip"]:hover,
 .pkg-card[data-tier="premium"]:hover {
