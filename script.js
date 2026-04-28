@@ -201,3 +201,24 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         }
     });
 });
+
+// ===== PACKAGE FILTER =====
+(function packageFilter() {
+    const radios = document.querySelectorAll('input[name="pkg-filter"]');
+    const cards = document.querySelectorAll('.pkg-card');
+    if (!radios.length || !cards.length) return;
+
+    const apply = (cat) => {
+        cards.forEach(card => {
+            const match = card.dataset.category === cat;
+            card.classList.toggle('hidden-by-filter', !match);
+        });
+    };
+
+    radios.forEach(r => r.addEventListener('change', e => {
+        if (e.target.checked) apply(e.target.value);
+    }));
+
+    const initial = document.querySelector('input[name="pkg-filter"]:checked');
+    if (initial) apply(initial.value);
+})();
