@@ -3,13 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Drift King School – חבילות חוויית נהיגה</title>
-    <meta name="description" content="דריפט קינג סקול - בית הספר המוביל לדריפטים בישראל. חבילות נהיגת דריפט מקצועיות על מסלול ייעודי עם מדריכים אלופי ישראל.">
+    <title data-he="Drift King School – חבילות חוויית נהיגה" data-en="Drift King School – Driving Experience Packages" data-ru="Drift King School – Пакеты вождения" data-ar="Drift King School – باقات تجربة القيادة">Drift King School – חבילות חוויית נהיגה</title>
+    <meta name="description"
+          data-content-he="דריפט קינג סקול - בית הספר המוביל לדריפטים בישראל. חבילות נהיגת דריפט מקצועיות על מסלול ייעודי עם מדריכים אלופי ישראל."
+          data-content-en="Drift King School – Israel's leading drift school. Professional drift driving packages on a dedicated track with Israeli champion instructors."
+          data-content-ru="Drift King School – ведущая школа дрифта в Израиле. Профессиональные пакеты вождения на специальной трассе с инструкторами-чемпионами Израиля."
+          data-content-ar="درفت كينغ سكول – مدرسة الدرفت الرائدة في إسرائيل. باقات قيادة درفت احترافية على مضمار مخصص مع مدربين أبطال إسرائيل."
+          content="דריפט קינג סקול - בית הספר המוביל לדריפטים בישראל. חבילות נהיגת דריפט מקצועיות על מסלול ייעודי עם מדריכים אלופי ישראל.">
 
     <!-- Open Graph / Social Preview -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Drift King School – חבילות חוויית נהיגה">
-    <meta property="og:description" content="בית הספר המוביל לדריפטים בישראל. 8 חבילות חוויה מקצועיות על מסלול ייעודי, מדריכים אלופי ישראל. בלי גבולות, רק עשן.">
+    <meta property="og:title"
+          data-content-he="Drift King School – חבילות חוויית נהיגה"
+          data-content-en="Drift King School – Driving Experience Packages"
+          data-content-ru="Drift King School – Пакеты вождения"
+          data-content-ar="Drift King School – باقات تجربة القيادة"
+          content="Drift King School – חבילות חוויית נהיגה">
+    <meta property="og:description"
+          data-content-he="בית הספר המוביל לדריפטים בישראל. חבילות חוויה מקצועיות על מסלול ייעודי, מדריכים אלופי ישראל. בלי גבולות, רק עשן."
+          data-content-en="Israel's leading drift school. Professional experience packages on a dedicated track with Israeli champion instructors. No limits, just smoke."
+          data-content-ru="Ведущая школа дрифта в Израиле. Профессиональные пакеты на специальной трассе с инструкторами-чемпионами Израиля. Без границ, только дым."
+          data-content-ar="مدرسة الدرفت الرائدة في إسرائيل. باقات تجربة احترافية على مضمار مخصص مع مدربين أبطال إسرائيل. بلا حدود، فقط دخان."
+          content="בית הספר המוביל לדריפטים בישראל. חבילות חוויה מקצועיות על מסלול ייעודי, מדריכים אלופי ישראל. בלי גבולות, רק עשן.">
     <meta property="og:image" content="https://driftkingschool.github.io/logo.png">
     <meta property="og:url" content="https://driftkingschool.github.io/">
     <meta property="og:locale" content="he_IL">
@@ -17,7 +32,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800;900&family=Inter:wght@300;400;500;600;700;800;900&family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 
     <!-- ===== Google Analytics 4 =====
@@ -126,22 +141,51 @@
             <img src="logo.png" alt="Drift King School Logo" class="logo-img">
         </a>
         <div class="nav-links">
-            <a href="#packages">חבילות</a>
-            <a href="#advantages">למה אנחנו</a>
-            <a href="#contact">צור קשר</a>
+            <a href="#packages" data-he="חבילות" data-en="Packages" data-ru="Пакеты" data-ar="الباقات">חבילות</a>
+            <a href="#advantages" data-he="למה אנחנו" data-en="Why us" data-ru="Почему мы" data-ar="لماذا نحن">למה אנחנו</a>
+            <a href="#contact" data-he="צור קשר" data-en="Contact" data-ru="Контакты" data-ar="تواصل معنا">צור קשר</a>
+            <div class="lang-wrap" data-position="top">
+                <button type="button" class="lang-toggle" aria-label="Change language" aria-haspopup="true" aria-expanded="false">
+                    <span data-cur-lang>HE</span>
+                    <span class="lang-caret" aria-hidden="true">▾</span>
+                </button>
+                <ul class="lang-menu" hidden role="menu">
+                    <li role="menuitem"><button type="button" data-lang="he"><span class="lang-code">HE</span><span class="lang-name">עברית</span></button></li>
+                    <li role="menuitem"><button type="button" data-lang="en"><span class="lang-code">EN</span><span class="lang-name">English</span></button></li>
+                    <li role="menuitem"><button type="button" data-lang="ru"><span class="lang-code">RU</span><span class="lang-name">Русский</span></button></li>
+                    <li role="menuitem"><button type="button" data-lang="ar"><span class="lang-code">AR</span><span class="lang-name">العربية</span></button></li>
+                </ul>
+            </div>
             <a href="tel:+972537757323" class="nav-cta">
-                <svg class="icon icon-sm"><use href="#i-phone"/></svg> קבעו חוויה
+                <svg class="icon icon-sm"><use href="#i-phone"/></svg> <span data-he="קבעו חוויה" data-en="Book now" data-ru="Забронировать" data-ar="احجز الآن">קבעו חוויה</span>
             </a>
         </div>
-        <button class="hamburger" id="hamburger" aria-label="תפריט">
+        <button class="hamburger" id="hamburger"
+                aria-label="תפריט"
+                data-aria-label-he="תפריט"
+                data-aria-label-en="Menu"
+                data-aria-label-ru="Меню"
+                data-aria-label-ar="القائمة">
             <span></span><span></span><span></span>
         </button>
     </div>
     <div class="mobile-menu" id="mobileMenu">
-        <a href="#packages" onclick="closeMobile()">חבילות</a>
-        <a href="#advantages" onclick="closeMobile()">למה אנחנו</a>
-        <a href="#contact" onclick="closeMobile()">צור קשר</a>
-        <a href="tel:+972537757323" class="nav-cta" onclick="closeMobile()"><svg class="icon icon-sm"><use href="#i-phone"/></svg> קבעו חוויה</a>
+        <a href="#packages" onclick="closeMobile()" data-he="חבילות" data-en="Packages" data-ru="Пакеты" data-ar="الباقات">חבילות</a>
+        <a href="#advantages" onclick="closeMobile()" data-he="למה אנחנו" data-en="Why us" data-ru="Почему мы" data-ar="لماذا نحن">למה אנחנו</a>
+        <a href="#contact" onclick="closeMobile()" data-he="צור קשר" data-en="Contact" data-ru="Контакты" data-ar="تواصل معنا">צור קשר</a>
+        <a href="tel:+972537757323" class="nav-cta" onclick="closeMobile()"><svg class="icon icon-sm"><use href="#i-phone"/></svg> <span data-he="קבעו חוויה" data-en="Book now" data-ru="Забронировать" data-ar="احجز الآن">קבעו חוויה</span></a>
+        <div class="lang-wrap" data-position="mobile">
+            <button type="button" class="lang-toggle" aria-label="Change language" aria-haspopup="true" aria-expanded="false">
+                <span data-cur-lang>HE</span>
+                <span class="lang-caret" aria-hidden="true">▾</span>
+            </button>
+            <ul class="lang-menu" hidden role="menu">
+                <li role="menuitem"><button type="button" data-lang="he"><span class="lang-code">HE</span><span class="lang-name">עברית</span></button></li>
+                <li role="menuitem"><button type="button" data-lang="en"><span class="lang-code">EN</span><span class="lang-name">English</span></button></li>
+                <li role="menuitem"><button type="button" data-lang="ru"><span class="lang-code">RU</span><span class="lang-name">Русский</span></button></li>
+                <li role="menuitem"><button type="button" data-lang="ar"><span class="lang-code">AR</span><span class="lang-name">العربية</span></button></li>
+            </ul>
+        </div>
     </div>
 </nav>
 
@@ -153,32 +197,40 @@
     <div class="hero-overlay"></div>
     <div class="hero-particles" id="heroParticles"></div>
     <div class="hero-content">
-        <div class="hero-badge"><svg class="icon icon-xs"><use href="#i-trophy"/></svg> בית הספר למירוצים הכי גדול בישראל <svg class="icon icon-xs"><use href="#i-trophy"/></svg></div>
-        <h1 class="hero-title">
+        <div class="hero-badge"><svg class="icon icon-xs"><use href="#i-trophy"/></svg> <span data-he="בית הספר למירוצים הכי גדול בישראל" data-en="Israel's biggest racing school" data-ru="Крупнейшая гоночная школа Израиля" data-ar="أكبر مدرسة سباقات في إسرائيل">בית הספר למירוצים הכי גדול בישראל</span> <svg class="icon icon-xs"><use href="#i-trophy"/></svg></div>
+        <h1 class="hero-title"
+            data-he='<span class="title-line">חווית נהיגה</span><span class="title-line accent">שלא תשכחו <span class="highlight">לעולם</span></span>'
+            data-en='<span class="title-line">A driving experience</span><span class="title-line accent">you will <span class="highlight">never forget</span></span>'
+            data-ru='<span class="title-line">Опыт вождения,</span><span class="title-line accent">который <span class="highlight">не забудешь</span></span>'
+            data-ar='<span class="title-line">تجربة قيادة</span><span class="title-line accent">لن <span class="highlight">تنسوها أبداً</span></span>'>
             <span class="title-line">חווית נהיגה</span>
             <span class="title-line accent">שלא תשכחו <span class="highlight">לעולם</span></span>
         </h1>
-        <p class="hero-sub">נהיגת דריפט מקצועית על מסלול ייעודי, עם הדרכה אישית מאלופי ישראל.<br>מתאים לכולם מגיל 14+ ללא ניסיון קודם.</p>
+        <p class="hero-sub"
+           data-he="נהיגת דריפט מקצועית על מסלול ייעודי, עם הדרכה אישית מאלופי ישראל.<br>מתאים לכולם מגיל 14+ ללא ניסיון קודם."
+           data-en="Professional drift driving on a dedicated track, with personal coaching from Israeli champions.<br>Open to anyone aged 14+, no prior experience required."
+           data-ru="Профессиональный дрифт на специальной трассе с персональным наставничеством от чемпионов Израиля.<br>Подходит всем от 14 лет, опыт не требуется."
+           data-ar="قيادة درفت احترافية على مضمار مخصص، مع تدريب شخصي من أبطال إسرائيل.<br>مناسب للجميع من سن 14+ بدون خبرة سابقة.">נהיגת דריפט מקצועית על מסלול ייעודי, עם הדרכה אישית מאלופי ישראל.<br>מתאים לכולם מגיל 14+ ללא ניסיון קודם.</p>
         <div class="hero-actions">
             <a href="#packages" class="btn btn-primary skew-btn">
-                <span>לחבילות שלנו</span>
+                <span data-he="לחבילות שלנו" data-en="View our packages" data-ru="К нашим пакетам" data-ar="إلى الباقات">לחבילות שלנו</span>
                 <svg class="icon"><use href="#i-arrow-left"/></svg>
             </a>
             <a href="tel:+972537757323" class="btn btn-outline skew-btn">
                 <svg class="icon"><use href="#i-phone"/></svg>
-                <span>053-775-7323</span>
+                <span class="phone-link">053-775-7323</span>
             </a>
         </div>
         <div class="hero-stats">
-            <div class="stat"><span class="stat-num" data-count="12">0</span><span class="stat-plus">+</span><span class="stat-label">שנות ניסיון</span></div>
+            <div class="stat"><span class="stat-num" data-count="12">0</span><span class="stat-plus">+</span><span class="stat-label" data-he="שנות ניסיון" data-en="Years of experience" data-ru="лет опыта" data-ar="سنوات خبرة">שנות ניסיון</span></div>
             <div class="stat-divider"></div>
-            <div class="stat"><span class="stat-num" data-count="13">0</span><span class="stat-label">מכוניות מירוץ משופרות</span></div>
+            <div class="stat"><span class="stat-num" data-count="13">0</span><span class="stat-label" data-he="מכוניות מירוץ משופרות" data-en="Tuned race cars" data-ru="гоночных авто" data-ar="سيارات سباق معدّلة">מכוניות מירוץ משופרות</span></div>
             <div class="stat-divider"></div>
-            <div class="stat"><span class="stat-num" data-count="7000">0</span><span class="stat-plus">+</span><span class="stat-label">לקוחות מרוצים</span></div>
+            <div class="stat"><span class="stat-num" data-count="7000">0</span><span class="stat-plus">+</span><span class="stat-label" data-he="לקוחות מרוצים" data-en="Happy customers" data-ru="довольных клиентов" data-ar="عميل سعيد">לקוחות מרוצים</span></div>
         </div>
     </div>
     <div class="hero-scroll-indicator">
-        <span>גלול למטה</span>
+        <span data-he="גלול למטה" data-en="Scroll down" data-ru="Прокрутите вниз" data-ar="مرّر للأسفل">גלול למטה</span>
         <div class="scroll-arrow"></div>
     </div>
 </section>
@@ -187,50 +239,54 @@
 <section class="advantages" id="advantages">
     <div class="section-container">
         <div class="section-header">
-            <span class="section-tag">למה דריפט קינג סקול?</span>
-            <h2 class="section-title">חווית הנהיגה <span class="highlight">המושלמת</span></h2>
+            <span class="section-tag" data-he="למה דריפט קינג סקול?" data-en="Why Drift King School?" data-ru="Почему Drift King School?" data-ar="لماذا درفت كينغ سكول؟">למה דריפט קינג סקול?</span>
+            <h2 class="section-title"
+                data-he='חווית הנהיגה <span class="highlight">המושלמת</span>'
+                data-en='The <span class="highlight">perfect</span> driving experience'
+                data-ru='<span class="highlight">Идеальный</span> опыт вождения'
+                data-ar='تجربة القيادة <span class="highlight">المثالية</span>'>חווית הנהיגה <span class="highlight">המושלמת</span></h2>
         </div>
         <div class="advantages-grid">
             <div class="adv-card has-bg" style="--bg-image: url('WhatsApp Image 2024-01-09 at 01.16.27.jpeg');" data-delay="0" onclick="this.classList.toggle('show-image')">
                 <div class="adv-content">
                     <div class="adv-icon"><svg><use href="#i-graduation"/></svg></div>
-                    <h3>הדרכה מקצועית</h3>
-                    <p>הדרכה אישית מאלופי ישראל בדריפט עם ליווי צמוד לאורך כל החוויה</p>
+                    <h3 data-he="הדרכה מקצועית" data-en="Professional coaching" data-ru="Профессиональное обучение" data-ar="تدريب احترافي">הדרכה מקצועית</h3>
+                    <p data-he="הדרכה אישית מאלופי ישראל בדריפט עם ליווי צמוד לאורך כל החוויה" data-en="Personal coaching from Israeli drift champions, with close guidance throughout the entire experience" data-ru="Персональное обучение от чемпионов Израиля по дрифту с непрерывным сопровождением" data-ar="تدريب شخصي من أبطال إسرائيل في الدرفت مع إرشاد مباشر طوال التجربة">הדרכה אישית מאלופי ישראל בדריפט עם ליווי צמוד לאורך כל החוויה</p>
                 </div>
             </div>
             <div class="adv-card has-bg" style="--bg-image: url('selected cars.JPEG');" data-delay="100" onclick="this.classList.toggle('show-image')">
                 <div class="adv-content">
                     <div class="adv-icon"><svg><use href="#i-car"/></svg></div>
-                    <h3>רכבי ספורט מובחרים</h3>
-                    <p>רכבי דריפט מקצועיים, מאזדה מיאטה (MX-5 NC) ופורש (718-S) על מסלול ייעודי</p>
+                    <h3 data-he="רכבי ספורט מובחרים" data-en="Premium sports cars" data-ru="Отборные спорткары" data-ar="سيارات رياضية مختارة">רכבי ספורט מובחרים</h3>
+                    <p data-he="רכבי דריפט מקצועיים, מאזדה מיאטה (MX-5 NC) ופורש (718-S) על מסלול ייעודי" data-en="Professional drift cars, Mazda Miata (MX-5 NC) and Porsche (718-S) on a dedicated track" data-ru="Профессиональные дрифт-кары: Mazda Miata (MX-5 NC) и Porsche (718-S) на специальной трассе" data-ar="سيارات درفت احترافية، مازدا ميات (MX-5 NC) وبورشه (718-S) على مضمار مخصص">רכבי דריפט מקצועיים, מאזדה מיאטה (MX-5 NC) ופורש (718-S) על מסלול ייעודי</p>
                 </div>
             </div>
             <div class="adv-card has-bg" style="--bg-image: url('WhatsApp Image 2024-02-26 at 10.42.28 (1).jpeg');" data-delay="200" onclick="this.classList.toggle('show-image')">
                 <div class="adv-content">
                     <div class="adv-icon"><svg><use href="#i-shield"/></svg></div>
-                    <h3>בטיחות מלאה</h3>
-                    <p>מסלול סגור ובטיחותי, הרחק מכבישים ציבוריים, עם ציוד מקצועי</p>
+                    <h3 data-he="בטיחות מלאה" data-en="Total safety" data-ru="Полная безопасность" data-ar="أمان كامل">בטיחות מלאה</h3>
+                    <p data-he="מסלול סגור ובטיחותי, הרחק מכבישים ציבוריים, עם ציוד מקצועי" data-en="A closed, safe track far from public roads, with professional equipment" data-ru="Закрытая безопасная трасса вдали от общественных дорог, с профессиональным оборудованием" data-ar="مضمار مغلق وآمن، بعيد عن الطرق العامة، مع معدات احترافية">מסלול סגור ובטיחותי, הרחק מכבישים ציבוריים, עם ציוד מקצועי</p>
                 </div>
             </div>
             <div class="adv-card has-bg" style="--bg-image: url('Gleb-Smirnov-Productions-01714.jpg');" data-delay="300" onclick="this.classList.toggle('show-image')">
                 <div class="adv-content">
                     <div class="adv-icon"><svg><use href="#i-target"/></svg></div>
-                    <h3>מתאים לכולם</h3>
-                    <p>מגיל 14 ומעלה, ללא צורך בניסיון קודם או רישיון</p>
+                    <h3 data-he="מתאים לכולם" data-en="Open to everyone" data-ru="Подходит всем" data-ar="مناسب للجميع">מתאים לכולם</h3>
+                    <p data-he="מגיל 14 ומעלה, ללא צורך בניסיון קודם או רישיון" data-en="Ages 14 and up, no prior experience or license required" data-ru="С 14 лет и старше, без опыта и водительских прав" data-ar="من سن 14 فما فوق، بدون خبرة سابقة أو رخصة">מגיל 14 ומעלה, ללא צורך בניסיון קודם או רישיון</p>
                 </div>
             </div>
             <div class="adv-card has-bg" style="--bg-image: url('WhatsApp Image 2024-02-26 at 10.42.27.jpeg');" data-delay="400" onclick="this.classList.toggle('show-image')">
                 <div class="adv-content">
                     <div class="adv-icon"><svg><use href="#i-fuel"/></svg></div>
-                    <h3>דלק וצמיגים ללא הגבלה</h3>
-                    <p>תשרפו צמיגים ודלק ללא חשש - הכל כלול</p>
+                    <h3 data-he="דלק וצמיגים ללא הגבלה" data-en="Unlimited fuel & tires" data-ru="Топливо и шины без лимита" data-ar="وقود وإطارات بلا حدود">דלק וצמיגים ללא הגבלה</h3>
+                    <p data-he="תשרפו צמיגים ודלק ללא חשש - הכל כלול" data-en="Burn through tires and fuel without worry — everything is included" data-ru="Жгите шины и топливо без забот — всё включено" data-ar="احرقوا الإطارات والوقود بلا قلق — كل شيء مشمول">תשרפו צמיגים ודלק ללא חשש - הכל כלול</p>
                 </div>
             </div>
             <div class="adv-card has-bg" style="--bg-image: url('2bb429ee-1154-405d-9e1c-33df6013ea3f (1).jpg');" data-delay="500" onclick="this.classList.toggle('show-image')">
                 <div class="adv-content">
                     <div class="adv-icon"><svg><use href="#i-trophy"/></svg></div>
-                    <h3>המגרש הכי גדול בארץ</h3>
-                    <p>מסלול המירוצים ומגרש ההחלקה הכי גדול שיש בארץ ישראל</p>
+                    <h3 data-he="המגרש הכי גדול בארץ" data-en="The largest track in Israel" data-ru="Крупнейший трек в Израиле" data-ar="أكبر حلبة في إسرائيل">המגרש הכי גדול בארץ</h3>
+                    <p data-he="מסלול המירוצים ומגרש ההחלקה הכי גדול שיש בארץ ישראל" data-en="The largest racing track and skid pad in all of Israel" data-ru="Самая большая гоночная трасса и площадка для скольжения в Израиле" data-ar="أكبر مضمار سباقات وحلبة انزلاق في إسرائيل">מסלול המירוצים ומגרש ההחלקה הכי גדול שיש בארץ ישראל</p>
                 </div>
             </div>
         </div>
@@ -241,156 +297,168 @@
 <section class="packages" id="packages">
     <div class="section-container">
         <div class="section-header">
-            <span class="section-tag">בחרו את החוויה שלכם עכשיו</span>
-            <h2 class="section-title">חוויות <span class="highlight">דריפט ומסלול</span> ממוקדות</h2>
-            <p class="section-desc">מחבילת התחלה ועד קורס מתקדמים – יש לנו חוויה מושלמת לכל רמה</p>
+            <span class="section-tag" data-he="בחרו את החוויה שלכם עכשיו" data-en="Choose your experience now" data-ru="Выберите свой опыт прямо сейчас" data-ar="اختاروا تجربتكم الآن">בחרו את החוויה שלכם עכשיו</span>
+            <h2 class="section-title"
+                data-he='חוויות <span class="highlight">דריפט ומסלול</span> ממוקדות'
+                data-en='Focused <span class="highlight">drift and track</span> experiences'
+                data-ru='Точные <span class="highlight">дрифт и трек</span>-программы'
+                data-ar='تجارب <span class="highlight">درفت ومضمار</span> مركّزة'>חוויות <span class="highlight">דריפט ומסלול</span> ממוקדות</h2>
+            <p class="section-desc"
+               data-he="מחבילת התחלה ועד קורס מתקדמים – יש לנו חוויה מושלמת לכל רמה"
+               data-en="From a starter package to an advanced course — we have the perfect experience for every level"
+               data-ru="От стартового пакета до продвинутого курса — у нас есть идеальный опыт для любого уровня"
+               data-ar="من باقة المبتدئين وحتى الدورة المتقدمة — لدينا تجربة مثالية لكل مستوى">מחבילת התחלה ועד קורס מתקדמים – יש לנו חוויה מושלמת לכל רמה</p>
         </div>
 
-        <div class="pkg-filter" role="radiogroup" aria-label="סינון חבילות לפי קטגוריה">
+        <div class="pkg-filter" role="radiogroup"
+             aria-label="סינון חבילות לפי קטגוריה"
+             data-aria-label-he="סינון חבילות לפי קטגוריה"
+             data-aria-label-en="Filter packages by category"
+             data-aria-label-ru="Фильтр пакетов по категории"
+             data-aria-label-ar="تصفية الباقات حسب الفئة">
             <input type="radio" id="filter-drift" name="pkg-filter" value="drift" checked>
-            <label for="filter-drift">דריפטים</label>
+            <label for="filter-drift" data-he="דריפטים" data-en="Drift" data-ru="Дрифт" data-ar="درفت">דריפטים</label>
 
             <input type="radio" id="filter-track" name="pkg-filter" value="track">
-            <label for="filter-track">מסלול</label>
+            <label for="filter-track" data-he="מסלול" data-en="Track" data-ru="Трек" data-ar="مضمار">מסלול</label>
 
             <input type="radio" id="filter-mixed" name="pkg-filter" value="mixed">
-            <label for="filter-mixed">משולב</label>
+            <label for="filter-mixed" data-he="משולב" data-en="Combined" data-ru="Комбо" data-ar="مدمج">משולב</label>
         </div>
 
         <div class="packages-grid">
 
             <!-- Package 1: Taste Of Drift -->
-            <!-- 1. Taste Of Drift -->
             <div class="pkg-card" data-tier="start" data-category="drift">
                 <div class="pkg-header">
                     <h3 class="pkg-name">Taste Of Drift</h3>
-                    <p class="pkg-subtitle">טעימת דריפט</p>
+                    <p class="pkg-subtitle" data-he="טעימת דריפט" data-en="Drift Taster" data-ru="Знакомство с дрифтом" data-ar="تذوق الدرفت">טעימת דריפט</p>
                     <div class="pkg-price">
                         <span class="price-amount">1,799</span>
                         <span class="price-currency">₪</span>
                     </div>
                 </div>
                 <div class="pkg-meta">
-                    <div class="meta-item"><svg class="meta-icon"><use href="#i-repeat"/></svg><span>2 מקצים</span></div>
-                    <div class="meta-item"><svg class="meta-icon"><use href="#i-timer"/></svg><span>30 דק׳ נהיגה נטו</span></div>
-                    <div class="meta-item"><svg class="meta-icon"><use href="#i-clock"/></svg><span>משך: כשעה</span></div>
+                    <div class="meta-item"><svg class="meta-icon"><use href="#i-repeat"/></svg><span data-he="2 מקצים" data-en="2 sessions" data-ru="2 заезда" data-ar="جلستان">2 מקצים</span></div>
+                    <div class="meta-item"><svg class="meta-icon"><use href="#i-timer"/></svg><span data-he="30 דק׳ נהיגה נטו" data-en="30 min net driving" data-ru="30 мин чистой езды" data-ar="30 دقيقة قيادة فعلية">30 דק׳ נהיגה נטו</span></div>
+                    <div class="meta-item"><svg class="meta-icon"><use href="#i-clock"/></svg><span data-he="משך: כשעה" data-en="Duration: ~1 hour" data-ru="Длит.: ~1 час" data-ar="المدة: ~ساعة">משך: כשעה</span></div>
                 </div>
                 <ul class="pkg-features">
-                    <li>רכב דריפט מקצועי</li>
-                    <li>הדרכה עיונית מקצועית</li>
-                    <li>הדגמות נהיגה וטכניקות שליטה</li>
-                    <li>ליווי צמוד ע"י מדריך מוסמך</li>
-                    <li>צמיגים ודלק ללא הגבלה</li>
-                    <li>צילומים</li>
+                    <li data-he="רכב דריפט מקצועי" data-en="Professional drift car" data-ru="Профессиональный дрифт-кар" data-ar="سيارة درفت احترافية">רכב דריפט מקצועי</li>
+                    <li data-he="הדרכה עיונית מקצועית" data-en="Professional theory training" data-ru="Профессиональное теоретическое обучение" data-ar="تدريب نظري احترافي">הדרכה עיונית מקצועית</li>
+                    <li data-he="הדגמות נהיגה וטכניקות שליטה" data-en="Driving demos &amp; control techniques" data-ru="Демонстрации вождения и контроля" data-ar="عروض قيادة وتقنيات تحكم">הדגמות נהיגה וטכניקות שליטה</li>
+                    <li data-he='ליווי צמוד ע"י מדריך מוסמך' data-en="Close guidance by a certified instructor" data-ru="Сопровождение сертифицированного инструктора" data-ar="إرشاد مباشر من مدرب معتمد">ליווי צמוד ע"י מדריך מוסמך</li>
+                    <li data-he="צמיגים ודלק ללא הגבלה" data-en="Unlimited tires &amp; fuel" data-ru="Шины и топливо без лимита" data-ar="إطارات ووقود بلا حدود">צמיגים ודלק ללא הגבלה</li>
+                    <li data-he="צילומים" data-en="Photos" data-ru="Фото" data-ar="صور">צילומים</li>
                 </ul>
-                <a href="https://wa.me/972537757323?text=שלום!%20אני%20מעוניין%20בחבילת%20Taste%20Of%20Drift%20(טעימת%20דריפט)" target="_blank" rel="noopener" class="pkg-cta skew-btn"><span>הזמנה בוואטסאפ</span></a>
+                <a href="https://wa.me/972537757323?text=שלום!%20אני%20מעוניין%20בחבילת%20Taste%20Of%20Drift%20(טעימת%20דריפט)" target="_blank" rel="noopener" class="pkg-cta skew-btn"><span data-he="הזמנה בוואטסאפ" data-en="Order on WhatsApp" data-ru="Заказ в WhatsApp" data-ar="اطلب عبر واتساب">הזמנה בוואטסאפ</span></a>
             </div>
 
             <!-- Package 2: Drift Advanced -->
             <div class="pkg-card" data-tier="advanced" data-category="drift">
                 <div class="pkg-header">
                     <h3 class="pkg-name">Drift Advanced</h3>
-                    <p class="pkg-subtitle">דריפט מתקדם</p>
+                    <p class="pkg-subtitle" data-he="דריפט מתקדם" data-en="Advanced Drift" data-ru="Дрифт продвинутый" data-ar="درفت متقدم">דריפט מתקדם</p>
                     <div class="pkg-price">
                         <span class="price-amount">2,199</span>
                         <span class="price-currency">₪</span>
                     </div>
                 </div>
                 <div class="pkg-meta">
-                    <div class="meta-item"><svg class="meta-icon"><use href="#i-repeat"/></svg><span>3 מקצים</span></div>
-                    <div class="meta-item"><svg class="meta-icon"><use href="#i-timer"/></svg><span>45 דק׳ נהיגה נטו</span></div>
-                    <div class="meta-item"><svg class="meta-icon"><use href="#i-clock"/></svg><span>משך: כ-שעתיים</span></div>
+                    <div class="meta-item"><svg class="meta-icon"><use href="#i-repeat"/></svg><span data-he="3 מקצים" data-en="3 sessions" data-ru="3 заезда" data-ar="3 جلسات">3 מקצים</span></div>
+                    <div class="meta-item"><svg class="meta-icon"><use href="#i-timer"/></svg><span data-he="45 דק׳ נהיגה נטו" data-en="45 min net driving" data-ru="45 мин чистой езды" data-ar="45 دقيقة قيادة فعلية">45 דק׳ נהיגה נטו</span></div>
+                    <div class="meta-item"><svg class="meta-icon"><use href="#i-clock"/></svg><span data-he="משך: כ-שעתיים" data-en="Duration: ~2 hours" data-ru="Длит.: ~2 часа" data-ar="المدة: ~ساعتين">משך: כ-שעתיים</span></div>
                 </div>
                 <ul class="pkg-features">
-                    <li>רכבי דריפטים מקצועיים</li>
-                    <li>הדרכה עיונית מקצועית</li>
-                    <li>הדגמות נהיגה וטכניקות שליטה</li>
-                    <li>ליווי צמוד ע"י מדריך מוסמך</li>
-                    <li>צמיגים ודלק ללא הגבלה</li>
-                    <li>צילומים</li>
+                    <li data-he="רכבי דריפטים מקצועיים" data-en="Professional drift cars" data-ru="Профессиональные дрифт-кары" data-ar="سيارات درفت احترافية">רכבי דריפטים מקצועיים</li>
+                    <li data-he="הדרכה עיונית מקצועית" data-en="Professional theory training" data-ru="Профессиональное теоретическое обучение" data-ar="تدريب نظري احترافي">הדרכה עיונית מקצועית</li>
+                    <li data-he="הדגמות נהיגה וטכניקות שליטה" data-en="Driving demos &amp; control techniques" data-ru="Демонстрации вождения и контроля" data-ar="عروض قيادة وتقنيات تحكم">הדגמות נהיגה וטכניקות שליטה</li>
+                    <li data-he='ליווי צמוד ע"י מדריך מוסמך' data-en="Close guidance by a certified instructor" data-ru="Сопровождение сертифицированного инструктора" data-ar="إرشاد مباشر من مدرب معتمد">ליווי צמוד ע"י מדריך מוסמך</li>
+                    <li data-he="צמיגים ודלק ללא הגבלה" data-en="Unlimited tires &amp; fuel" data-ru="Шины и топливо без лимита" data-ar="إطارات ووقود بلا حدود">צמיגים ודלק ללא הגבלה</li>
+                    <li data-he="צילומים" data-en="Photos" data-ru="Фото" data-ar="صور">צילומים</li>
                 </ul>
-                <a href="https://wa.me/972537757323?text=שלום!%20אני%20מעוניין%20בחבילת%20Drift%20Advanced%20(דריפט%20מתקדם)" target="_blank" rel="noopener" class="pkg-cta skew-btn"><span>הזמנה בוואטסאפ</span></a>
+                <a href="https://wa.me/972537757323?text=שלום!%20אני%20מעוניין%20בחבילת%20Drift%20Advanced%20(דריפט%20מתקדם)" target="_blank" rel="noopener" class="pkg-cta skew-btn"><span data-he="הזמנה בוואטסאפ" data-en="Order on WhatsApp" data-ru="Заказ в WhatsApp" data-ar="اطلب عبر واتساب">הזמנה בוואטסאפ</span></a>
             </div>
 
             <!-- Package 3: Drift PRO -->
             <div class="pkg-card" data-tier="basic" data-category="drift">
-                <div class="pkg-badge">פופולרי</div>
+                <div class="pkg-badge" data-he="פופולרי" data-en="Popular" data-ru="Популярно" data-ar="الأكثر طلباً">פופולרי</div>
                 <div class="pkg-header">
                     <h3 class="pkg-name">Drift PRO</h3>
-                    <p class="pkg-subtitle">דריפט מקצועי</p>
+                    <p class="pkg-subtitle" data-he="דריפט מקצועי" data-en="Professional Drift" data-ru="Дрифт профи" data-ar="درفت احترافي">דריפט מקצועי</p>
                     <div class="pkg-price">
                         <span class="price-amount">3,399</span>
                         <span class="price-currency">₪</span>
                     </div>
                 </div>
                 <div class="pkg-meta">
-                    <div class="meta-item"><svg class="meta-icon"><use href="#i-repeat"/></svg><span>5 מקצים</span></div>
-                    <div class="meta-item"><svg class="meta-icon"><use href="#i-timer"/></svg><span>75 דק׳ נהיגה נטו</span></div>
-                    <div class="meta-item"><svg class="meta-icon"><use href="#i-clock"/></svg><span>משך: כ-3 שעות</span></div>
+                    <div class="meta-item"><svg class="meta-icon"><use href="#i-repeat"/></svg><span data-he="5 מקצים" data-en="5 sessions" data-ru="5 заездов" data-ar="5 جلسات">5 מקצים</span></div>
+                    <div class="meta-item"><svg class="meta-icon"><use href="#i-timer"/></svg><span data-he="75 דק׳ נהיגה נטו" data-en="75 min net driving" data-ru="75 мин чистой езды" data-ar="75 دقيقة قيادة فعلية">75 דק׳ נהיגה נטו</span></div>
+                    <div class="meta-item"><svg class="meta-icon"><use href="#i-clock"/></svg><span data-he="משך: כ-3 שעות" data-en="Duration: ~3 hours" data-ru="Длит.: ~3 часа" data-ar="المدة: ~3 ساعات">משך: כ-3 שעות</span></div>
                 </div>
                 <ul class="pkg-features">
-                    <li>חווית טקסי דריפט</li>
-                    <li>רכבי דריפטים מקצועיים</li>
-                    <li>הדרכה עיונית מקצועית</li>
-                    <li>הדגמות נהיגה וטכניקות שליטה</li>
-                    <li>ליווי צמוד ע"י מדריך מוסמך</li>
-                    <li>צמיגים ודלק ללא הגבלה</li>
-                    <li>צילומים</li>
+                    <li data-he="חווית טקסי דריפט" data-en="Drift taxi ride" data-ru="Дрифт-такси" data-ar="ركوب درفت تاكسي">חווית טקסי דריפט</li>
+                    <li data-he="רכבי דריפטים מקצועיים" data-en="Professional drift cars" data-ru="Профессиональные дрифт-кары" data-ar="سيارات درفت احترافية">רכבי דריפטים מקצועיים</li>
+                    <li data-he="הדרכה עיונית מקצועית" data-en="Professional theory training" data-ru="Профессиональное теоретическое обучение" data-ar="تدريب نظري احترافي">הדרכה עיונית מקצועית</li>
+                    <li data-he="הדגמות נהיגה וטכניקות שליטה" data-en="Driving demos &amp; control techniques" data-ru="Демонстрации вождения и контроля" data-ar="عروض قيادة وتقنيات تحكم">הדגמות נהיגה וטכניקות שליטה</li>
+                    <li data-he='ליווי צמוד ע"י מדריך מוסמך' data-en="Close guidance by a certified instructor" data-ru="Сопровождение сертифицированного инструктора" data-ar="إرشاد مباشر من مدرب معتمد">ליווי צמוד ע"י מדריך מוסמך</li>
+                    <li data-he="צמיגים ודלק ללא הגבלה" data-en="Unlimited tires &amp; fuel" data-ru="Шины и топливо без лимита" data-ar="إطارات ووقود بلا حدود">צמיגים ודלק ללא הגבלה</li>
+                    <li data-he="צילומים" data-en="Photos" data-ru="Фото" data-ar="صور">צילומים</li>
                 </ul>
-                <a href="https://wa.me/972537757323?text=שלום!%20אני%20מעוניין%20בחבילת%20Drift%20PRO%20(דריפט%20מקצועי)" target="_blank" rel="noopener" class="pkg-cta skew-btn"><span>הזמנה בוואטסאפ</span></a>
+                <a href="https://wa.me/972537757323?text=שלום!%20אני%20מעוניין%20בחבילת%20Drift%20PRO%20(דריפט%20מקצועי)" target="_blank" rel="noopener" class="pkg-cta skew-btn"><span data-he="הזמנה בוואטסאפ" data-en="Order on WhatsApp" data-ru="Заказ в WhatsApp" data-ar="اطلب عبر واتساب">הזמנה בוואטסאפ</span></a>
             </div>
 
             <!-- Package 4: Drift + Track -->
             <div class="pkg-card" data-tier="track" data-category="mixed">
                 <div class="pkg-header">
                     <h3 class="pkg-name">Drift + Track</h3>
-                    <p class="pkg-subtitle">דריפט ומסלול</p>
+                    <p class="pkg-subtitle" data-he="דריפט ומסלול" data-en="Drift &amp; Track" data-ru="Дрифт и Трек" data-ar="درفت ومضمار">דריפט ומסלול</p>
                     <div class="pkg-price">
                         <span class="price-amount">2,199</span>
                         <span class="price-currency">₪</span>
                     </div>
                 </div>
                 <div class="pkg-meta">
-                    <div class="meta-item"><svg class="meta-icon"><use href="#i-repeat"/></svg><span>דריפט + מסלול</span></div>
-                    <div class="meta-item"><svg class="meta-icon"><use href="#i-timer"/></svg><span>15 דק׳ דריפט + 18 ק״מ מסלול</span></div>
-                    <div class="meta-item"><svg class="meta-icon"><use href="#i-clock"/></svg><span>משך: כשעה וחצי</span></div>
+                    <div class="meta-item"><svg class="meta-icon"><use href="#i-repeat"/></svg><span data-he="דריפט + מסלול" data-en="Drift + Track" data-ru="Дрифт + Трек" data-ar="درفت + مضمار">דריפט + מסלול</span></div>
+                    <div class="meta-item"><svg class="meta-icon"><use href="#i-timer"/></svg><span data-he="15 דק׳ דריפט + 18 ק״מ מסלול" data-en="15 min drift + 18 km track" data-ru="15 мин дрифт + 18 км трек" data-ar="15 دقيقة درفت + 18 كم مضمار">15 דק׳ דריפט + 18 ק״מ מסלול</span></div>
+                    <div class="meta-item"><svg class="meta-icon"><use href="#i-clock"/></svg><span data-he="משך: כשעה וחצי" data-en="Duration: ~1.5 hours" data-ru="Длит.: ~1,5 часа" data-ar="المدة: ~ساعة ونصف">משך: כשעה וחצי</span></div>
                 </div>
                 <ul class="pkg-features">
-                    <li>מקצה דריפט (15 דק׳ נטו)</li>
-                    <li>מקצה נהיגת מסלול על מאזדה מיאטה (MX-5 NC)</li>
-                    <li>18 ק״מ נהיגה על המסלול</li>
-                    <li>ליווי צמוד ע"י מדריך מוסמך</li>
-                    <li>צמיגים ודלק ללא הגבלה</li>
-                    <li>צילומים</li>
+                    <li data-he="מקצה דריפט (15 דק׳ נטו)" data-en="Drift session (15 min net)" data-ru="Дрифт-сессия (15 мин чистых)" data-ar="جلسة درفت (15 دقيقة فعلية)">מקצה דריפט (15 דק׳ נטו)</li>
+                    <li data-he="מקצה נהיגת מסלול על מאזדה מיאטה (MX-5 NC)" data-en="Track session on Mazda Miata (MX-5 NC)" data-ru="Трек-сессия на Mazda Miata (MX-5 NC)" data-ar="جلسة مضمار على مازدا ميات (MX-5 NC)">מקצה נהיגת מסלול על מאזדה מיאטה (MX-5 NC)</li>
+                    <li data-he="18 ק״מ נהיגה על המסלול" data-en="18 km of track driving" data-ru="18 км по трассе" data-ar="18 كم على المضمار">18 ק״מ נהיגה על המסלול</li>
+                    <li data-he='ליווי צמוד ע"י מדריך מוסמך' data-en="Close guidance by a certified instructor" data-ru="Сопровождение сертифицированного инструктора" data-ar="إرشاد مباشر من مدرب معتمد">ליווי צמוד ע"י מדריך מוסמך</li>
+                    <li data-he="צמיגים ודלק ללא הגבלה" data-en="Unlimited tires &amp; fuel" data-ru="Шины и топливо без лимита" data-ar="إطارات ووقود بلا حدود">צמיגים ודלק ללא הגבלה</li>
+                    <li data-he="צילומים" data-en="Photos" data-ru="Фото" data-ar="صور">צילומים</li>
                 </ul>
-                <a href="https://wa.me/972537757323?text=שלום!%20אני%20מעוניין%20בחבילת%20Drift%20%2B%20Track%20(דריפט%20ומסלול)" target="_blank" rel="noopener" class="pkg-cta skew-btn"><span>הזמנה בוואטסאפ</span></a>
+                <a href="https://wa.me/972537757323?text=שלום!%20אני%20מעוניין%20בחבילת%20Drift%20%2B%20Track%20(דריפט%20ומסלול)" target="_blank" rel="noopener" class="pkg-cta skew-btn"><span data-he="הזמנה בוואטסאפ" data-en="Order on WhatsApp" data-ru="Заказ в WhatsApp" data-ar="اطلب عبر واتساب">הזמנה בוואטסאפ</span></a>
             </div>
 
             <!-- Package 5: Drift + Track Premium -->
             <div class="pkg-card" data-tier="premium" data-category="mixed">
-                <div class="pkg-badge">פרימיום</div>
+                <div class="pkg-badge" data-he="פרימיום" data-en="Premium" data-ru="Премиум" data-ar="بريميوم">פרימיום</div>
                 <div class="pkg-header">
                     <h3 class="pkg-name">Drift + Track Premium</h3>
-                    <p class="pkg-subtitle">דריפט ומסלול פרימיום</p>
+                    <p class="pkg-subtitle" data-he="דריפט ומסלול פרימיום" data-en="Drift &amp; Track Premium" data-ru="Дрифт и Трек Премиум" data-ar="درفت ومضمار بريميوم">דריפט ומסלול פרימיום</p>
                     <div class="pkg-price">
                         <span class="price-amount">2,699</span>
                         <span class="price-currency">₪</span>
                     </div>
                 </div>
                 <div class="pkg-meta">
-                    <div class="meta-item"><svg class="meta-icon"><use href="#i-repeat"/></svg><span>דריפט + מסלול</span></div>
-                    <div class="meta-item"><svg class="meta-icon"><use href="#i-timer"/></svg><span>15 דק׳ דריפט + 18 ק״מ מסלול</span></div>
-                    <div class="meta-item"><svg class="meta-icon"><use href="#i-clock"/></svg><span>משך: כשעה וחצי</span></div>
+                    <div class="meta-item"><svg class="meta-icon"><use href="#i-repeat"/></svg><span data-he="דריפט + מסלול" data-en="Drift + Track" data-ru="Дрифт + Трек" data-ar="درفت + مضمار">דריפט + מסלול</span></div>
+                    <div class="meta-item"><svg class="meta-icon"><use href="#i-timer"/></svg><span data-he="15 דק׳ דריפט + 18 ק״מ מסלול" data-en="15 min drift + 18 km track" data-ru="15 мин дрифт + 18 км трек" data-ar="15 دقيقة درفت + 18 كم مضمار">15 דק׳ דריפט + 18 ק״מ מסלול</span></div>
+                    <div class="meta-item"><svg class="meta-icon"><use href="#i-clock"/></svg><span data-he="משך: כשעה וחצי" data-en="Duration: ~1.5 hours" data-ru="Длит.: ~1,5 часа" data-ar="المدة: ~ساعة ونصف">משך: כשעה וחצי</span></div>
                 </div>
                 <ul class="pkg-features">
-                    <li>מקצה דריפט (15 דק׳ נטו)</li>
-                    <li>מקצה נהיגת מסלול על <strong>פורש (718-S)</strong></li>
-                    <li>18 ק״מ נהיגה על המסלול</li>
-                    <li>ליווי צמוד ע"י מדריך מוסמך</li>
-                    <li>צמיגים ודלק ללא הגבלה</li>
-                    <li>צילומים</li>
+                    <li data-he="מקצה דריפט (15 דק׳ נטו)" data-en="Drift session (15 min net)" data-ru="Дрифт-сессия (15 мин чистых)" data-ar="جلسة درفت (15 دقيقة فعلية)">מקצה דריפט (15 דק׳ נטו)</li>
+                    <li data-he="מקצה נהיגת מסלול על <strong>פורש (718-S)</strong>" data-en="Track session on <strong>Porsche (718-S)</strong>" data-ru="Трек-сессия на <strong>Porsche (718-S)</strong>" data-ar="جلسة مضمار على <strong>بورشه (718-S)</strong>">מקצה נהיגת מסלול על <strong>פורש (718-S)</strong></li>
+                    <li data-he="18 ק״מ נהיגה על המסלול" data-en="18 km of track driving" data-ru="18 км по трассе" data-ar="18 كم على المضمار">18 ק״מ נהיגה על המסלול</li>
+                    <li data-he='ליווי צמוד ע"י מדריך מוסמך' data-en="Close guidance by a certified instructor" data-ru="Сопровождение сертифицированного инструктора" data-ar="إرشاد مباشر من مدرب معتمد">ליווי צמוד ע"י מדריך מוסמך</li>
+                    <li data-he="צמיגים ודלק ללא הגבלה" data-en="Unlimited tires &amp; fuel" data-ru="Шины и топливо без лимита" data-ar="إطارات ووقود بلا حدود">צמיגים ודלק ללא הגבלה</li>
+                    <li data-he="צילומים" data-en="Photos" data-ru="Фото" data-ar="صور">צילומים</li>
                 </ul>
-                <a href="https://wa.me/972537757323?text=שלום!%20אני%20מעוניין%20בחבילת%20Drift%20%2B%20Track%20Premium%20(דריפט%20ומסלול%20פרימיום)" target="_blank" rel="noopener" class="pkg-cta skew-btn"><span>הזמנה בוואטסאפ</span></a>
+                <a href="https://wa.me/972537757323?text=שלום!%20אני%20מעוניין%20בחבילת%20Drift%20%2B%20Track%20Premium%20(דריפט%20ומסלול%20פרימיום)" target="_blank" rel="noopener" class="pkg-cta skew-btn"><span data-he="הזמנה בוואטסאפ" data-en="Order on WhatsApp" data-ru="Заказ в WhatsApp" data-ar="اطلب عبر واتساب">הזמנה בוואטסאפ</span></a>
             </div>
 
             <!-- Package 6: Drift + Track VIP -->
@@ -398,372 +466,372 @@
                 <div class="pkg-badge vip-badge">VIP</div>
                 <div class="pkg-header">
                     <h3 class="pkg-name">Drift + Track VIP</h3>
-                    <p class="pkg-subtitle">דריפט ומסלול VIP</p>
+                    <p class="pkg-subtitle" data-he="דריפט ומסלול VIP" data-en="Drift &amp; Track VIP" data-ru="Дрифт и Трек VIP" data-ar="درفت ومضمار VIP">דריפט ומסלול VIP</p>
                     <div class="pkg-price">
                         <span class="price-amount">4,499</span>
                         <span class="price-currency">₪</span>
                     </div>
                 </div>
                 <div class="pkg-meta">
-                    <div class="meta-item"><svg class="meta-icon"><use href="#i-repeat"/></svg><span>5 מקצי דריפט + 2 מסלול</span></div>
-                    <div class="meta-item"><svg class="meta-icon"><use href="#i-timer"/></svg><span>60 דק׳ דריפט + 30 ק״מ</span></div>
-                    <div class="meta-item"><svg class="meta-icon"><use href="#i-clock"/></svg><span>משך: כ4 שעות</span></div>
+                    <div class="meta-item"><svg class="meta-icon"><use href="#i-repeat"/></svg><span data-he="5 מקצי דריפט + 2 מסלול" data-en="5 drift + 2 track sessions" data-ru="5 дрифт + 2 трек заездов" data-ar="5 درفت + 2 مضمار">5 מקצי דריפט + 2 מסלול</span></div>
+                    <div class="meta-item"><svg class="meta-icon"><use href="#i-timer"/></svg><span data-he="60 דק׳ דריפט + 30 ק״מ" data-en="60 min drift + 30 km" data-ru="60 мин дрифт + 30 км" data-ar="60 دقيقة درفت + 30 كم">60 דק׳ דריפט + 30 ק״מ</span></div>
+                    <div class="meta-item"><svg class="meta-icon"><use href="#i-clock"/></svg><span data-he="משך: כ4 שעות" data-en="Duration: ~4 hours" data-ru="Длит.: ~4 часа" data-ar="المدة: ~4 ساعات">משך: כ4 שעות</span></div>
                 </div>
                 <ul class="pkg-features">
-                    <li>5 מקצי דריפט (60 דק׳ נטו)</li>
-                    <li>2 מקצי נהיגת מסלול על <strong>פורש (718-S)</strong></li>
-                    <li>סה״כ 30 ק״מ נהיגת מסלול</li>
-                    <li>טקסי דריפט</li>
-                    <li>ליווי צמוד ע"י מדריך מוסמך</li>
-                    <li>צמיגים ודלק ללא הגבלה</li>
-                    <li>צילומים</li>
+                    <li data-he="5 מקצי דריפט (60 דק׳ נטו)" data-en="5 drift sessions (60 min net)" data-ru="5 дрифт-сессий (60 мин чистых)" data-ar="5 جلسات درفت (60 دقيقة فعلية)">5 מקצי דריפט (60 דק׳ נטו)</li>
+                    <li data-he="2 מקצי נהיגת מסלול על <strong>פורש (718-S)</strong>" data-en="2 track sessions on <strong>Porsche (718-S)</strong>" data-ru="2 трек-сессии на <strong>Porsche (718-S)</strong>" data-ar="جلستا مضمار على <strong>بورشه (718-S)</strong>">2 מקצי נהיגת מסלול על <strong>פורש (718-S)</strong></li>
+                    <li data-he="סה״כ 30 ק״מ נהיגת מסלול" data-en="30 km of track driving total" data-ru="Всего 30 км по трассе" data-ar="إجمالي 30 كم على المضمار">סה״כ 30 ק״מ נהיגת מסלול</li>
+                    <li data-he="טקסי דריפט" data-en="Drift Taxi" data-ru="Дрифт-такси" data-ar="درفت تاكسي">טקסי דריפט</li>
+                    <li data-he='ליווי צמוד ע"י מדריך מוסמך' data-en="Close guidance by a certified instructor" data-ru="Сопровождение сертифицированного инструктора" data-ar="إرشاد مباشر من مدرب معتمد">ליווי צמוד ע"י מדריך מוסמך</li>
+                    <li data-he="צמיגים ודלק ללא הגבלה" data-en="Unlimited tires &amp; fuel" data-ru="Шины и топливо без лимита" data-ar="إطارات ووقود بلا حدود">צמיגים ודלק ללא הגבלה</li>
+                    <li data-he="צילומים" data-en="Photos" data-ru="Фото" data-ar="صور">צילומים</li>
                 </ul>
-                <a href="https://wa.me/972537757323?text=שלום!%20אני%20מעוניין%20בחבילת%20Drift%20%2B%20Track%20VIP%20(דריפט%20ומסלול%20VIP)" target="_blank" rel="noopener" class="pkg-cta skew-btn"><span>הזמנה בוואטסאפ</span></a>
+                <a href="https://wa.me/972537757323?text=שלום!%20אני%20מעוניין%20בחבילת%20Drift%20%2B%20Track%20VIP%20(דריפט%20ומסלול%20VIP)" target="_blank" rel="noopener" class="pkg-cta skew-btn"><span data-he="הזמנה בוואטסאפ" data-en="Order on WhatsApp" data-ru="Заказ в WhatsApp" data-ar="اطلب عبر واتساب">הזמנה בוואטסאפ</span></a>
             </div>
 
             <!-- Package 7: Drift King -->
             <div class="pkg-card king-card" data-tier="king" data-category="drift">
-                <div class="pkg-badge king-badge">MASTER - חבילת הדגל</div>
+                <div class="pkg-badge king-badge" data-he="MASTER - חבילת הדגל" data-en="MASTER - Flagship" data-ru="MASTER - Флагман" data-ar="MASTER - الباقة الرئيسية">MASTER - חבילת הדגל</div>
                 <div class="king-glow"></div>
                 <div class="pkg-header">
                     <h3 class="pkg-name">Drift King</h3>
-                    <p class="pkg-subtitle">מלך הדריפט</p>
+                    <p class="pkg-subtitle" data-he="מלך הדריפט" data-en="King of Drift" data-ru="Король дрифта" data-ar="ملك الدرفت">מלך הדריפט</p>
                     <div class="pkg-price">
                         <span class="price-amount">6,499</span>
                         <span class="price-currency">₪</span>
                     </div>
                 </div>
                 <div class="pkg-meta">
-                    <div class="meta-item"><svg class="meta-icon"><use href="#i-repeat"/></svg><span>10 מקצים</span></div>
-                    <div class="meta-item"><svg class="meta-icon"><use href="#i-timer"/></svg><span>150 דק׳ נהיגה נטו</span></div>
-                    <div class="meta-item"><svg class="meta-icon"><use href="#i-clock"/></svg><span>משך: יום שלם</span></div>
+                    <div class="meta-item"><svg class="meta-icon"><use href="#i-repeat"/></svg><span data-he="10 מקצים" data-en="10 sessions" data-ru="10 заездов" data-ar="10 جلسات">10 מקצים</span></div>
+                    <div class="meta-item"><svg class="meta-icon"><use href="#i-timer"/></svg><span data-he="150 דק׳ נהיגה נטו" data-en="150 min net driving" data-ru="150 мин чистой езды" data-ar="150 دقيقة قيادة فعلية">150 דק׳ נהיגה נטו</span></div>
+                    <div class="meta-item"><svg class="meta-icon"><use href="#i-clock"/></svg><span data-he="משך: יום שלם" data-en="Duration: full day" data-ru="Длит.: целый день" data-ar="المدة: يوم كامل">משך: יום שלם</span></div>
                 </div>
                 <ul class="pkg-features">
-                    <li>10 מקצי נהיגה מקצועית</li>
-                    <li>150 דקות נהיגה נטו</li>
-                    <li>רכבי דריפטי מקצועיים</li>
-                    <li>חווית טקסי דריפט</li>
-                    <li>ליווי צמוד ע"י מדריך מוסמך</li>
-                    <li>הדגמות נהיגה וטכניקות שליטה</li>
-                    <li>לימוד טכניקות מתקדמות</li>
-                    <li>הדרכה עיונית מקצועית</li>
-                    <li>צמיגים ודלק ללא הגבלה</li>
-                    <li>צילומים</li>
+                    <li data-he="10 מקצי נהיגה מקצועית" data-en="10 professional driving sessions" data-ru="10 профессиональных заездов" data-ar="10 جلسات قيادة احترافية">10 מקצי נהיגה מקצועית</li>
+                    <li data-he="150 דקות נהיגה נטו" data-en="150 minutes of net driving" data-ru="150 минут чистой езды" data-ar="150 دقيقة قيادة فعلية">150 דקות נהיגה נטו</li>
+                    <li data-he="רכבי דריפטי מקצועיים" data-en="Professional drift cars" data-ru="Профессиональные дрифт-кары" data-ar="سيارات درفت احترافية">רכבי דריפטי מקצועיים</li>
+                    <li data-he="חווית טקסי דריפט" data-en="Drift taxi ride" data-ru="Дрифт-такси" data-ar="ركوب درفت تاكسي">חווית טקסי דריפט</li>
+                    <li data-he='ליווי צמוד ע"י מדריך מוסמך' data-en="Close guidance by a certified instructor" data-ru="Сопровождение сертифицированного инструктора" data-ar="إرشاد مباشر من مدرب معتمد">ליווי צמוד ע"י מדריך מוסמך</li>
+                    <li data-he="הדגמות נהיגה וטכניקות שליטה" data-en="Driving demos &amp; control techniques" data-ru="Демонстрации вождения и контроля" data-ar="عروض قيادة وتقنيات تحكم">הדגמות נהיגה וטכניקות שליטה</li>
+                    <li data-he="לימוד טכניקות מתקדמות" data-en="Advanced techniques training" data-ru="Изучение продвинутых техник" data-ar="تعلم تقنيات متقدمة">לימוד טכניקות מתקדמות</li>
+                    <li data-he="הדרכה עיונית מקצועית" data-en="Professional theory training" data-ru="Профессиональное теоретическое обучение" data-ar="تدريب نظري احترافي">הדרכה עיונית מקצועית</li>
+                    <li data-he="צמיגים ודלק ללא הגבלה" data-en="Unlimited tires &amp; fuel" data-ru="Шины и топливо без лимита" data-ar="إطارات ووقود بلا حدود">צמיגים ודלק ללא הגבלה</li>
+                    <li data-he="צילומים" data-en="Photos" data-ru="Фото" data-ar="صور">צילומים</li>
                 </ul>
-                <a href="https://wa.me/972537757323?text=שלום!%20אני%20מעוניין%20בחבילת%20Drift%20King%20(מלך%20הדריפט)" target="_blank" rel="noopener" class="pkg-cta king-cta skew-btn"><span>הצטרפו למלכים</span></a>
+                <a href="https://wa.me/972537757323?text=שלום!%20אני%20מעוניין%20בחבילת%20Drift%20King%20(מלך%20הדריפט)" target="_blank" rel="noopener" class="pkg-cta king-cta skew-btn"><span data-he="הצטרפו למלכים" data-en="Join the Kings" data-ru="Стать королём" data-ar="انضموا للملوك">הצטרפו למלכים</span></a>
             </div>
 
             <!-- Package 8: Your Own Car -->
             <div class="pkg-card" data-tier="starter" data-category="drift">
-                <div class="pkg-ribbon">על הרכב שלך</div>
+                <div class="pkg-ribbon" data-he="על הרכב שלך" data-en="Your Own Car" data-ru="Ваш авто" data-ar="بسيارتك">על הרכב שלך</div>
                 <div class="pkg-header">
                     <h3 class="pkg-name">Your Own Car</h3>
-                    <p class="pkg-subtitle">על הרכב שלך</p>
+                    <p class="pkg-subtitle" data-he="על הרכב שלך" data-en="On your own car" data-ru="На вашем авто" data-ar="بسيارتك">על הרכב שלך</p>
                     <div class="pkg-price">
                         <span class="price-amount">1,299</span>
                         <span class="price-currency">₪</span>
                     </div>
                 </div>
                 <div class="pkg-meta">
-                    <div class="meta-item"><svg class="meta-icon"><use href="#i-repeat"/></svg><span>2 מקצים</span></div>
-                    <div class="meta-item"><svg class="meta-icon"><use href="#i-timer"/></svg><span>30 דק׳ נהיגה נטו</span></div>
-                    <div class="meta-item"><svg class="meta-icon"><use href="#i-clock"/></svg><span>משך: כ-שעתיים</span></div>
+                    <div class="meta-item"><svg class="meta-icon"><use href="#i-repeat"/></svg><span data-he="2 מקצים" data-en="2 sessions" data-ru="2 заезда" data-ar="جلستان">2 מקצים</span></div>
+                    <div class="meta-item"><svg class="meta-icon"><use href="#i-timer"/></svg><span data-he="30 דק׳ נהיגה נטו" data-en="30 min net driving" data-ru="30 мин чистой езды" data-ar="30 دقيقة قيادة فعلية">30 דק׳ נהיגה נטו</span></div>
+                    <div class="meta-item"><svg class="meta-icon"><use href="#i-clock"/></svg><span data-he="משך: כ-שעתיים" data-en="Duration: ~2 hours" data-ru="Длит.: ~2 часа" data-ar="المدة: ~ساعتين">משך: כ-שעתיים</span></div>
                 </div>
                 <ul class="pkg-features">
-                    <li>מדריך מוסמך</li>
-                    <li>חווית טקסי דריפט</li>
-                    <li>הדרכה עיונית מקצועית</li>
-                    <li>הדגמות נהיגה וטכניקות שליטה</li>
-                    <li>צילומים</li>
+                    <li data-he="מדריך מוסמך" data-en="Certified instructor" data-ru="Сертифицированный инструктор" data-ar="مدرب معتمد">מדריך מוסמך</li>
+                    <li data-he="חווית טקסי דריפט" data-en="Drift taxi ride" data-ru="Дрифт-такси" data-ar="ركوب درفت تاكسي">חווית טקסי דריפט</li>
+                    <li data-he="הדרכה עיונית מקצועית" data-en="Professional theory training" data-ru="Профессиональное теоретическое обучение" data-ar="تدريب نظري احترافي">הדרכה עיונית מקצועית</li>
+                    <li data-he="הדגמות נהיגה וטכניקות שליטה" data-en="Driving demos &amp; control techniques" data-ru="Демонстрации вождения и контроля" data-ar="عروض قيادة وتقنيات تحكم">הדגמות נהיגה וטכניקות שליטה</li>
+                    <li data-he="צילומים" data-en="Photos" data-ru="Фото" data-ar="صور">צילומים</li>
                 </ul>
-                <a href="https://wa.me/972537757323?text=שלום!%20אני%20מעוניין%20בחבילת%20Your%20Own%20Car%20(על%20הרכב%20שלך)" target="_blank" rel="noopener" class="pkg-cta skew-btn"><span>הזמנה בוואטסאפ</span></a>
+                <a href="https://wa.me/972537757323?text=שלום!%20אני%20מעוניין%20בחבילת%20Your%20Own%20Car%20(על%20הרכב%20שלך)" target="_blank" rel="noopener" class="pkg-cta skew-btn"><span data-he="הזמנה בוואטסאפ" data-en="Order on WhatsApp" data-ru="Заказ в WhatsApp" data-ar="اطلب عبر واتساب">הזמנה בוואטסאפ</span></a>
             </div>
 
-            <!-- Package 12: Track Solo Miata -->
+            <!-- Package 9: Track Solo Miata -->
             <div class="pkg-card" data-tier="track-solo" data-category="track">
                 <div class="pkg-header">
                     <h3 class="pkg-name">Track Solo · Miata</h3>
-                    <p class="pkg-subtitle">6 הקפות במוטור סיטי</p>
+                    <p class="pkg-subtitle" data-he="6 הקפות במוטור סיטי" data-en="6 laps at Motor City" data-ru="6 кругов на Motor City" data-ar="6 لفات في موتور سيتي">6 הקפות במוטור סיטי</p>
                     <div class="pkg-price">
                         <span class="price-amount">899</span>
                         <span class="price-currency">₪</span>
                     </div>
                 </div>
                 <div class="pkg-meta">
-                    <div class="meta-item"><svg class="meta-icon"><use href="#i-repeat"/></svg><span>1 מקצה</span></div>
-                    <div class="meta-item"><svg class="meta-icon"><use href="#i-timer"/></svg><span>~18 ק"מ נהיגה</span></div>
-                    <div class="meta-item"><svg class="meta-icon"><use href="#i-car"/></svg><span>מאזדה מיאטה (MX-5 NC)</span></div>
+                    <div class="meta-item"><svg class="meta-icon"><use href="#i-repeat"/></svg><span data-he="1 מקצה" data-en="1 session" data-ru="1 заезд" data-ar="جلسة واحدة">1 מקצה</span></div>
+                    <div class="meta-item"><svg class="meta-icon"><use href="#i-timer"/></svg><span data-he='~18 ק"מ נהיגה' data-en="~18 km on track" data-ru="~18 км по трассе" data-ar="~18 كم على المضمار">~18 ק"מ נהיגה</span></div>
+                    <div class="meta-item"><svg class="meta-icon"><use href="#i-car"/></svg><span data-he="מאזדה מיאטה (MX-5 NC)" data-en="Mazda Miata (MX-5 NC)" data-ru="Mazda Miata (MX-5 NC)" data-ar="مازدا ميات (MX-5 NC)">מאזדה מיאטה (MX-5 NC)</span></div>
                 </div>
                 <ul class="pkg-features">
-                    <li>נהיגה עצמאית על המסלול</li>
-                    <li>רכב <strong>מאזדה מיאטה (MX-5 NC)</strong></li>
-                    <li>ליווי מדריך מוסמך</li>
-                    <li>דלק כלול</li>
-                    <li>צילומים</li>
+                    <li data-he="נהיגה עצמאית על המסלול" data-en="Solo driving on the track" data-ru="Самостоятельная езда по трассе" data-ar="قيادة ذاتية على المضمار">נהיגה עצמאית על המסלול</li>
+                    <li data-he="רכב <strong>מאזדה מיאטה (MX-5 NC)</strong>" data-en="<strong>Mazda Miata (MX-5 NC)</strong>" data-ru="<strong>Mazda Miata (MX-5 NC)</strong>" data-ar="<strong>مازدا ميات (MX-5 NC)</strong>">רכב <strong>מאזדה מיאטה (MX-5 NC)</strong></li>
+                    <li data-he="ליווי מדריך מוסמך" data-en="Certified instructor guidance" data-ru="Сопровождение сертифицированного инструктора" data-ar="إرشاد مدرب معتمد">ליווי מדריך מוסמך</li>
+                    <li data-he="דלק כלול" data-en="Fuel included" data-ru="Топливо включено" data-ar="الوقود مشمول">דלק כלול</li>
+                    <li data-he="צילומים" data-en="Photos" data-ru="Фото" data-ar="صور">צילומים</li>
                 </ul>
-                <a href="https://wa.me/972537757323?text=שלום!%20אני%20מעוניין%20בחבילת%20Track%20Solo%20Miata%20(מסלול%20יחיד%20מאזדה)" target="_blank" rel="noopener" class="pkg-cta skew-btn"><span>הזמנה בוואטסאפ</span></a>
+                <a href="https://wa.me/972537757323?text=שלום!%20אני%20מעוניין%20בחבילת%20Track%20Solo%20Miata%20(מסלול%20יחיד%20מאזדה)" target="_blank" rel="noopener" class="pkg-cta skew-btn"><span data-he="הזמנה בוואטסאפ" data-en="Order on WhatsApp" data-ru="Заказ в WhatsApp" data-ar="اطلب عبر واتساب">הזמנה בוואטסאפ</span></a>
             </div>
 
-            <!-- Package 13: Track Solo Porsche -->
+            <!-- Package 10: Track Solo Porsche -->
             <div class="pkg-card" data-tier="track-solo" data-category="track">
                 <div class="pkg-header">
                     <h3 class="pkg-name">Track Solo · Porsche</h3>
-                    <p class="pkg-subtitle">6 הקפות במוטור סיטי</p>
+                    <p class="pkg-subtitle" data-he="6 הקפות במוטור סיטי" data-en="6 laps at Motor City" data-ru="6 кругов на Motor City" data-ar="6 لفات في موتور سيتي">6 הקפות במוטור סיטי</p>
                     <div class="pkg-price">
                         <span class="price-amount">1,299</span>
                         <span class="price-currency">₪</span>
                     </div>
                 </div>
                 <div class="pkg-meta">
-                    <div class="meta-item"><svg class="meta-icon"><use href="#i-repeat"/></svg><span>1 מקצה</span></div>
-                    <div class="meta-item"><svg class="meta-icon"><use href="#i-timer"/></svg><span>~18 ק"מ נהיגה</span></div>
-                    <div class="meta-item"><svg class="meta-icon"><use href="#i-car"/></svg><span>פורש (718-S)</span></div>
+                    <div class="meta-item"><svg class="meta-icon"><use href="#i-repeat"/></svg><span data-he="1 מקצה" data-en="1 session" data-ru="1 заезд" data-ar="جلسة واحدة">1 מקצה</span></div>
+                    <div class="meta-item"><svg class="meta-icon"><use href="#i-timer"/></svg><span data-he='~18 ק"מ נהיגה' data-en="~18 km on track" data-ru="~18 км по трассе" data-ar="~18 كم على المضمار">~18 ק"מ נהיגה</span></div>
+                    <div class="meta-item"><svg class="meta-icon"><use href="#i-car"/></svg><span data-he="פורש (718-S)" data-en="Porsche (718-S)" data-ru="Porsche (718-S)" data-ar="بورشه (718-S)">פורש (718-S)</span></div>
                 </div>
                 <ul class="pkg-features">
-                    <li>נהיגה עצמאית ברכב יוקרה</li>
-                    <li>רכב <strong>פורש (718-S)</strong></li>
-                    <li>ליווי מדריך מוסמך</li>
-                    <li>דלק כלול</li>
-                    <li>צילומים</li>
+                    <li data-he="נהיגה עצמאית ברכב יוקרה" data-en="Solo drive in a luxury car" data-ru="Самостоятельная езда на люкс-авто" data-ar="قيادة ذاتية في سيارة فاخرة">נהיגה עצמאית ברכב יוקרה</li>
+                    <li data-he="רכב <strong>פורש (718-S)</strong>" data-en="<strong>Porsche (718-S)</strong>" data-ru="<strong>Porsche (718-S)</strong>" data-ar="<strong>بورشه (718-S)</strong>">רכב <strong>פורש (718-S)</strong></li>
+                    <li data-he="ליווי מדריך מוסמך" data-en="Certified instructor guidance" data-ru="Сопровождение сертифицированного инструктора" data-ar="إرشاد مدرب معتمد">ליווי מדריך מוסמך</li>
+                    <li data-he="דלק כלול" data-en="Fuel included" data-ru="Топливо включено" data-ar="الوقود مشمول">דלק כלול</li>
+                    <li data-he="צילומים" data-en="Photos" data-ru="Фото" data-ar="صور">צילומים</li>
                 </ul>
-                <a href="https://wa.me/972537757323?text=שלום!%20אני%20מעוניין%20בחבילת%20Track%20Solo%20Porsche%20(מסלול%20יחיד%20פורש)" target="_blank" rel="noopener" class="pkg-cta skew-btn"><span>הזמנה בוואטסאפ</span></a>
+                <a href="https://wa.me/972537757323?text=שלום!%20אני%20מעוניין%20בחבילת%20Track%20Solo%20Porsche%20(מסלול%20יחיד%20פורש)" target="_blank" rel="noopener" class="pkg-cta skew-btn"><span data-he="הזמנה בוואטסאפ" data-en="Order on WhatsApp" data-ru="Заказ в WhatsApp" data-ar="اطلب عبر واتساب">הזמנה בוואטסאפ</span></a>
             </div>
 
-            <!-- Package 14: Your Own Car · Track -->
+            <!-- Package 11: Your Own Car · Track -->
             <div class="pkg-card" data-tier="starter" data-category="track">
-                <div class="pkg-ribbon">על הרכב שלך</div>
+                <div class="pkg-ribbon" data-he="על הרכב שלך" data-en="Your Own Car" data-ru="Ваш авто" data-ar="بسيارتك">על הרכב שלך</div>
                 <div class="pkg-header">
                     <h3 class="pkg-name">Your Own Car · Track</h3>
-                    <p class="pkg-subtitle">על הרכב שלך, מסלול</p>
+                    <p class="pkg-subtitle" data-he="על הרכב שלך, מסלול" data-en="Your own car, on the track" data-ru="На вашем авто, по трассе" data-ar="بسيارتك على المضمار">על הרכב שלך, מסלול</p>
                     <div class="pkg-price">
                         <span class="price-amount">1,299</span>
                         <span class="price-currency">₪</span>
                     </div>
                 </div>
                 <div class="pkg-meta">
-                    <div class="meta-item"><svg class="meta-icon"><use href="#i-repeat"/></svg><span>2 מקצים</span></div>
-                    <div class="meta-item"><svg class="meta-icon"><use href="#i-timer"/></svg><span>נהיגת מסלול נטו</span></div>
-                    <div class="meta-item"><svg class="meta-icon"><use href="#i-clock"/></svg><span>משך: כשעתיים</span></div>
+                    <div class="meta-item"><svg class="meta-icon"><use href="#i-repeat"/></svg><span data-he="2 מקצים" data-en="2 sessions" data-ru="2 заезда" data-ar="جلستان">2 מקצים</span></div>
+                    <div class="meta-item"><svg class="meta-icon"><use href="#i-timer"/></svg><span data-he="נהיגת מסלול נטו" data-en="Net track driving" data-ru="Чистая езда по трассе" data-ar="قيادة فعلية على المضمار">נהיגת מסלול נטו</span></div>
+                    <div class="meta-item"><svg class="meta-icon"><use href="#i-clock"/></svg><span data-he="משך: כשעתיים" data-en="Duration: ~2 hours" data-ru="Длит.: ~2 часа" data-ar="المدة: ~ساعتين">משך: כשעתיים</span></div>
                 </div>
                 <ul class="pkg-features">
-                    <li>נהיגה על הרכב הפרטי שלך במסלול</li>
-                    <li>הדרכה עיונית מקצועית</li>
-                    <li>הדגמות נהיגה וטכניקות שליטה</li>
-                    <li>ליווי צמוד ע"י מדריך מוסמך</li>
-                    <li>צילומים</li>
+                    <li data-he="נהיגה על הרכב הפרטי שלך במסלול" data-en="Drive your own car on the track" data-ru="Езда на вашем авто по трассе" data-ar="قد سيارتك الخاصة على المضمار">נהיגה על הרכב הפרטי שלך במסלול</li>
+                    <li data-he="הדרכה עיונית מקצועית" data-en="Professional theory training" data-ru="Профессиональное теоретическое обучение" data-ar="تدريب نظري احترافي">הדרכה עיונית מקצועית</li>
+                    <li data-he="הדגמות נהיגה וטכניקות שליטה" data-en="Driving demos &amp; control techniques" data-ru="Демонстрации вождения и контроля" data-ar="عروض قيادة وتقنيات تحكم">הדגמות נהיגה וטכניקות שליטה</li>
+                    <li data-he='ליווי צמוד ע"י מדריך מוסמך' data-en="Close guidance by a certified instructor" data-ru="Сопровождение сертифицированного инструктора" data-ar="إرشاد مباشر من مدرب معتمد">ליווי צמוד ע"י מדריך מוסמך</li>
+                    <li data-he="צילומים" data-en="Photos" data-ru="Фото" data-ar="صور">צילומים</li>
                 </ul>
-                <a href="https://wa.me/972537757323?text=שלום!%20אני%20מעוניין%20בחבילת%20Your%20Own%20Car%20Track%20(על%20הרכב%20שלך%20-%20מסלול)" target="_blank" rel="noopener" class="pkg-cta skew-btn"><span>הזמנה בוואטסאפ</span></a>
+                <a href="https://wa.me/972537757323?text=שלום!%20אני%20מעוניין%20בחבילת%20Your%20Own%20Car%20Track%20(על%20הרכב%20שלך%20-%20מסלול)" target="_blank" rel="noopener" class="pkg-cta skew-btn"><span data-he="הזמנה בוואטסאפ" data-en="Order on WhatsApp" data-ru="Заказ в WhatsApp" data-ar="اطلب عبر واتساب">הזמנה בוואטסאפ</span></a>
             </div>
 
-            <!-- Package 15: Track Twin Miata -->
+            <!-- Package 12: Track Twin Miata -->
             <div class="pkg-card" data-tier="track-twin" data-category="track">
                 <div class="pkg-header">
                     <h3 class="pkg-name">Track Twin · Miata</h3>
-                    <p class="pkg-subtitle">12 הקפות במוטור סיטי</p>
+                    <p class="pkg-subtitle" data-he="12 הקפות במוטור סיטי" data-en="12 laps at Motor City" data-ru="12 кругов на Motor City" data-ar="12 لفة في موتور سيتي">12 הקפות במוטור סיטי</p>
                     <div class="pkg-price">
                         <span class="price-amount">1,999</span>
                         <span class="price-currency">₪</span>
                     </div>
                 </div>
                 <div class="pkg-meta">
-                    <div class="meta-item"><svg class="meta-icon"><use href="#i-repeat"/></svg><span>2 מקצים</span></div>
-                    <div class="meta-item"><svg class="meta-icon"><use href="#i-timer"/></svg><span>~36 ק"מ נהיגה</span></div>
-                    <div class="meta-item"><svg class="meta-icon"><use href="#i-car"/></svg><span>מאזדה מיאטה (MX-5 NC)</span></div>
+                    <div class="meta-item"><svg class="meta-icon"><use href="#i-repeat"/></svg><span data-he="2 מקצים" data-en="2 sessions" data-ru="2 заезда" data-ar="جلستان">2 מקצים</span></div>
+                    <div class="meta-item"><svg class="meta-icon"><use href="#i-timer"/></svg><span data-he='~36 ק"מ נהיגה' data-en="~36 km on track" data-ru="~36 км по трассе" data-ar="~36 كم على المضمار">~36 ק"מ נהיגה</span></div>
+                    <div class="meta-item"><svg class="meta-icon"><use href="#i-car"/></svg><span data-he="מאזדה מיאטה (MX-5 NC)" data-en="Mazda Miata (MX-5 NC)" data-ru="Mazda Miata (MX-5 NC)" data-ar="مازدا ميات (MX-5 NC)">מאזדה מיאטה (MX-5 NC)</span></div>
                 </div>
                 <ul class="pkg-features">
-                    <li>2 מקצי נהיגה על המסלול</li>
-                    <li>רכב <strong>מאזדה מיאטה (MX-5 NC)</strong></li>
-                    <li>הדרכה עיונית מקצועית</li>
-                    <li>ליווי צמוד ע"י מדריך מוסמך</li>
-                    <li>דלק כלול</li>
-                    <li>צילומים</li>
+                    <li data-he="2 מקצי נהיגה על המסלול" data-en="2 driving sessions on the track" data-ru="2 заезда по трассе" data-ar="جلستا قيادة على المضمار">2 מקצי נהיגה על המסלול</li>
+                    <li data-he="רכב <strong>מאזדה מיאטה (MX-5 NC)</strong>" data-en="<strong>Mazda Miata (MX-5 NC)</strong>" data-ru="<strong>Mazda Miata (MX-5 NC)</strong>" data-ar="<strong>مازدا ميات (MX-5 NC)</strong>">רכב <strong>מאזדה מיאטה (MX-5 NC)</strong></li>
+                    <li data-he="הדרכה עיונית מקצועית" data-en="Professional theory training" data-ru="Профессиональное теоретическое обучение" data-ar="تدريب نظري احترافي">הדרכה עיונית מקצועית</li>
+                    <li data-he='ליווי צמוד ע"י מדריך מוסמך' data-en="Close guidance by a certified instructor" data-ru="Сопровождение сертифицированного инструктора" data-ar="إرشاد مباشر من مدرب معتمد">ליווי צמוד ע"י מדריך מוסמך</li>
+                    <li data-he="דלק כלול" data-en="Fuel included" data-ru="Топливо включено" data-ar="الوقود مشمول">דלק כלול</li>
+                    <li data-he="צילומים" data-en="Photos" data-ru="Фото" data-ar="صور">צילומים</li>
                 </ul>
-                <a href="https://wa.me/972537757323?text=שלום!%20אני%20מעוניין%20בחבילת%20Track%20Twin%20Miata%20(מסלול%20כפול%20מאזדה)" target="_blank" rel="noopener" class="pkg-cta skew-btn"><span>הזמנה בוואטסאפ</span></a>
+                <a href="https://wa.me/972537757323?text=שלום!%20אני%20מעוניין%20בחבילת%20Track%20Twin%20Miata%20(מסלול%20כפול%20מאזדה)" target="_blank" rel="noopener" class="pkg-cta skew-btn"><span data-he="הזמנה בוואטסאפ" data-en="Order on WhatsApp" data-ru="Заказ в WhatsApp" data-ar="اطلب عبر واتساب">הזמנה בוואטסאפ</span></a>
             </div>
 
-            <!-- Package 16: Track Twin Porsche -->
+            <!-- Package 13: Track Twin Porsche -->
             <div class="pkg-card" data-tier="track-twin" data-category="track">
                 <div class="pkg-header">
                     <h3 class="pkg-name">Track Twin · Porsche</h3>
-                    <p class="pkg-subtitle">12 הקפות במוטור סיטי</p>
+                    <p class="pkg-subtitle" data-he="12 הקפות במוטור סיטי" data-en="12 laps at Motor City" data-ru="12 кругов на Motor City" data-ar="12 لفة في موتور سيتي">12 הקפות במוטור סיטי</p>
                     <div class="pkg-price">
                         <span class="price-amount">2,499</span>
                         <span class="price-currency">₪</span>
                     </div>
                 </div>
                 <div class="pkg-meta">
-                    <div class="meta-item"><svg class="meta-icon"><use href="#i-repeat"/></svg><span>2 מקצים</span></div>
-                    <div class="meta-item"><svg class="meta-icon"><use href="#i-timer"/></svg><span>~36 ק"מ נהיגה</span></div>
-                    <div class="meta-item"><svg class="meta-icon"><use href="#i-car"/></svg><span>פורש (718-S)</span></div>
+                    <div class="meta-item"><svg class="meta-icon"><use href="#i-repeat"/></svg><span data-he="2 מקצים" data-en="2 sessions" data-ru="2 заезда" data-ar="جلستان">2 מקצים</span></div>
+                    <div class="meta-item"><svg class="meta-icon"><use href="#i-timer"/></svg><span data-he='~36 ק"מ נהיגה' data-en="~36 km on track" data-ru="~36 км по трассе" data-ar="~36 كم على المضمار">~36 ק"מ נהיגה</span></div>
+                    <div class="meta-item"><svg class="meta-icon"><use href="#i-car"/></svg><span data-he="פורש (718-S)" data-en="Porsche (718-S)" data-ru="Porsche (718-S)" data-ar="بورشه (718-S)">פורש (718-S)</span></div>
                 </div>
                 <ul class="pkg-features">
-                    <li>2 מקצי נהיגה ברכב יוקרה</li>
-                    <li>רכב <strong>פורש (718-S)</strong></li>
-                    <li>הדרכה עיונית מקצועית</li>
-                    <li>ליווי צמוד ע"י מדריך מוסמך</li>
-                    <li>דלק כלול</li>
-                    <li>צילומים</li>
+                    <li data-he="2 מקצי נהיגה ברכב יוקרה" data-en="2 driving sessions in a luxury car" data-ru="2 заезда в люкс-авто" data-ar="جلستا قيادة في سيارة فاخرة">2 מקצי נהיגה ברכב יוקרה</li>
+                    <li data-he="רכב <strong>פורש (718-S)</strong>" data-en="<strong>Porsche (718-S)</strong>" data-ru="<strong>Porsche (718-S)</strong>" data-ar="<strong>بورشه (718-S)</strong>">רכב <strong>פורש (718-S)</strong></li>
+                    <li data-he="הדרכה עיונית מקצועית" data-en="Professional theory training" data-ru="Профессиональное теоретическое обучение" data-ar="تدريب نظري احترافي">הדרכה עיונית מקצועית</li>
+                    <li data-he='ליווי צמוד ע"י מדריך מוסמך' data-en="Close guidance by a certified instructor" data-ru="Сопровождение сертифицированного инструктора" data-ar="إرشاد مباشر من مدرب معتمد">ליווי צמוד ע"י מדריך מוסמך</li>
+                    <li data-he="דלק כלול" data-en="Fuel included" data-ru="Топливо включено" data-ar="الوقود مشمول">דלק כלול</li>
+                    <li data-he="צילומים" data-en="Photos" data-ru="Фото" data-ar="صور">צילומים</li>
                 </ul>
-                <a href="https://wa.me/972537757323?text=שלום!%20אני%20מעוניין%20בחבילת%20Track%20Twin%20Porsche%20(מסלול%20כפול%20פורש)" target="_blank" rel="noopener" class="pkg-cta skew-btn"><span>הזמנה בוואטסאפ</span></a>
+                <a href="https://wa.me/972537757323?text=שלום!%20אני%20מעוניין%20בחבילת%20Track%20Twin%20Porsche%20(מסלול%20כפול%20פורש)" target="_blank" rel="noopener" class="pkg-cta skew-btn"><span data-he="הזמנה בוואטסאפ" data-en="Order on WhatsApp" data-ru="Заказ в WhatsApp" data-ar="اطلب عبر واتساب">הזמנה בוואטסאפ</span></a>
             </div>
 
-            <!-- Package 17: Track Solo BMW M3 -->
+            <!-- Package 14: Track Solo BMW M3 -->
             <div class="pkg-card" data-tier="basic" data-category="track">
-                <div class="pkg-badge">פרימיום</div>
+                <div class="pkg-badge" data-he="פרימיום" data-en="Premium" data-ru="Премиум" data-ar="بريميوم">פרימיום</div>
                 <div class="pkg-header">
                     <h3 class="pkg-name">Track Solo · BMW M3</h3>
-                    <p class="pkg-subtitle">6 הקפות במוטור סיטי פרימיום</p>
+                    <p class="pkg-subtitle" data-he="6 הקפות במוטור סיטי פרימיום" data-en="6 laps at Motor City Premium" data-ru="6 кругов на Motor City Премиум" data-ar="6 لفات في موتور سيتي بريميوم">6 הקפות במוטור סיטי פרימיום</p>
                     <div class="pkg-price">
                         <span class="price-amount">2,599</span>
                         <span class="price-currency">₪</span>
                     </div>
                 </div>
                 <div class="pkg-meta">
-                    <div class="meta-item"><svg class="meta-icon"><use href="#i-repeat"/></svg><span>1 מקצה</span></div>
-                    <div class="meta-item"><svg class="meta-icon"><use href="#i-timer"/></svg><span>~18 ק"מ נהיגה</span></div>
-                    <div class="meta-item"><svg class="meta-icon"><use href="#i-car"/></svg><span>ב.מ.וו (M3 COMPETITION)</span></div>
+                    <div class="meta-item"><svg class="meta-icon"><use href="#i-repeat"/></svg><span data-he="1 מקצה" data-en="1 session" data-ru="1 заезд" data-ar="جلسة واحدة">1 מקצה</span></div>
+                    <div class="meta-item"><svg class="meta-icon"><use href="#i-timer"/></svg><span data-he='~18 ק"מ נהיגה' data-en="~18 km on track" data-ru="~18 км по трассе" data-ar="~18 كم على المضمار">~18 ק"מ נהיגה</span></div>
+                    <div class="meta-item"><svg class="meta-icon"><use href="#i-car"/></svg><span data-he="ב.מ.וו (M3 COMPETITION)" data-en="BMW (M3 COMPETITION)" data-ru="BMW (M3 COMPETITION)" data-ar="بي إم دبليو (M3 COMPETITION)">ב.מ.וו (M3 COMPETITION)</span></div>
                 </div>
                 <ul class="pkg-features">
-                    <li>נהיגה ברכב הדגל של ב.מ.וו</li>
-                    <li>רכב <strong>ב.מ.וו (M3 COMPETITION)</strong></li>
-                    <li>הדרכה עיונית מקצועית</li>
-                    <li>ליווי צמוד ע"י מדריך מוסמך</li>
-                    <li>דלק כלול</li>
-                    <li>צילומים</li>
+                    <li data-he="נהיגה ברכב הדגל של ב.מ.וו" data-en="Drive BMW's flagship car" data-ru="Езда на флагмане BMW" data-ar="قيادة سيارة BMW الرائدة">נהיגה ברכב הדגל של ב.מ.וו</li>
+                    <li data-he="רכב <strong>ב.מ.וו (M3 COMPETITION)</strong>" data-en="<strong>BMW (M3 COMPETITION)</strong>" data-ru="<strong>BMW (M3 COMPETITION)</strong>" data-ar="<strong>بي إم دبليو (M3 COMPETITION)</strong>">רכב <strong>ב.מ.וו (M3 COMPETITION)</strong></li>
+                    <li data-he="הדרכה עיונית מקצועית" data-en="Professional theory training" data-ru="Профессиональное теоретическое обучение" data-ar="تدريب نظري احترافي">הדרכה עיונית מקצועית</li>
+                    <li data-he='ליווי צמוד ע"י מדריך מוסמך' data-en="Close guidance by a certified instructor" data-ru="Сопровождение сертифицированного инструктора" data-ar="إرشاد مباشر من مدرب معتمد">ליווי צמוד ע"י מדריך מוסמך</li>
+                    <li data-he="דלק כלול" data-en="Fuel included" data-ru="Топливо включено" data-ar="الوقود مشمول">דלק כלול</li>
+                    <li data-he="צילומים" data-en="Photos" data-ru="Фото" data-ar="صور">צילומים</li>
                 </ul>
-                <a href="https://wa.me/972537757323?text=שלום!%20אני%20מעוניין%20בחבילת%20Track%20Solo%20BMW%20M3%20(מסלול%20יחיד%20בממ.וו)" target="_blank" rel="noopener" class="pkg-cta skew-btn"><span>הזמנה בוואטסאפ</span></a>
+                <a href="https://wa.me/972537757323?text=שלום!%20אני%20מעוניין%20בחבילת%20Track%20Solo%20BMW%20M3%20(מסלול%20יחיד%20בממ.וו)" target="_blank" rel="noopener" class="pkg-cta skew-btn"><span data-he="הזמנה בוואטסאפ" data-en="Order on WhatsApp" data-ru="Заказ в WhatsApp" data-ar="اطلب عبر واتساب">הזמנה בוואטסאפ</span></a>
             </div>
 
-            <!-- Package 18: Track Twin BMW M3 (flagship) -->
+            <!-- Package 15: Track Twin BMW M3 -->
             <div class="pkg-card" data-tier="vip" data-category="track">
                 <div class="pkg-header">
                     <h3 class="pkg-name">Track Twin · BMW M3</h3>
-                    <p class="pkg-subtitle">12 הקפות במוטור סיטי</p>
+                    <p class="pkg-subtitle" data-he="12 הקפות במוטור סיטי" data-en="12 laps at Motor City" data-ru="12 кругов на Motor City" data-ar="12 لفة في موتور سيتي">12 הקפות במוטור סיטי</p>
                     <div class="pkg-price">
                         <span class="price-amount">4,999</span>
                         <span class="price-currency">₪</span>
                     </div>
                 </div>
                 <div class="pkg-meta">
-                    <div class="meta-item"><svg class="meta-icon"><use href="#i-repeat"/></svg><span>2 מקצים</span></div>
-                    <div class="meta-item"><svg class="meta-icon"><use href="#i-timer"/></svg><span>~36 ק"מ נהיגה</span></div>
-                    <div class="meta-item"><svg class="meta-icon"><use href="#i-clock"/></svg><span>משך: שעה של חוויה</span></div>
+                    <div class="meta-item"><svg class="meta-icon"><use href="#i-repeat"/></svg><span data-he="2 מקצים" data-en="2 sessions" data-ru="2 заезда" data-ar="جلستان">2 מקצים</span></div>
+                    <div class="meta-item"><svg class="meta-icon"><use href="#i-timer"/></svg><span data-he='~36 ק"מ נהיגה' data-en="~36 km on track" data-ru="~36 км по трассе" data-ar="~36 كم على المضمار">~36 ק"מ נהיגה</span></div>
+                    <div class="meta-item"><svg class="meta-icon"><use href="#i-clock"/></svg><span data-he="משך: שעה של חוויה" data-en="Duration: 1-hour experience" data-ru="Длит.: час опыта" data-ar="المدة: ساعة من التجربة">משך: שעה של חוויה</span></div>
                 </div>
                 <ul class="pkg-features">
-                    <li>2 מקצים ברכב הדגל של ב.מ.וו</li>
-                    <li>רכב <strong>ב.מ.וו (M3 COMPETITION)</strong></li>
-                    <li>הדרכה עיונית מקצועית</li>
-                    <li>ליווי צמוד ע"י מדריך מוסמך</li>
-                    <li>דלק כלול</li>
-                    <li>חוויית פרימיום מלאה</li>
-                    <li>צילומים</li>
+                    <li data-he="2 מקצים ברכב הדגל של ב.מ.וו" data-en="2 sessions in BMW's flagship car" data-ru="2 заезда на флагмане BMW" data-ar="جلستان في سيارة BMW الرائدة">2 מקצים ברכב הדגל של ב.מ.וו</li>
+                    <li data-he="רכב <strong>ב.מ.וו (M3 COMPETITION)</strong>" data-en="<strong>BMW (M3 COMPETITION)</strong>" data-ru="<strong>BMW (M3 COMPETITION)</strong>" data-ar="<strong>بي إم دبليو (M3 COMPETITION)</strong>">רכב <strong>ב.מ.וו (M3 COMPETITION)</strong></li>
+                    <li data-he="הדרכה עיונית מקצועית" data-en="Professional theory training" data-ru="Профессиональное теоретическое обучение" data-ar="تدريب نظري احترافي">הדרכה עיונית מקצועית</li>
+                    <li data-he='ליווי צמוד ע"י מדריך מוסמך' data-en="Close guidance by a certified instructor" data-ru="Сопровождение сертифицированного инструктора" data-ar="إرشاد مباشر من مدرب معتمد">ליווי צמוד ע"י מדריך מוסמך</li>
+                    <li data-he="דלק כלול" data-en="Fuel included" data-ru="Топливо включено" data-ar="الوقود مشمول">דלק כלול</li>
+                    <li data-he="חוויית פרימיום מלאה" data-en="Full premium experience" data-ru="Полный премиум-опыт" data-ar="تجربة بريميوم متكاملة">חוויית פרימיום מלאה</li>
+                    <li data-he="צילומים" data-en="Photos" data-ru="Фото" data-ar="صور">צילומים</li>
                 </ul>
-                <a href="https://wa.me/972537757323?text=שלום!%20אני%20מעוניין%20בחבילת%20Track%20Twin%20BMW%20M3%20(מסלול%20כפול%20בממ.וו)" target="_blank" rel="noopener" class="pkg-cta skew-btn"><span>הזמנה בוואטסאפ</span></a>
+                <a href="https://wa.me/972537757323?text=שלום!%20אני%20מעוניין%20בחבילת%20Track%20Twin%20BMW%20M3%20(מסלול%20כפול%20בממ.וו)" target="_blank" rel="noopener" class="pkg-cta skew-btn"><span data-he="הזמנה בוואטסאפ" data-en="Order on WhatsApp" data-ru="Заказ в WhatsApp" data-ar="اطلب عبر واتساب">הזמנה בוואטסאפ</span></a>
             </div>
 
-            <!-- Package 19: Track King (master flagship for track) -->
+            <!-- Package 16: Track King -->
             <div class="pkg-card king-card" data-tier="king" data-category="track">
-                <div class="pkg-badge king-badge">MASTER · גרסת מסלול</div>
+                <div class="pkg-badge king-badge" data-he="MASTER · גרסת מסלול" data-en="MASTER · Track Edition" data-ru="MASTER · Версия трассы" data-ar="MASTER · إصدار المضمار">MASTER · גרסת מסלול</div>
                 <div class="king-glow"></div>
                 <div class="pkg-header">
                     <h3 class="pkg-name">Track King</h3>
-                    <p class="pkg-subtitle">מלך המסלול</p>
+                    <p class="pkg-subtitle" data-he="מלך המסלול" data-en="King of the Track" data-ru="Король трассы" data-ar="ملك المضمار">מלך המסלול</p>
                     <div class="pkg-price">
                         <span class="price-amount">6,999</span>
                         <span class="price-currency">₪</span>
                     </div>
                 </div>
                 <div class="pkg-meta">
-                    <div class="meta-item"><svg class="meta-icon"><use href="#i-repeat"/></svg><span>10 מקצי מסלול</span></div>
-                    <div class="meta-item"><svg class="meta-icon"><use href="#i-timer"/></svg><span>~180 ק"מ נהיגה</span></div>
-                    <div class="meta-item"><svg class="meta-icon"><use href="#i-clock"/></svg><span>משך: יום שלם</span></div>
+                    <div class="meta-item"><svg class="meta-icon"><use href="#i-repeat"/></svg><span data-he="10 מקצי מסלול" data-en="10 track sessions" data-ru="10 трек-заездов" data-ar="10 جلسات مضمار">10 מקצי מסלול</span></div>
+                    <div class="meta-item"><svg class="meta-icon"><use href="#i-timer"/></svg><span data-he='~180 ק"מ נהיגה' data-en="~180 km on track" data-ru="~180 км по трассе" data-ar="~180 كم على المضمار">~180 ק"מ נהיגה</span></div>
+                    <div class="meta-item"><svg class="meta-icon"><use href="#i-clock"/></svg><span data-he="משך: יום שלם" data-en="Duration: full day" data-ru="Длит.: целый день" data-ar="المدة: يوم كامل">משך: יום שלם</span></div>
                 </div>
                 <ul class="pkg-features">
-                    <li>10 מקצי נהיגת מסלול מקצועית</li>
-                    <li>שילוב רכבים: <strong>מאזדה מיאטה (MX-5 NC)</strong>, <strong>פורש (718-S)</strong> ו<strong>ב.מ.וו (M3 COMPETITION)</strong></li>
-                    <li>ליווי צמוד ע"י מדריך מוסמך</li>
-                    <li>הדגמות נהיגה וטכניקות שליטה</li>
-                    <li>לימוד טכניקות מסלול מתקדמות</li>
-                    <li>הדרכה עיונית מקצועית</li>
-                    <li>דלק כלול</li>
-                    <li>צילומים</li>
+                    <li data-he="10 מקצי נהיגת מסלול מקצועית" data-en="10 professional track sessions" data-ru="10 профессиональных трек-заездов" data-ar="10 جلسات مضمار احترافية">10 מקצי נהיגת מסלול מקצועית</li>
+                    <li data-he="שילוב רכבים: <strong>מאזדה מיאטה (MX-5 NC)</strong>, <strong>פורש (718-S)</strong> ו<strong>ב.מ.וו (M3 COMPETITION)</strong>" data-en="Car combo: <strong>Mazda Miata (MX-5 NC)</strong>, <strong>Porsche (718-S)</strong> &amp; <strong>BMW (M3 COMPETITION)</strong>" data-ru="Комбо авто: <strong>Mazda Miata (MX-5 NC)</strong>, <strong>Porsche (718-S)</strong> и <strong>BMW (M3 COMPETITION)</strong>" data-ar="مجموعة سيارات: <strong>مازدا ميات (MX-5 NC)</strong>, <strong>بورشه (718-S)</strong> و<strong>بي إم دبليو (M3 COMPETITION)</strong>">שילוב רכבים: <strong>מאזדה מיאטה (MX-5 NC)</strong>, <strong>פורש (718-S)</strong> ו<strong>ב.מ.וו (M3 COMPETITION)</strong></li>
+                    <li data-he='ליווי צמוד ע"י מדריך מוסמך' data-en="Close guidance by a certified instructor" data-ru="Сопровождение сертифицированного инструктора" data-ar="إرشاد مباشر من مدرب معتمد">ליווי צמוד ע"י מדריך מוסמך</li>
+                    <li data-he="הדגמות נהיגה וטכניקות שליטה" data-en="Driving demos &amp; control techniques" data-ru="Демонстрации вождения и контроля" data-ar="عروض قيادة وتقنيات تحكم">הדגמות נהיגה וטכניקות שליטה</li>
+                    <li data-he="לימוד טכניקות מסלול מתקדמות" data-en="Advanced track techniques training" data-ru="Изучение продвинутых трек-техник" data-ar="تعلم تقنيات مضمار متقدمة">לימוד טכניקות מסלול מתקדמות</li>
+                    <li data-he="הדרכה עיונית מקצועית" data-en="Professional theory training" data-ru="Профессиональное теоретическое обучение" data-ar="تدريب نظري احترافي">הדרכה עיונית מקצועית</li>
+                    <li data-he="דלק כלול" data-en="Fuel included" data-ru="Топливо включено" data-ar="الوقود مشمول">דלק כלול</li>
+                    <li data-he="צילומים" data-en="Photos" data-ru="Фото" data-ar="صور">צילומים</li>
                 </ul>
-                <a href="https://wa.me/972537757323?text=שלום!%20אני%20מעוניין%20בחבילת%20Track%20King%20(מלך%20המסלול)" target="_blank" rel="noopener" class="pkg-cta king-cta skew-btn"><span>הצטרפו למלכי המסלול</span></a>
+                <a href="https://wa.me/972537757323?text=שלום!%20אני%20מעוניין%20בחבילת%20Track%20King%20(מלך%20המסלול)" target="_blank" rel="noopener" class="pkg-cta king-cta skew-btn"><span data-he="הצטרפו למלכי המסלול" data-en="Join the Track Kings" data-ru="Стать королём трассы" data-ar="انضموا لملوك المضمار">הצטרפו למלכי המסלול</span></a>
             </div>
 
-            <!-- Package 20: Drift Taxi (taxi tier — moved to end) -->
+            <!-- Package 17: Drift Taxi -->
             <div class="pkg-card" data-tier="taxi" data-category="drift">
                 <div class="pkg-header">
                     <h3 class="pkg-name">Drift Taxi</h3>
-                    <p class="pkg-subtitle">טקסי דריפט</p>
+                    <p class="pkg-subtitle" data-he="טקסי דריפט" data-en="Drift Taxi" data-ru="Дрифт-такси" data-ar="درفت تاكسي">טקסי דריפט</p>
                     <div class="pkg-price">
                         <span class="price-amount">299</span>
                         <span class="price-currency">₪</span>
                     </div>
                 </div>
                 <div class="pkg-meta">
-                    <div class="meta-item"><svg class="meta-icon"><use href="#i-repeat"/></svg><span>1 מקצה כנוסע</span></div>
-                    <div class="meta-item"><svg class="meta-icon"><use href="#i-timer"/></svg><span>חוויית דריפט מלאה</span></div>
-                    <div class="meta-item"><svg class="meta-icon"><use href="#i-clock"/></svg><span>משך: כ־15 דק׳</span></div>
+                    <div class="meta-item"><svg class="meta-icon"><use href="#i-repeat"/></svg><span data-he="1 מקצה כנוסע" data-en="1 ride as passenger" data-ru="1 заезд пассажиром" data-ar="جلسة واحدة كراكب">1 מקצה כנוסע</span></div>
+                    <div class="meta-item"><svg class="meta-icon"><use href="#i-timer"/></svg><span data-he="חוויית דריפט מלאה" data-en="Full drift experience" data-ru="Полный дрифт-опыт" data-ar="تجربة درفت كاملة">חוויית דריפט מלאה</span></div>
+                    <div class="meta-item"><svg class="meta-icon"><use href="#i-clock"/></svg><span data-he="משך: כ־15 דק׳" data-en="Duration: ~15 min" data-ru="Длит.: ~15 мин" data-ar="المدة: ~15 دقيقة">משך: כ־15 דק׳</span></div>
                 </div>
                 <ul class="pkg-features">
-                    <li>נסיעה כנוסע ברכב דריפט מקצועי</li>
-                    <li>נהיגה ע"י מדריך מוסמך</li>
-                    <li>חוויית עשן וצמיגים אמיתית</li>
-                    <li>צילומים</li>
+                    <li data-he="נסיעה כנוסע ברכב דריפט מקצועי" data-en="Ride as passenger in a professional drift car" data-ru="Поездка пассажиром в профессиональном дрифт-каре" data-ar="ركوب كراكب في سيارة درفت احترافية">נסיעה כנוסע ברכב דריפט מקצועי</li>
+                    <li data-he='נהיגה ע"י מדריך מוסמך' data-en="Driven by a certified instructor" data-ru="За рулём — сертифицированный инструктор" data-ar="القيادة من قبل مدرب معتمد">נהיגה ע"י מדריך מוסמך</li>
+                    <li data-he="חוויית עשן וצמיגים אמיתית" data-en="Real smoke and tires experience" data-ru="Реальный опыт дыма и шин" data-ar="تجربة دخان وإطارات حقيقية">חוויית עשן וצמיגים אמיתית</li>
+                    <li data-he="צילומים" data-en="Photos" data-ru="Фото" data-ar="صور">צילומים</li>
                 </ul>
-                <a href="https://wa.me/972537757323?text=שלום!%20אני%20מעוניין%20בחבילת%20Drift%20Taxi%20(טקסי%20דריפט)" target="_blank" rel="noopener" class="pkg-cta skew-btn"><span>הזמנה בוואטסאפ</span></a>
+                <a href="https://wa.me/972537757323?text=שלום!%20אני%20מעוניין%20בחבילת%20Drift%20Taxi%20(טקסי%20דריפט)" target="_blank" rel="noopener" class="pkg-cta skew-btn"><span data-he="הזמנה בוואטסאפ" data-en="Order on WhatsApp" data-ru="Заказ в WhatsApp" data-ar="اطلب عبر واتساب">הזמנה בוואטסאפ</span></a>
             </div>
 
-            <!-- Package 21: Track Taxi (Miata) — moved to end -->
+            <!-- Package 18: Track Taxi -->
             <div class="pkg-card" data-tier="taxi" data-category="track">
                 <div class="pkg-header">
                     <h3 class="pkg-name">Track Taxi</h3>
-                    <p class="pkg-subtitle">מסלול טקסי</p>
+                    <p class="pkg-subtitle" data-he="מסלול טקסי" data-en="Track Taxi" data-ru="Трек-такси" data-ar="تاكسي المضمار">מסלול טקסי</p>
                     <div class="pkg-price">
                         <span class="price-amount">499</span>
                         <span class="price-currency">₪</span>
                     </div>
                 </div>
                 <div class="pkg-meta">
-                    <div class="meta-item"><svg class="meta-icon"><use href="#i-repeat"/></svg><span>1 מקצה כנוסע</span></div>
-                    <div class="meta-item"><svg class="meta-icon"><use href="#i-car"/></svg><span>מאזדה מיאטה (MX-5 NC)</span></div>
-                    <div class="meta-item"><svg class="meta-icon"><use href="#i-clock"/></svg><span>משך: כ־15 דק׳</span></div>
+                    <div class="meta-item"><svg class="meta-icon"><use href="#i-repeat"/></svg><span data-he="1 מקצה כנוסע" data-en="1 ride as passenger" data-ru="1 заезд пассажиром" data-ar="جلسة واحدة كراكب">1 מקצה כנוסע</span></div>
+                    <div class="meta-item"><svg class="meta-icon"><use href="#i-car"/></svg><span data-he="מאזדה מיאטה (MX-5 NC)" data-en="Mazda Miata (MX-5 NC)" data-ru="Mazda Miata (MX-5 NC)" data-ar="مازدا ميات (MX-5 NC)">מאזדה מיאטה (MX-5 NC)</span></div>
+                    <div class="meta-item"><svg class="meta-icon"><use href="#i-clock"/></svg><span data-he="משך: כ־15 דק׳" data-en="Duration: ~15 min" data-ru="Длит.: ~15 мин" data-ar="المدة: ~15 دقيقة">משך: כ־15 דק׳</span></div>
                 </div>
                 <ul class="pkg-features">
-                    <li>נסיעה כנוסע על מסלול ייעודי</li>
-                    <li>רכב <strong>מאזדה מיאטה (MX-5 NC)</strong></li>
-                    <li>נהיגה ע"י מדריך מוסמך</li>
-                    <li>חוויית מסלול אמיתית</li>
-                    <li>צילומים</li>
+                    <li data-he="נסיעה כנוסע על מסלול ייעודי" data-en="Ride as passenger on a dedicated track" data-ru="Поездка пассажиром по специальной трассе" data-ar="ركوب كراكب على مضمار مخصص">נסיעה כנוסע על מסלול ייעודי</li>
+                    <li data-he="רכב <strong>מאזדה מיאטה (MX-5 NC)</strong>" data-en="<strong>Mazda Miata (MX-5 NC)</strong>" data-ru="<strong>Mazda Miata (MX-5 NC)</strong>" data-ar="<strong>مازدا ميات (MX-5 NC)</strong>">רכב <strong>מאזדה מיאטה (MX-5 NC)</strong></li>
+                    <li data-he='נהיגה ע"י מדריך מוסמך' data-en="Driven by a certified instructor" data-ru="За рулём — сертифицированный инструктор" data-ar="القيادة من قبل مدرب معتمد">נהיגה ע"י מדריך מוסמך</li>
+                    <li data-he="חוויית מסלול אמיתית" data-en="Real track experience" data-ru="Настоящий трек-опыт" data-ar="تجربة مضمار حقيقية">חוויית מסלול אמיתית</li>
+                    <li data-he="צילומים" data-en="Photos" data-ru="Фото" data-ar="صور">צילומים</li>
                 </ul>
-                <a href="https://wa.me/972537757323?text=שלום!%20אני%20מעוניין%20בחבילת%20Track%20Taxi%20(מסלול%20טקסי)" target="_blank" rel="noopener" class="pkg-cta skew-btn"><span>הזמנה בוואטסאפ</span></a>
+                <a href="https://wa.me/972537757323?text=שלום!%20אני%20מעוניין%20בחבילת%20Track%20Taxi%20(מסלול%20טקסי)" target="_blank" rel="noopener" class="pkg-cta skew-btn"><span data-he="הזמנה בוואטסאפ" data-en="Order on WhatsApp" data-ru="Заказ в WhatsApp" data-ar="اطلب عبر واتساب">הזמנה בוואטסאפ</span></a>
             </div>
 
-            <!-- Package 22: Luxury Track Taxi (Porsche) — moved to end -->
+            <!-- Package 19: Luxury Track Taxi -->
             <div class="pkg-card" data-tier="taxi" data-category="track">
-                <div class="pkg-badge">יוקרתי</div>
+                <div class="pkg-badge" data-he="יוקרתי" data-en="Luxury" data-ru="Люкс" data-ar="فاخر">יוקרתי</div>
                 <div class="pkg-header">
                     <h3 class="pkg-name">Luxury Track Taxi</h3>
-                    <p class="pkg-subtitle">מסלול טקסי יוקרתי</p>
+                    <p class="pkg-subtitle" data-he="מסלול טקסי יוקרתי" data-en="Luxury Track Taxi" data-ru="Люкс трек-такси" data-ar="تاكسي مضمار فاخر">מסלול טקסי יוקרתי</p>
                     <div class="pkg-price">
                         <span class="price-amount">599</span>
                         <span class="price-currency">₪</span>
                     </div>
                 </div>
                 <div class="pkg-meta">
-                    <div class="meta-item"><svg class="meta-icon"><use href="#i-repeat"/></svg><span>1 מקצה כנוסע</span></div>
-                    <div class="meta-item"><svg class="meta-icon"><use href="#i-car"/></svg><span>פורש (718-S)</span></div>
-                    <div class="meta-item"><svg class="meta-icon"><use href="#i-clock"/></svg><span>משך: כ־15 דק׳</span></div>
+                    <div class="meta-item"><svg class="meta-icon"><use href="#i-repeat"/></svg><span data-he="1 מקצה כנוסע" data-en="1 ride as passenger" data-ru="1 заезд пассажиром" data-ar="جلسة واحدة كراكب">1 מקצה כנוסע</span></div>
+                    <div class="meta-item"><svg class="meta-icon"><use href="#i-car"/></svg><span data-he="פורש (718-S)" data-en="Porsche (718-S)" data-ru="Porsche (718-S)" data-ar="بورشه (718-S)">פורש (718-S)</span></div>
+                    <div class="meta-item"><svg class="meta-icon"><use href="#i-clock"/></svg><span data-he="משך: כ־15 דק׳" data-en="Duration: ~15 min" data-ru="Длит.: ~15 мин" data-ar="المدة: ~15 دقيقة">משך: כ־15 דק׳</span></div>
                 </div>
                 <ul class="pkg-features">
-                    <li>נסיעה כנוסע ברכב יוקרה</li>
-                    <li><strong>פורש (718-S)</strong> על המסלול</li>
-                    <li>נהיגה ע"י מדריך מוסמך</li>
-                    <li>חוויית מסלול פרימיום</li>
-                    <li>צילומים</li>
+                    <li data-he="נסיעה כנוסע ברכב יוקרה" data-en="Ride as passenger in a luxury car" data-ru="Поездка пассажиром в люкс-авто" data-ar="ركوب كراكب في سيارة فاخرة">נסיעה כנוסע ברכב יוקרה</li>
+                    <li data-he="<strong>פורש (718-S)</strong> על המסלול" data-en="<strong>Porsche (718-S)</strong> on the track" data-ru="<strong>Porsche (718-S)</strong> на трассе" data-ar="<strong>بورشه (718-S)</strong> على المضمار"><strong>פורש (718-S)</strong> על המסלול</li>
+                    <li data-he='נהיגה ע"י מדריך מוסמך' data-en="Driven by a certified instructor" data-ru="За рулём — сертифицированный инструктор" data-ar="القيادة من قبل مدرب معتمد">נהיגה ע"י מדריך מוסמך</li>
+                    <li data-he="חוויית מסלול פרימיום" data-en="Premium track experience" data-ru="Премиум трек-опыт" data-ar="تجربة مضمار بريميوم">חוויית מסלול פרימיום</li>
+                    <li data-he="צילומים" data-en="Photos" data-ru="Фото" data-ar="صور">צילומים</li>
                 </ul>
-                <a href="https://wa.me/972537757323?text=שלום!%20אני%20מעוניין%20בחבילת%20Luxury%20Track%20Taxi%20(מסלול%20טקסי%20יוקרתי)" target="_blank" rel="noopener" class="pkg-cta skew-btn"><span>הזמנה בוואטסאפ</span></a>
+                <a href="https://wa.me/972537757323?text=שלום!%20אני%20מעוניין%20בחבילת%20Luxury%20Track%20Taxi%20(מסלול%20טקסי%20יוקרתי)" target="_blank" rel="noopener" class="pkg-cta skew-btn"><span data-he="הזמנה בוואטסאפ" data-en="Order on WhatsApp" data-ru="Заказ в WhatsApp" data-ar="اطلب عبر واتساب">הזמנה בוואטסאפ</span></a>
             </div>
 
         </div>
@@ -774,11 +842,17 @@
 <section class="cta-banner">
     <div class="cta-bg-effect"></div>
     <div class="section-container">
-        <h2>מוכנים לשרוף צמיגים? <svg class="icon icon-lg cta-flame"><use href="#i-flame"/></svg></h2>
-        <p>החוויות שלנו מתאימות לכל אחד מגיל 14+ ללא צורך בניסיון קודם או רישיון נהיגה</p>
+        <h2 data-he='מוכנים לשרוף צמיגים? <svg class="icon icon-lg cta-flame"><use href="#i-flame"/></svg>'
+            data-en='Ready to burn rubber? <svg class="icon icon-lg cta-flame"><use href="#i-flame"/></svg>'
+            data-ru='Готовы жечь резину? <svg class="icon icon-lg cta-flame"><use href="#i-flame"/></svg>'
+            data-ar='مستعدون لحرق الإطارات؟ <svg class="icon icon-lg cta-flame"><use href="#i-flame"/></svg>'>מוכנים לשרוף צמיגים? <svg class="icon icon-lg cta-flame"><use href="#i-flame"/></svg></h2>
+        <p data-he="החוויות שלנו מתאימות לכל אחד מגיל 14+ ללא צורך בניסיון קודם או רישיון נהיגה"
+           data-en="Our experiences are open to anyone aged 14+, no prior experience or driver's license required"
+           data-ru="Наши программы подходят всем от 14 лет без опыта или водительских прав"
+           data-ar="تجاربنا مناسبة للجميع من سن 14+ بدون خبرة سابقة أو رخصة قيادة">החוויות שלנו מתאימות לכל אחד מגיל 14+ ללא צורך בניסיון קודם או רישיון נהיגה</p>
         <div class="cta-actions">
-            <a href="tel:+972537757323" class="btn btn-primary skew-btn"><svg class="icon"><use href="#i-phone"/></svg><span>053-775-7323</span></a>
-            <a href="https://driftkingschool.com/book-online/" target="_blank" class="btn btn-outline skew-btn"><span>קביעת חוויה אונליין</span></a>
+            <a href="tel:+972537757323" class="btn btn-primary skew-btn"><svg class="icon"><use href="#i-phone"/></svg><span class="phone-link">053-775-7323</span></a>
+            <a href="https://driftkingschool.com/book-online/" target="_blank" class="btn btn-outline skew-btn"><span data-he="קביעת חוויה אונליין" data-en="Book online" data-ru="Забронировать онлайн" data-ar="احجز عبر الإنترنت">קביעת חוויה אונליין</span></a>
         </div>
     </div>
 </section>
@@ -791,7 +865,10 @@
                 <div class="footer-logo">
                     <img src="logo.png" alt="Drift King School Logo" class="logo-img">
                 </div>
-                <p>בית הספר המוביל והוותיק לדריפטים בישראל. חוויות נהיגה מקצועיות על מסלול ייעודי עם מדריכים אלופי ישראל.</p>
+                <p data-he="בית הספר המוביל והוותיק לדריפטים בישראל. חוויות נהיגה מקצועיות על מסלול ייעודי עם מדריכים אלופי ישראל."
+                   data-en="Israel's leading and longest-running drift school. Professional driving experiences on a dedicated track with Israeli champion instructors."
+                   data-ru="Ведущая и старейшая школа дрифта в Израиле. Профессиональные программы вождения на специальной трассе с инструкторами-чемпионами Израиля."
+                   data-ar="مدرسة الدرفت الرائدة والأقدم في إسرائيل. تجارب قيادة احترافية على مضمار مخصص مع مدربين أبطال إسرائيل.">בית הספר המוביל והוותיק לדריפטים בישראל. חוויות נהיגה מקצועיות על מסלול ייעודי עם מדריכים אלופי ישראל.</p>
                 <div class="footer-social">
                     <a href="https://www.facebook.com/driftkingschool1/" target="_blank" aria-label="Facebook">
                         <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
@@ -802,22 +879,25 @@
                 </div>
             </div>
             <div class="footer-links">
-                <h4>קישורים</h4>
-                <a href="https://driftkingschool.com/">בית</a>
-                <a href="https://driftkingschool.com/book-online/">קביעת חוויה</a>
-                <a href="https://driftkingschool.com/shop/">חנות</a>
-                <a href="https://driftkingschool.com/%d7%92%d7%9c%d7%a8%d7%99%d7%94/">גלריה</a>
-                <a href="https://driftkingschool.com/blog/">בלוג</a>
+                <h4 data-he="קישורים" data-en="Links" data-ru="Ссылки" data-ar="روابط">קישורים</h4>
+                <a href="https://driftkingschool.com/" data-he="בית" data-en="Home" data-ru="Главная" data-ar="الرئيسية">בית</a>
+                <a href="https://driftkingschool.com/book-online/" data-he="קביעת חוויה" data-en="Book experience" data-ru="Забронировать" data-ar="احجز تجربة">קביעת חוויה</a>
+                <a href="https://driftkingschool.com/shop/" data-he="חנות" data-en="Shop" data-ru="Магазин" data-ar="المتجر">חנות</a>
+                <a href="https://driftkingschool.com/%d7%92%d7%9c%d7%a8%d7%99%d7%94/" data-he="גלריה" data-en="Gallery" data-ru="Галерея" data-ar="معرض الصور">גלריה</a>
+                <a href="https://driftkingschool.com/blog/" data-he="בלוג" data-en="Blog" data-ru="Блог" data-ar="المدونة">בלוג</a>
             </div>
             <div class="footer-contact">
-                <h4>צרו קשר</h4>
-                <a href="tel:+972537757323"><svg class="icon icon-sm"><use href="#i-phone"/></svg> 053-775-7323</a>
+                <h4 data-he="צרו קשר" data-en="Contact us" data-ru="Связаться" data-ar="تواصل معنا">צרו קשר</h4>
+                <a href="tel:+972537757323"><svg class="icon icon-sm"><use href="#i-phone"/></svg> <span class="phone-link">053-775-7323</span></a>
                 <a href="mailto:Driftkingschool@gmail.com"><svg class="icon icon-sm"><use href="#i-mail"/></svg> Driftkingschool@gmail.com</a>
-                <p><svg class="icon icon-sm"><use href="#i-pin"/></svg> מסלול המירוצים מוטור סיטי</p>
+                <p><svg class="icon icon-sm"><use href="#i-pin"/></svg> <span data-he="מסלול המירוצים מוטור סיטי" data-en="Motor City Racing Circuit" data-ru="Гоночная трасса Motor City" data-ar="حلبة سباقات موتور سيتي">מסלול המירוצים מוטור סיטי</span></p>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>© 2026 Drift King School. כל הזכויות שמורות.</p>
+            <p data-he="© 2026 Drift King School. כל הזכויות שמורות."
+               data-en="© 2026 Drift King School. All rights reserved."
+               data-ru="© 2026 Drift King School. Все права защищены."
+               data-ar="© 2026 Drift King School. جميع الحقوق محفوظة.">© 2026 Drift King School. כל הזכויות שמורות.</p>
         </div>
     </div>
 </footer>

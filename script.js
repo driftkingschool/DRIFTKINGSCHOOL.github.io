@@ -1,3 +1,110 @@
+/* ====== I18N ====== */
+const LANG_CYCLE = ['he', 'en', 'ru', 'ar'];
+const LANG_LABELS = { he: 'HE', en: 'EN', ru: 'RU', ar: 'AR' };
+const RTL_LANGS = new Set(['he', 'ar']);
+const STORAGE_KEY = 'dks-main-lang';
+
+let currentLang = 'he';
+
+function getStoredLang() {
+    try { return localStorage.getItem(STORAGE_KEY) || 'he'; } catch { return 'he'; }
+}
+function setStoredLang(lang) {
+    try { localStorage.setItem(STORAGE_KEY, lang); } catch {}
+}
+
+function applyLanguage(lang) {
+    if (!LANG_CYCLE.includes(lang)) lang = 'he';
+    currentLang = lang;
+    document.documentElement.lang = lang;
+    document.documentElement.dir = RTL_LANGS.has(lang) ? 'rtl' : 'ltr';
+
+    document.querySelectorAll('[data-he]').forEach(el => {
+        const val = el.getAttribute('data-' + lang);
+        if (val !== null) el.innerHTML = val;
+    });
+
+    document.querySelectorAll('[data-placeholder-he]').forEach(el => {
+        const val = el.getAttribute('data-placeholder-' + lang);
+        if (val !== null) el.placeholder = val;
+    });
+
+    document.querySelectorAll('[data-aria-label-he]').forEach(el => {
+        const val = el.getAttribute('data-aria-label-' + lang);
+        if (val !== null) el.setAttribute('aria-label', val);
+    });
+
+    document.querySelectorAll('[data-content-he]').forEach(el => {
+        const val = el.getAttribute('data-content-' + lang);
+        if (val !== null) el.setAttribute('content', val);
+    });
+
+    const titleEl = document.querySelector('title[data-he]');
+    if (titleEl) {
+        const val = titleEl.getAttribute('data-' + lang);
+        if (val !== null) document.title = val;
+    }
+
+    document.querySelectorAll('[data-cur-lang]').forEach(el => {
+        el.textContent = LANG_LABELS[lang];
+    });
+
+    document.querySelectorAll('.lang-menu button[data-lang]').forEach(btn => {
+        if (btn.getAttribute('data-lang') === lang) {
+            btn.setAttribute('aria-current', 'true');
+        } else {
+            btn.removeAttribute('aria-current');
+        }
+    });
+
+    setStoredLang(lang);
+}
+
+function closeAllLangMenus() {
+    document.querySelectorAll('.lang-wrap').forEach(wrap => {
+        const menu = wrap.querySelector('.lang-menu');
+        const trigger = wrap.querySelector('.lang-toggle, .lang-float');
+        if (menu) menu.hidden = true;
+        if (trigger) trigger.setAttribute('aria-expanded', 'false');
+    });
+}
+
+function toggleLangMenu(wrap) {
+    const menu = wrap.querySelector('.lang-menu');
+    const trigger = wrap.querySelector('.lang-toggle, .lang-float');
+    if (!menu || !trigger) return;
+    const isOpen = !menu.hidden;
+    closeAllLangMenus();
+    if (!isOpen) {
+        menu.hidden = false;
+        trigger.setAttribute('aria-expanded', 'true');
+    }
+}
+
+document.addEventListener('click', e => {
+    const langItem = e.target.closest('.lang-menu button[data-lang]');
+    if (langItem) {
+        applyLanguage(langItem.getAttribute('data-lang'));
+        closeAllLangMenus();
+        return;
+    }
+    const trigger = e.target.closest('.lang-wrap .lang-toggle, .lang-wrap .lang-float');
+    if (trigger) {
+        const wrap = trigger.closest('.lang-wrap');
+        if (wrap) toggleLangMenu(wrap);
+        return;
+    }
+    if (!e.target.closest('.lang-wrap')) {
+        closeAllLangMenus();
+    }
+});
+
+document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeAllLangMenus();
+});
+
+applyLanguage(getStoredLang());
+
 // ===== INTRO: SEAL VIDEO → LOGO FLIGHT =====
 (function logoIntroAnimation() {
     const intro = document.getElementById('logoIntro');
@@ -117,6 +224,7 @@ hamburger.addEventListener('click', () => {
 function closeMobile() {
     mobileMenu.classList.remove('open');
     hamburger.classList.remove('active');
+    closeAllLangMenus();
 }
 
 // ===== SCROLL ANIMATIONS =====
