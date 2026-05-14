@@ -869,3 +869,17 @@ body:not(.intro-done) { overflow: hidden; }
 .cross-nav-link:last-child { border-bottom: none; }
 html[dir="rtl"] .cross-nav-header { text-align: right; }
 html[dir="ltr"] .cross-nav-header { text-align: left; }
+
+/* ===== GOLD BUNDLE CARD (Triple Taxi) ===== */
+.pkg-card.gold-bundle {
+    border: 2px solid rgba(184, 134, 11, 0.45) !important;
+    box-shadow: 0 6px 20px rgba(184, 134, 11, 0.12) !important;
+}
+.pkg-card.gold-bundle .price-amount {
+    color: var(--gold);
+}
+.pkg-badge.gold-badge {
+    background: linear-gradient(135deg, #d4af37, #b8860b);
+    color: #ffffff;
+    box-shadow: 0 2px 6px rgba(184, 134, 11, 0.25);
+}
