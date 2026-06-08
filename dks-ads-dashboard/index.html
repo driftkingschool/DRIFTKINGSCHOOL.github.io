@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DKS - דאשבורד מודעות</title>
+<style>
+  /* ===== PASSWORD GATE ===== */
+  #gate {
+    position: fixed; inset: 0; z-index: 9999;
+    background: #0f1117;
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; gap: 0;
+  }
+  #gate.hidden { display: none; }
+  .gate-box {
+    background: #1a1f2e;
+    border: 1px solid #2d3748;
+    border-radius: 16px;
+    padding: 40px 48px;
+    text-align: center;
+    max-width: 380px;
+    width: 90%;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  }
+  .gate-logo { font-size: 26px; font-weight: 800; color: #fff; margin-bottom: 4px; }
+  .gate-logo span { color: #f6ad55; }
+  .gate-sub { font-size: 13px; color: #4a5568; margin-bottom: 28px; }
+  .gate-label { font-size: 12px; color: #718096; margin-bottom: 8px; text-align: right; }
+  .gate-input {
+    width: 100%;
+    padding: 12px 16px;
+    background: #0f1117;
+    border: 1px solid #2d3748;
+    border-radius: 8px;
+    color: #e2e8f0;
+    font-size: 15px;
+    text-align: center;
+    letter-spacing: 0.1em;
+    outline: none;
+    margin-bottom: 16px;
+    transition: border-color 0.2s;
+    direction: ltr;
+  }
+  .gate-input:focus { border-color: #f6ad55; }
+  .gate-btn {
+    width: 100%;
+    padding: 12px;
+    background: #f6ad55;
+    color: #1a1f2e;
+    font-size: 15px;
+    font-weight: 700;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .gate-btn:hover { background: #fbd38d; }
+  .gate-error {
+    color: #fc8181;
+    font-size: 12px;
+    margin-top: 10px;
+    display: none;
+  }
+  .gate-lock { font-size: 36px; margin-bottom: 16px; }
+
+  /* ===== DASHBOARD (hidden until unlocked) ===== */
+  #dashboard { display: none; }
+  #dashboard.visible { display: block; }
+
+  /* ===== REST OF STYLES ===== */
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: #0f1117; color: #e2e8f0; direction: rtl; }
+  .header { background: linear-gradient(135deg, #1a1f2e 0%, #252b3b 100%); padding: 24px 32px; border-bottom: 1px solid #2d3748; display: flex; align-items: center; justify-content: space-between; }
+  .header-logo { font-size: 22px; font-weight: 700; color: #fff; }
+  .header-logo span { color: #f6ad55; }
+  .header-sub { font-size: 13px; color: #718096; margin-top: 4px; }
+  .header-date { font-size: 12px; color: #4a5568; background: #1a202c; padding: 6px 12px; border-radius: 8px; }
+  .kpi-bar { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; padding: 24px 32px 0; }
+  .kpi { background: #1a1f2e; border: 1px solid #2d3748; border-radius: 12px; padding: 18px 20px; text-align: center; }
+  .kpi-label { font-size: 11px; color: #718096; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; }
+  .kpi-value { font-size: 28px; font-weight: 700; color: #f6ad55; }
+  .kpi-sub { font-size: 11px; color: #4a5568; margin-top: 4px; }
+  .data-note { margin: 16px 32px; background: #1a2035; border: 1px solid #2a3a5c; border-radius: 8px; padding: 10px 16px; font-size: 12px; color: #667eea; }
+  .section { padding: 24px 32px; }
+  .section-title { font-size: 16px; font-weight: 600; color: #a0aec0; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+  .section-title::before { content: ''; display: block; width: 4px; height: 18px; background: #f6ad55; border-radius: 2px; }
+  .main-table { width: 100%; border-collapse: collapse; background: #1a1f2e; border-radius: 12px; overflow: hidden; border: 1px solid #2d3748; }
+  .main-table thead tr { background: #252b3b; }
+  .main-table th { padding: 12px 16px; font-size: 11px; font-weight: 600; color: #718096; text-transform: uppercase; letter-spacing: 0.05em; text-align: right; border-bottom: 1px solid #2d3748; white-space: nowrap; }
+  .main-table td { padding: 14px 16px; font-size: 13px; border-bottom: 1px solid #1a202c; vertical-align: middle; }
+  .main-table tbody tr:last-child td { border-bottom: none; }
+  .main-table tbody tr:hover { background: #252b3b; }
+  .ad-name { font-weight: 600; color: #fff; }
+  .ad-name small { display: block; font-size: 11px; color: #4a5568; font-weight: 400; margin-top: 2px; }
+  .campaign-tag { display: inline-block; font-size: 10px; background: #1a2035; color: #667eea; padding: 2px 8px; border-radius: 20px; border: 1px solid #2a3a5c; }
+  .funnel-wrap { display: flex; flex-direction: column; gap: 3px; min-width: 160px; }
+  .funnel-row { display: flex; align-items: center; gap: 6px; font-size: 10px; }
+  .funnel-bar-bg { flex: 1; background: #0f1117; border-radius: 3px; height: 8px; overflow: hidden; }
+  .funnel-bar-fill { height: 100%; border-radius: 3px; }
+  .bar-contact { background: #4299e1; }
+  .bar-quote   { background: #f6ad55; }
+  .bar-closed  { background: #48bb78; }
+  .funnel-pct  { color: #718096; min-width: 36px; text-align: left; }
+  .score-badge { display: inline-block; padding: 4px 10px; border-radius: 20px; font-size: 12px; font-weight: 700; }
+  .score-a { background: #22543d; color: #48bb78; }
+  .score-b { background: #2c3e50; color: #f6ad55; }
+  .score-c { background: #2d1f3d; color: #9f7aea; }
+  .rank { font-size: 20px; font-weight: 700; text-align: center; }
+  .rank-1 { color: #f6ad55; }
+  .rank-2 { color: #a0aec0; }
+  .rank-3 { color: #c05621; }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .status-list { display: flex; flex-direction: column; gap: 6px; }
+  .status-item { display: flex; align-items: center; gap: 8px; font-size: 12px; }
+  .status-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .status-name { flex: 1; color: #a0aec0; }
+  .status-count { font-weight: 600; color: #e2e8f0; min-width: 28px; text-align: left; }
+  .status-bar-bg { width: 80px; background: #0f1117; border-radius: 3px; height: 5px; }
+  .status-bar { height: 5px; border-radius: 3px; }
+  .insights-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .insight-card { background: #1a1f2e; border: 1px solid #2d3748; border-radius: 10px; padding: 16px; }
+  .insight-card.highlight { border-color: #48bb78; background: #0d1f16; }
+  .insight-card.warn { border-color: #f6ad55; background: #1f1a0d; }
+  .insight-icon { font-size: 22px; margin-bottom: 8px; }
+  .insight-title { font-size: 12px; color: #718096; margin-bottom: 4px; }
+  .insight-body { font-size: 14px; font-weight: 600; color: #e2e8f0; }
+  .insight-detail { font-size: 11px; color: #4a5568; margin-top: 4px; }
+  .mini-bars { display: flex; flex-direction: column; gap: 8px; }
+  .mini-bar-row { display: flex; align-items: center; gap: 10px; }
+  .mini-bar-label { font-size: 12px; color: #a0aec0; width: 200px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .mini-bar-bg { flex: 1; background: #0f1117; border-radius: 4px; height: 22px; overflow: hidden; }
+  .mini-bar-fill { height: 100%; border-radius: 4px; display: flex; align-items: center; padding: 0 8px; font-size: 11px; font-weight: 600; color: #fff; white-space: nowrap; }
+  .mini-bar-count { font-size: 13px; font-weight: 700; color: #f6ad55; min-width: 30px; text-align: left; }
+  .color-1 { background: #4299e1; } .color-2 { background: #9f7aea; } .color-3 { background: #48bb78; } .color-4 { background: #f6ad55; } .color-5 { background: #fc8181; }
+  .footer { text-align: center; padding: 20px; font-size: 11px; color: #2d3748; }
+</style>
+</head>
+<body>
+
+<!-- PASSWORD GATE -->
+<div id="gate">
+  <div class="gate-box">
+    <div class="gate-lock">🔒</div>
+    <div class="gate-logo">Drift King School <span>| Ads</span></div>
+    <div class="gate-sub">דאשבורד מודעות ממומנות — גישה מוגבלת</div>
+    <div class="gate-label">סיסמא</div>
+    <input type="password" id="pwInput" class="gate-input" placeholder="••••••••" autocomplete="off" />
+    <button class="gate-btn" onclick="checkPassword()">כניסה</button>
+    <div class="gate-error" id="pwError">סיסמא שגויה — נסה שוב</div>
+  </div>
+</div>
+
+<!-- DASHBOARD CONTENT -->
+<div id="dashboard">
+
+<div class="header">
+  <div>
+    <div class="header-logo">Drift King School <span>| דאשבורד מודעות</span></div>
+    <div class="header-sub">ניתוח ביצועי מודעות ממומנות לפי לידים, איכות ושיעורי סגירה</div>
+  </div>
+  <div class="header-date">נתוני CRM &bull; עדכון: 08/06/2026</div>
+</div>
+
+<div class="kpi-bar">
+  <div class="kpi"><div class="kpi-label">לידים פעילים</div><div class="kpi-value">55</div><div class="kpi-sub">בסטטוס ליד חדש</div></div>
+  <div class="kpi"><div class="kpi-label">לקוחות ממאי 2026</div><div class="kpi-value">418</div><div class="kpi-sub">הגיעו דרך מודעות</div></div>
+  <div class="kpi"><div class="kpi-label">שיעור קשר (ממוצע)</div><div class="kpi-value">23%</div><div class="kpi-sub">יצרנו קשר / ניסינו</div></div>
+  <div class="kpi"><div class="kpi-label">שיעור הצעת מחיר</div><div class="kpi-value">16%</div><div class="kpi-sub">מכל הלידים ממודעות</div></div>
+  <div class="kpi"><div class="kpi-label">Best Close Rate</div><div class="kpi-value">4.8%</div><div class="kpi-sub">ADS 02 (ריטרגטינג)</div></div>
+</div>
+
+<div class="data-note">
+  <strong>בסיס הנתונים:</strong> 55 לידים פעילים נוכחיים + 418 לקוחות שנוצרו במאי 2026 דרך מודעות פייסבוק. Income לא מדווח ישירות ב-CRM (מגיע דרך CardCom). ניתוח מבוסס על סטטוסים ושלבי פאנל.
+</div>
+
+<div class="section">
+  <div class="section-title">ביצועי מודעות - מאי 2026 (418 לקוחות)</div>
+  <table class="main-table">
+    <thead>
+      <tr>
+        <th>#</th><th>מודעה</th><th>קמפיין / Adset</th><th>לקוחות<br>מאי 2026</th><th>לידים<br>פעילים</th><th>פאנל המרה</th><th>שיעור קשר</th><th>שיעור הצעה</th><th>שיעור סגירה</th><th>ציון איכות</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><div class="rank rank-1">1</div></td>
+        <td><div class="ad-name">ADS 02<small>ריטרגטינג - NUEVO</small></div><span class="campaign-tag">RMKT</span></td>
+        <td style="font-size:12px;color:#a0aec0;">NUEVO - RMKT<br><span style="color:#4a5568;font-size:11px;">RMKT (retargeting)</span></td>
+        <td style="font-size:18px;font-weight:700;color:#e2e8f0;">21</td>
+        <td style="font-size:18px;font-weight:700;color:#f6ad55;">5</td>
+        <td><div class="funnel-wrap">
+          <div class="funnel-row"><span style="color:#4299e1;width:40px;font-size:10px;">קשר</span><div class="funnel-bar-bg"><div class="funnel-bar-fill bar-contact" style="width:38%"></div></div><span class="funnel-pct">38%</span></div>
+          <div class="funnel-row"><span style="color:#f6ad55;width:40px;font-size:10px;">הצעה</span><div class="funnel-bar-bg"><div class="funnel-bar-fill bar-quote" style="width:19%"></div></div><span class="funnel-pct">19%</span></div>
+          <div class="funnel-row"><span style="color:#48bb78;width:40px;font-size:10px;">סגירה</span><div class="funnel-bar-bg"><div class="funnel-bar-fill bar-closed" style="width:4.8%"></div></div><span class="funnel-pct">4.8%</span></div>
+        </div></td>
+        <td style="color:#4299e1;font-weight:700;">38.1%</td><td style="color:#f6ad55;font-weight:700;">19.0%</td><td style="color:#48bb78;font-weight:700;font-size:16px;">4.8%</td>
+        <td><span class="score-badge score-a">A+</span></td>
+      </tr>
+      <tr>
+        <td><div class="rank rank-2">2</div></td>
+        <td><div class="ad-name">Ad3<small>פורשה 718 - 14.1</small></div><span class="campaign-tag">INT</span></td>
+        <td style="font-size:12px;color:#a0aec0;">נואבו | לידים | פורשה 718<br><span style="color:#4a5568;font-size:11px;">INT (traffic)</span></td>
+        <td style="font-size:18px;font-weight:700;color:#e2e8f0;">60</td>
+        <td style="font-size:18px;font-weight:700;color:#f6ad55;">13</td>
+        <td><div class="funnel-wrap">
+          <div class="funnel-row"><span style="color:#4299e1;width:40px;font-size:10px;">קשר</span><div class="funnel-bar-bg"><div class="funnel-bar-fill bar-contact" style="width:23%"></div></div><span class="funnel-pct">23%</span></div>
+          <div class="funnel-row"><span style="color:#f6ad55;width:40px;font-size:10px;">הצעה</span><div class="funnel-bar-bg"><div class="funnel-bar-fill bar-quote" style="width:15%"></div></div><span class="funnel-pct">15%</span></div>
+          <div class="funnel-row"><span style="color:#48bb78;width:40px;font-size:10px;">סגירה</span><div class="funnel-bar-bg"><div class="funnel-bar-fill bar-closed" style="width:1.7%"></div></div><span class="funnel-pct">1.7%</span></div>
+        </div></td>
+        <td style="color:#4299e1;font-weight:700;">23.3%</td><td style="color:#f6ad55;font-weight:700;">15.0%</td><td style="color:#48bb78;font-weight:700;font-size:16px;">1.7%</td>
+        <td><span class="score-badge score-b">B+</span></td>
+      </tr>
+      <tr>
+        <td><div class="rank rank-3">3</div></td>
+        <td><div class="ad-name">כולי מזיע מהתרגשות<small>Engagement to DM</small></div><span class="campaign-tag">INT</span></td>
+        <td style="font-size:12px;color:#a0aec0;">Engagement to DM | Central | Men<br><span style="color:#4a5568;font-size:11px;">Men | up to 34 | LAL ADV+</span></td>
+        <td style="font-size:18px;font-weight:700;color:#e2e8f0;">115</td>
+        <td style="font-size:18px;font-weight:700;color:#f6ad55;">13</td>
+        <td><div class="funnel-wrap">
+          <div class="funnel-row"><span style="color:#4299e1;width:40px;font-size:10px;">קשר</span><div class="funnel-bar-bg"><div class="funnel-bar-fill bar-contact" style="width:25%"></div></div><span class="funnel-pct">25%</span></div>
+          <div class="funnel-row"><span style="color:#f6ad55;width:40px;font-size:10px;">הצעה</span><div class="funnel-bar-bg"><div class="funnel-bar-fill bar-quote" style="width:19%"></div></div><span class="funnel-pct">19%</span></div>
+          <div class="funnel-row"><span style="color:#48bb78;width:40px;font-size:10px;">סגירה</span><div class="funnel-bar-bg"><div class="funnel-bar-fill bar-closed" style="width:0%"></div></div><span class="funnel-pct">0%</span></div>
+        </div></td>
+        <td style="color:#4299e1;font-weight:700;">25.2%</td><td style="color:#f6ad55;font-weight:700;">19.1%</td><td style="color:#fc8181;font-weight:700;font-size:16px;">0%</td>
+        <td><span class="score-badge score-c">C+</span></td>
+      </tr>
+      <tr>
+        <td><div class="rank" style="color:#667eea;">4</div></td>
+        <td><div class="ad-name">Ad1<small>סרטון ששלח - 5.1</small></div><span class="campaign-tag">INT</span></td>
+        <td style="font-size:12px;color:#a0aec0;">נואבו | לידים | סרטון ששלח<br><span style="color:#4a5568;font-size:11px;">INT (traffic)</span></td>
+        <td style="font-size:18px;font-weight:700;color:#e2e8f0;">171</td>
+        <td style="font-size:18px;font-weight:700;color:#f6ad55;">16</td>
+        <td><div class="funnel-wrap">
+          <div class="funnel-row"><span style="color:#4299e1;width:40px;font-size:10px;">קשר</span><div class="funnel-bar-bg"><div class="funnel-bar-fill bar-contact" style="width:21.6%"></div></div><span class="funnel-pct">22%</span></div>
+          <div class="funnel-row"><span style="color:#f6ad55;width:40px;font-size:10px;">הצעה</span><div class="funnel-bar-bg"><div class="funnel-bar-fill bar-quote" style="width:14.6%"></div></div><span class="funnel-pct">15%</span></div>
+          <div class="funnel-row"><span style="color:#48bb78;width:40px;font-size:10px;">סגירה</span><div class="funnel-bar-bg"><div class="funnel-bar-fill bar-closed" style="width:0.6%"></div></div><span class="funnel-pct">0.6%</span></div>
+        </div></td>
+        <td style="color:#4299e1;font-weight:700;">21.6%</td><td style="color:#f6ad55;font-weight:700;">14.6%</td><td style="color:#a0aec0;font-weight:700;font-size:16px;">0.6%</td>
+        <td><span class="score-badge score-c">C</span></td>
+      </tr>
+      <tr>
+        <td><div class="rank" style="color:#4a5568;">5</div></td>
+        <td><div class="ad-name">ADS 01<small>ריטרגטינג - RMKT-3</small></div><span class="campaign-tag">RMKT</span></td>
+        <td style="font-size:12px;color:#a0aec0;">NUEVO - RMKT<br><span style="color:#4a5568;font-size:11px;">RMKT - 3</span></td>
+        <td style="font-size:18px;font-weight:700;color:#e2e8f0;">49</td>
+        <td style="font-size:18px;font-weight:700;color:#f6ad55;">8</td>
+        <td><div class="funnel-wrap">
+          <div class="funnel-row"><span style="color:#4299e1;width:40px;font-size:10px;">קשר</span><div class="funnel-bar-bg"><div class="funnel-bar-fill bar-contact" style="width:20.4%"></div></div><span class="funnel-pct">20%</span></div>
+          <div class="funnel-row"><span style="color:#f6ad55;width:40px;font-size:10px;">הצעה</span><div class="funnel-bar-bg"><div class="funnel-bar-fill bar-quote" style="width:14.3%"></div></div><span class="funnel-pct">14%</span></div>
+          <div class="funnel-row"><span style="color:#48bb78;width:40px;font-size:10px;">סגירה</span><div class="funnel-bar-bg"><div class="funnel-bar-fill bar-closed" style="width:0%"></div></div><span class="funnel-pct">0%</span></div>
+        </div></td>
+        <td style="color:#4299e1;font-weight:700;">20.4%</td><td style="color:#f6ad55;font-weight:700;">14.3%</td><td style="color:#fc8181;font-weight:700;font-size:16px;">0%</td>
+        <td><span class="score-badge score-c">C</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="section" style="padding-top:0;">
+  <div class="two-col">
+    <div>
+      <div class="section-title">לידים פעילים נוכחיים (55)</div>
+      <div class="mini-bars">
+        <div class="mini-bar-row"><div class="mini-bar-label">Ad1 - סרטון ששלח</div><div class="mini-bar-bg"><div class="mini-bar-fill color-1" style="width:100%;">16 לידים</div></div><div class="mini-bar-count">16</div></div>
+        <div class="mini-bar-row"><div class="mini-bar-label">כולי מזיע מהתרגשות</div><div class="mini-bar-bg"><div class="mini-bar-fill color-2" style="width:81.25%;">13 לידים</div></div><div class="mini-bar-count">13</div></div>
+        <div class="mini-bar-row"><div class="mini-bar-label">Ad3 - פורשה 718</div><div class="mini-bar-bg"><div class="mini-bar-fill color-3" style="width:81.25%;">13 לידים</div></div><div class="mini-bar-count">13</div></div>
+        <div class="mini-bar-row"><div class="mini-bar-label">ADS 01 - RMKT-3</div><div class="mini-bar-bg"><div class="mini-bar-fill color-4" style="width:50%;">8 לידים</div></div><div class="mini-bar-count">8</div></div>
+        <div class="mini-bar-row"><div class="mini-bar-label">ADS 02 - RMKT</div><div class="mini-bar-bg"><div class="mini-bar-fill color-5" style="width:31.25%;">5 לידים</div></div><div class="mini-bar-count">5</div></div>
+      </div>
+      <div style="margin-top:12px;font-size:11px;color:#4a5568;">כולם בסטטוס "ליד חדש" - ממתינים לטיפול</div>
+    </div>
+    <div>
+      <div class="section-title">פירוט סטטוסים - מאי 2026 (418 לקוחות)</div>
+      <div class="status-list">
+        <div class="status-item"><div class="status-dot" style="background:#fc8181;"></div><div class="status-name">לא יצא לנו לדבר</div><div class="status-bar-bg"><div class="status-bar" style="width:75%;background:#fc8181;"></div></div><div class="status-count">318</div><div style="font-size:10px;color:#4a5568;">76.1%</div></div>
+        <div class="status-item"><div class="status-dot" style="background:#f6ad55;"></div><div class="status-name">נשלחה הצעת מחיר</div><div class="status-bar-bg"><div class="status-bar" style="width:16%;background:#f6ad55;"></div></div><div class="status-count">67</div><div style="font-size:10px;color:#4a5568;">16.0%</div></div>
+        <div class="status-item"><div class="status-dot" style="background:#a0aec0;"></div><div class="status-name">לא רלוונטי</div><div class="status-bar-bg"><div class="status-bar" style="width:4%;background:#a0aec0;"></div></div><div class="status-count">16</div><div style="font-size:10px;color:#4a5568;">3.8%</div></div>
+        <div class="status-item"><div class="status-dot" style="background:#4299e1;"></div><div class="status-name">נקבעה שיחת טלפון</div><div class="status-bar-bg"><div class="status-bar" style="width:1.5%;background:#4299e1;"></div></div><div class="status-count">6</div><div style="font-size:10px;color:#4a5568;">1.4%</div></div>
+        <div class="status-item"><div class="status-dot" style="background:#4a9c6d;"></div><div class="status-name">ווצאפ</div><div class="status-bar-bg"><div class="status-bar" style="width:1.2%;background:#4a9c6d;"></div></div><div class="status-count">5</div><div style="font-size:10px;color:#4a5568;">1.2%</div></div>
+        <div class="status-item"><div class="status-dot" style="background:#48bb78;"></div><div class="status-name">נסגר__שולם מקדמה</div><div class="status-bar-bg"><div class="status-bar" style="width:0.7%;background:#48bb78;"></div></div><div class="status-count">3</div><div style="font-size:10px;color:#4a5568;">0.7%</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section" style="padding-top:0;">
+  <div class="section-title">תובנות ומסקנות</div>
+  <div class="insights-grid">
+    <div class="insight-card highlight"><div class="insight-icon">🏆</div><div class="insight-title">המודעה המשתלמת ביותר</div><div class="insight-body">ADS 02 (ריטרגטינג RMKT)</div><div class="insight-detail">שיעור סגירה 4.8%, שיעור קשר 38% - פי 1.7 מהממוצע. ריטרגטינג עובד הרבה יותר טוב מ-cold traffic.</div></div>
+    <div class="insight-card highlight"><div class="insight-icon">📈</div><div class="insight-title">הכי הרבה לידים</div><div class="insight-body">Ad1 - "סרטון ששלח"</div><div class="insight-detail">171 לקוחות במאי + 16 לידים פעילים. יוצר הכי הרבה volume אבל close rate נמוך (0.6%). שיפור בתסריט מכירה יכול לשפר משמעותית.</div></div>
+    <div class="insight-card warn"><div class="insight-icon">⚠️</div><div class="insight-title">פוטנציאל לא ממומש</div><div class="insight-body">כולי מזיע מהתרגשות</div><div class="insight-detail">19.1% שיעור הצעות - הכי גבוה! אבל 0% סגירות. הלידים מגיעים סקרנים, אך לא נסגרים. כדאי לבדוק מה קורה בשיחת המכירה.</div></div>
+    <div class="insight-card warn"><div class="insight-icon">📞</div><div class="insight-title">בעיית קשר אחיד</div><div class="insight-body">76% "לא יצא לנו לדבר"</div><div class="insight-detail">מתוך 418 לקוחות, 318 לא נוצר איתם קשר. שיפור ב-follow-up (אוטומציה WhatsApp, שיחה מהירה) יכול להכפיל הכנסות.</div></div>
+    <div class="insight-card"><div class="insight-icon">🎯</div><div class="insight-title">Ad3 vs Ad1</div><div class="insight-body">פורשה 718 עדיפה</div><div class="insight-detail">Ad3 (פורשה) - close rate 1.7% לעומת Ad1 (סרטון) - 0.6%. פחות volume אבל איכות ליד גבוהה יותר.</div></div>
+    <div class="insight-card"><div class="insight-icon">💡</div><div class="insight-title">המלצת תקציב</div><div class="insight-body">RMKT > Cold Traffic</div><div class="insight-detail">ADS 02 (RMKT) - 4.8% סגירה. להגדיל תקציב ריטרגטינג, להמשיך עם Ad3, לצמצם Ad1.</div></div>
+  </div>
+</div>
+
+<div class="section" style="padding-top:0;">
+  <div class="section-title">השוואת שלבי פאנל - מאי 2026</div>
+  <table class="main-table">
+    <thead><tr><th>מודעה</th><th>סה"כ נכנסו</th><th>לא יצא לנו לדבר</th><th>נשלחה הצעה</th><th>שיחה / ווצאפ</th><th>נסגר + מקדמה</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Ad1</strong> - סרטון ששלח</td><td>171</td><td>134 <span style="color:#fc8181;font-size:11px;">(78.4%)</span></td><td>25 <span style="color:#f6ad55;font-size:11px;">(14.6%)</span></td><td>6 <span style="color:#4299e1;font-size:11px;">(3.5%)</span></td><td><strong style="color:#48bb78;">1 (0.6%)</strong></td></tr>
+      <tr><td><strong>כולי מזיע</strong> - Engagement</td><td>115</td><td>86 <span style="color:#fc8181;font-size:11px;">(74.8%)</span></td><td>22 <span style="color:#f6ad55;font-size:11px;">(19.1%)</span></td><td>3 <span style="color:#4299e1;font-size:11px;">(2.6%)</span></td><td><strong style="color:#fc8181;">0 (0%)</strong></td></tr>
+      <tr><td><strong>Ad3</strong> - פורשה 718</td><td>60</td><td>46 <span style="color:#fc8181;font-size:11px;">(76.7%)</span></td><td>9 <span style="color:#f6ad55;font-size:11px;">(15.0%)</span></td><td>2 <span style="color:#4299e1;font-size:11px;">(3.3%)</span></td><td><strong style="color:#48bb78;">1 (1.7%)</strong></td></tr>
+      <tr><td><strong>ADS 01</strong> - RMKT-3</td><td>49</td><td>39 <span style="color:#fc8181;font-size:11px;">(79.6%)</span></td><td>7 <span style="color:#f6ad55;font-size:11px;">(14.3%)</span></td><td>1 <span style="color:#4299e1;font-size:11px;">(2.0%)</span></td><td><strong style="color:#fc8181;">0 (0%)</strong></td></tr>
+      <tr style="background:#0d1f16;"><td><strong style="color:#48bb78;">ADS 02</strong> - RMKT</td><td>21</td><td>13 <span style="color:#fc8181;font-size:11px;">(61.9%)</span></td><td>4 <span style="color:#f6ad55;font-size:11px;">(19.0%)</span></td><td>2 <span style="color:#4299e1;font-size:11px;">(9.5%)</span></td><td><strong style="color:#48bb78;font-size:15px;">1 (4.8%)</strong></td></tr>
+    </tbody>
+  </table>
+  <div style="margin-top:8px;font-size:11px;color:#4a5568;">* נתוני מאי 2026 | 418 לקוחות דרך מודעות פייסבוק | שורה ירוקה = המודעה הטובה ביותר</div>
+</div>
+
+<div class="footer">DKS Ads Dashboard &bull; נבנה מ-WeTech CRM &bull; 08/06/2026 &bull; גישה מוגבלת</div>
+
+</div><!-- /dashboard -->
+
+<script>
+const VALID_HASH = '7d9e6d4072c41298e7e43237d4733c0574edb3159c3c0ef336d7b0ec0536379b';
+
+async function sha256(str) {
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+  return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('');
+}
+
+async function checkPassword() {
+  const val = document.getElementById('pwInput').value;
+  const hash = await sha256(val);
+  if (hash === VALID_HASH) {
+    document.getElementById('gate').classList.add('hidden');
+    document.getElementById('dashboard').classList.add('visible');
+    sessionStorage.setItem('dks_auth', '1');
+  } else {
+    const err = document.getElementById('pwError');
+    err.style.display = 'block';
+    document.getElementById('pwInput').value = '';
+    setTimeout(() => { err.style.display = 'none'; }, 3000);
+  }
+}
+
+document.getElementById('pwInput').addEventListener('keydown', e => {
+  if (e.key === 'Enter') checkPassword();
+});
+
+if (sessionStorage.getItem('dks_auth') === '1') {
+  document.getElementById('gate').classList.add('hidden');
+  document.getElementById('dashboard').classList.add('visible');
+}
+</script>
+</body>
+</html>
