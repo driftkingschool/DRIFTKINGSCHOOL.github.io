@@ -24,3 +24,4 @@ build/
 
 # Local archive of replaced assets (not for git)
 archive/
+.claude/
