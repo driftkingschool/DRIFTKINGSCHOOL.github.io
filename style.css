@@ -146,6 +146,10 @@ img { max-width: 100%; }
     display: none; flex-direction: column; gap: 0; padding: 0 2rem 1.5rem;
     background: rgba(255,255,255,0.98);
     backdrop-filter: blur(20px);
+    /* the menu can outgrow short screens (many sites + lang row) — let it scroll */
+    max-height: calc(100vh - 72px);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
 }
 .mobile-menu a {
     padding: 0.9rem 0; border-bottom: 1px solid var(--border-subtle);
@@ -808,22 +812,38 @@ body:not(.intro-done) { overflow: hidden; }
 .lang-menu li > button[data-lang="he"] .lang-name { font-family: 'Heebo', sans-serif; }
 .lang-menu li > button[data-lang="ar"] .lang-name { font-family: 'Cairo', sans-serif; }
 
-/* In mobile menu, lang switcher is laid out as a row */
+/* In mobile menu: no dropdown — an always-visible row of language pills.
+   One tap, nothing to open, nothing cut off at the screen edge. */
 .mobile-menu .lang-wrap {
     margin-top: 0.8rem;
-    align-self: flex-start;
+    align-self: stretch;
+    width: 100%;
 }
-.mobile-menu .lang-toggle {
-    background: rgba(0, 0, 0, 0.04);
-    color: var(--text-body);
-    border-color: var(--border-medium);
-    text-shadow: none;
-}
+.mobile-menu .lang-toggle { display: none; }
 .mobile-menu .lang-menu {
+    display: flex !important;   /* overrides the [hidden] attribute the JS toggles */
     position: static;
-    margin-top: 0.5rem;
-    box-shadow: var(--shadow-md);
+    flex-direction: row;
+    gap: 0.5rem;
+    margin-top: 0.4rem;
+    padding: 0;
+    min-width: 0;
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+    animation: none;
 }
+.mobile-menu .lang-menu li { flex: 1; }
+.mobile-menu .lang-menu li > button {
+    justify-content: center;
+    gap: 0;
+    padding: 0.6rem 0.3rem;
+    border: 1px solid var(--border-medium);
+    border-radius: 999px;
+}
+.mobile-menu .lang-menu li > button .lang-name { display: none; }
+.mobile-menu .lang-menu li > button .lang-code { min-width: auto; font-size: 0.9rem; }
+.mobile-menu .lang-menu li > button[aria-current="true"] { border-color: transparent; }
 
 /* ====== PHONE LINK (LTR-safe in any direction) ====== */
 .phone-link {
