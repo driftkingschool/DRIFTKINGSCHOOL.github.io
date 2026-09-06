@@ -106,3 +106,6 @@ button:disabled { opacity: .6; cursor: wait; }
 .status-content strong { display: block; }
 .status-content p { grid-column: 2; margin: 0; color: #4b5563; font-size: .92rem; }
 #status-close { grid-row: 1 / span 2; background: transparent; border: 0; font-size: 1.4rem; cursor: pointer; color: #6b7280; }
+
+.ssl-note { display: flex; align-items: center; justify-content: center; gap: .4rem; margin-top: .9rem; font-size: .9rem; font-weight: 700; color: #15803d; }
+.ssl-note .icon { width: 18px; height: 18px; color: #15803d; }
