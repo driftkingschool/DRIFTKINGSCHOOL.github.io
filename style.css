@@ -904,3 +904,6 @@ html[dir="ltr"] .cross-nav-header { text-align: left; }
     box-shadow: 0 2px 6px rgba(184, 134, 11, 0.25);
     white-space: nowrap;
 }
+
+/* 06/09/26: secondary WhatsApp CTA under the online booking button */
+.pkg-cta-alt { display: block; text-align: center; margin-top: 0.55rem; padding: 0.7rem 1rem; border: 1.5px solid var(--border-medium); border-radius: 10px; font-weight: 700; font-size: 0.92rem; color: var(--text-body); text-decoration: none; background: transparent; }
