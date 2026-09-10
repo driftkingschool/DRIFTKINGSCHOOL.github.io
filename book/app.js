@@ -107,6 +107,7 @@
   var $ = function (id) { return document.getElementById(id); };
   var params = new URLSearchParams(location.search);
   if (/^(localhost|127\.0\.0\.1)$/.test(location.hostname) && params.get('api')) CONFIG.url = params.get('api'); // local QA against a test deployment only
+  function selfUrl(pkg) { var u = location.pathname + '?pkg=' + encodeURIComponent(pkg || ''); if (/^(localhost|127\.0\.0\.1)$/.test(location.hostname) && params.get('api')) u += '&api=' + encodeURIComponent(params.get('api')); return u; }
   var fmtNum = function (n) { return Number(n).toLocaleString('en-US'); };
   function ddmmyyyy(ymd) { return ymd.slice(8, 10) + '/' + ymd.slice(5, 7) + '/' + ymd.slice(0, 4); }
   function addMin(hm, min) { var p = hm.split(':'); var m = Math.min(1439, Number(p[0]) * 60 + Number(p[1]) + min); return ('0' + Math.floor(m / 60)).slice(-2) + ':' + ('0' + (m % 60)).slice(-2); }
@@ -161,7 +162,7 @@
     PKG_ORDER.forEach(function (k) {
       var b = document.createElement('button'); b.type = 'button'; b.className = 'pkg-pick';
       b.innerHTML = '<span>' + esc(PKG_UI[k].sub[lang] || PKG_UI[k].sub.he) + '</span><small>' + k.toUpperCase() + '</small>';
-      b.addEventListener('click', function () { location.href = location.pathname + '?pkg=' + k; });
+      b.addEventListener('click', function () { location.href = selfUrl(k); });
       list.appendChild(b);
     });
     show('pkg-picker', true); show('pkg-card', false); show('avail-loading', false);
@@ -318,13 +319,13 @@
   function pickAgain() {
     var h = S.hold || readHold(); var bk = h && h.bk ? h.bk : (params.get('bk') || '');
     var pkg = (h && h.pkg) || params.get('pkg') || S.pkg || '';
-    releaseHold(bk, function () { location.href = location.pathname + '?pkg=' + encodeURIComponent(pkg); });
+    releaseHold(bk, function () { location.href = selfUrl(pkg); });
   }
   ['pick-again-btn', 'released-pick-btn', 'resume-pick-btn'].forEach(function (id) { var b = $(id); if (b) b.addEventListener('click', pickAgain); });
   var cancelBtn = $('resume-cancel-btn');
   if (cancelBtn) cancelBtn.addEventListener('click', function () {
     var h = S.hold || readHold(); cancelBtn.disabled = true; cancelBtn.textContent = t('releasing');
-    releaseHold(h && h.bk, function () { hideFormViews(); showBanner('released'); location.href = location.pathname + '?pkg=' + encodeURIComponent((h && h.pkg) || S.pkg || ''); });
+    releaseHold(h && h.bk, function () { hideFormViews(); showBanner('released'); location.href = selfUrl((h && h.pkg) || S.pkg || ''); });
   });
 
   /* ---------- return from CardCom ---------- */
