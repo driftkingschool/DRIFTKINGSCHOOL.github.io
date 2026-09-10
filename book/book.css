@@ -26,6 +26,7 @@ body { background: var(--bg-soft, #f5f5f7); }
 /* steps */
 .book-form { background: #fff; border: 1px solid var(--border-medium, rgba(0,0,0,.14)); border-radius: 18px; padding: 1.6rem; box-shadow: 0 10px 30px rgba(0,0,0,.06); }
 .form-progress { display: flex; gap: .5rem; margin-bottom: 1.4rem; }
+.form-progress[hidden], .book-form form[hidden], .view[hidden] { display: none; }
 .progress-step { flex: 1; padding: .7rem .4rem; text-align: center; border-radius: 10px; font-size: .85rem; font-weight: 700; color: #6b7280; border: 1px solid var(--border-medium, rgba(0,0,0,.14)); background: #fff; }
 .progress-step.active { background: var(--gradient-blue, linear-gradient(135deg,#1c69d4,#00AEEF)); color: #fff; border-color: transparent; }
 .progress-step.done { background: rgba(28,105,212,.08); color: var(--blue-primary, #1c69d4); }
