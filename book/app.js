@@ -1,4 +1,6 @@
-/* DKS Booking page - package -> free slot -> CardCom (full / 350 deposit) -> calendar hold. */
+/* DKS Booking page - package -> free slot -> CardCom (full / 350 deposit) -> calendar hold.
+   10/09/26 hardening: resume a live hold, release your own hold, pick another slot, banner errors in 4 languages,
+   honeypot handled quietly, RTL/LTR arrows, empty-month note, package switch, recheck after a long verification. */
 (function () {
   'use strict';
   var CONFIG = {
@@ -29,8 +31,10 @@
     depSub: { he: '350 ₪ עכשיו, {n} ₪ בהגעה', en: '350 ₪ now, {n} ₪ on arrival', ru: '350 ₪ сейчас, {n} ₪ при прибытии', ar: '350 ₪ الآن و{n} ₪ عند الوصول' },
     chosen: { he: 'נבחר: {d} בשעה {t} (עד {e})', en: 'Selected: {d} at {t} (until {e})', ru: 'Выбрано: {d} в {t} (до {e})', ar: 'المختار: {d} الساعة {t} (حتى {e})' },
     noSlots: { he: 'אין שעות פנויות ביום הזה', en: 'No free times on this day', ru: 'Нет свободного времени в этот день', ar: 'لا توجد أوقات متاحة في هذا اليوم' },
+    noMonth: { he: 'אין מועדים פנויים בחודש הזה. נסו את החודש הבא.', en: 'No free slots this month. Try the next month.', ru: 'В этом месяце нет свободных слотов. Попробуйте следующий.', ar: 'لا مواعيد متاحة هذا الشهر. جرّب الشهر التالي.' },
     pickDay: { he: 'בחרו יום מהלוח', en: 'Pick a day from the calendar', ru: 'Выберите день в календаре', ar: 'اختر يومًا من التقويم' },
     sending: { he: 'שומרים לך את המועד...', en: 'Holding your slot...', ru: 'Удерживаем слот...', ar: 'نحجز موعدك...' },
+    releasing: { he: 'משחררים את המועד...', en: 'Releasing the slot...', ru: 'Освобождаем слот...', ar: 'نحرّر الموعد...' },
     days: { he: ['א', 'ב', 'ג', 'ד', 'ה', 'ו', 'ש'], en: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'], ru: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'], ar: ['أح', 'إث', 'ثل', 'أر', 'خم', 'جم', 'سب'] },
     failedTitle: { he: 'התשלום לא הושלם', en: 'Payment was not completed', ru: 'Оплата не завершена', ar: 'لم يكتمل الدفع' },
     cancelTitle: { he: 'ביטלת את התשלום', en: 'You cancelled the payment', ru: 'Вы отменили оплату', ar: 'ألغيت الدفع' },
@@ -40,19 +44,28 @@
                ar: '<strong>{p}</strong><br>متى: <strong>{d} · {t}-{e}</strong><br>أين: <strong>موتور سيتي، بئر السبع</strong><br>{pay}<br>رقم الحجز: <strong>{bk}</strong>' },
     paidFull: { he: 'שולם במלואו: {a} ₪', en: 'Paid in full: {a} ₪', ru: 'Оплачено полностью: {a} ₪', ar: 'مدفوع بالكامل: {a} ₪' },
     paidDep: { he: 'שולמה מקדמה {a} ₪ · יתרה במקום: {l} ₪', en: 'Deposit paid {a} ₪ · balance on site: {l} ₪', ru: 'Аванс {a} ₪ · остаток на месте: {l} ₪', ar: 'عربون مدفوع {a} ₪ · المتبقي في الموقع: {l} ₪' },
+    resumeChosen: { he: '{p} · {d} בשעה {t}', en: '{p} · {d} at {t}', ru: '{p} · {d} в {t}', ar: '{p} · {d} الساعة {t}' },
+    errTitle: { he: 'לא הצלחנו להמשיך', en: 'We could not continue', ru: 'Не удалось продолжить', ar: 'تعذّر المتابعة' },
+    errHelp: { he: 'עזרה בוואטסאפ', en: 'Help on WhatsApp', ru: 'Помощь в WhatsApp', ar: 'مساعدة عبر واتساب' },
+    waHelp: { he: 'היי, ניסיתי להזמין {p} ל-{d} {t} ונתקלתי בבעיה. שם: {n} טלפון: {ph}', en: 'Hi, I tried to book {p} for {d} {t} and hit a problem. Name: {n} phone: {ph}', ru: 'Здравствуйте, я пытался забронировать {p} на {d} {t}, возникла проблема. Имя: {n} телефон: {ph}', ar: 'مرحباً، حاولت حجز {p} ليوم {d} {t} وواجهت مشكلة. الاسم: {n} الهاتف: {ph}' },
     err: {
       slot_taken: { he: 'המועד נתפס הרגע. בחרו מועד אחר.', en: 'That slot was just taken. Please pick another.', ru: 'Слот только что заняли. Выберите другой.', ar: 'تم حجز الموعد للتو. اختر موعدًا آخر.' },
-      active_hold: { he: 'יש לך כבר מועד שמור בתהליך תשלום. השלימו אותו או המתינו 13 דקות.', en: 'You already have a slot on hold. Finish paying or wait 13 minutes.', ru: 'У вас уже есть удержанный слот. Завершите оплату или подождите 13 минут.', ar: 'لديك موعد محجوز قيد الدفع. أكمل الدفع أو انتظر 13 دقيقة.' },
-      rate: { he: 'יותר מדי ניסיונות. כתבו לנו בוואטסאפ ונסגור את זה ביחד.', en: 'Too many attempts. Message us on WhatsApp and we will sort it out.', ru: 'Слишком много попыток. Напишите в WhatsApp.', ar: 'محاولات كثيرة. راسلنا على واتساب.' },
+      slot: { he: 'המועד לא תקין. בחרו יום ושעה מהלוח.', en: 'Invalid slot. Pick a day and time from the calendar.', ru: 'Неверный слот. Выберите день и время в календаре.', ar: 'الموعد غير صالح. اختر يومًا وساعة من التقويم.' },
+      active_hold: { he: 'יש לך כבר מועד שמור בתהליך תשלום.', en: 'You already have a slot on hold.', ru: 'У вас уже есть удержанный слот.', ar: 'لديك موعد محجوز قيد الدفع.' },
+      rate: { he: 'יותר מדי ניסיונות בשעה האחרונה. אפשר לנסות שוב בעוד {m} דקות, או לכתוב לנו בוואטסאפ.', en: 'Too many attempts in the last hour. Try again in {m} minutes, or message us on WhatsApp.', ru: 'Слишком много попыток за последний час. Попробуйте через {m} минут или напишите в WhatsApp.', ar: 'محاولات كثيرة في الساعة الأخيرة. حاول مجددًا بعد {m} دقيقة أو راسلنا على واتساب.' },
       deposit_not_allowed: { he: 'לחבילה הזו אין מקדמה. בחרו תשלום מלא.', en: 'No deposit for this package. Choose full payment.', ru: 'Для этого пакета нет аванса. Выберите полную оплату.', ar: 'لا عربون لهذه الباقة. اختر الدفع الكامل.' },
       booking_closed: { he: 'הזמנה אונליין פתוחה עד 22:40. חזרו אחרי חצות או כתבו לנו בוואטסאפ.', en: 'Online booking is open until 22:40. Come back after midnight or WhatsApp us.', ru: 'Онлайн-бронирование открыто до 22:40. Возвращайтесь после полуночи или напишите в WhatsApp.', ar: 'الحجز أونلاين حتى 22:40. عد بعد منتصف الليل أو راسلنا.' },
       cardcom: { he: 'לא הצלחנו לפתוח דף תשלום. המועד לא נשמר. כתבו לנו בוואטסאפ ונסגור אותו ידנית.', en: 'Could not open the payment page. Slot not held. WhatsApp us and we will book it manually.', ru: 'Не удалось открыть страницу оплаты. Напишите в WhatsApp.', ar: 'تعذّر فتح صفحة الدفع. راسلنا على واتساب.' },
+      busy: { he: 'המערכת עמוסה כרגע. נסו שוב בעוד רגע.', en: 'The system is busy. Try again in a moment.', ru: 'Система занята. Попробуйте через минуту.', ar: 'النظام مشغول. حاول بعد لحظة.' },
+      phone: { he: 'טלפון ישראלי, 10 ספרות שמתחילות ב-05', en: 'Israeli mobile, 10 digits starting with 05', ru: 'Израильский номер, 10 цифр, начинается с 05', ar: 'هاتف إسرائيلي، 10 أرقام تبدأ بـ 05' },
+      email: { he: 'נא להזין אימייל תקין', en: 'Please enter a valid email', ru: 'Введите корректный email', ar: 'أدخل بريدًا إلكترونيًا صالحًا' },
       generic: { he: 'משהו השתבש. נסו שוב או כתבו לנו בוואטסאפ 053-775-7323.', en: 'Something went wrong. Try again or WhatsApp 053-775-7323.', ru: 'Что-то пошло не так. Попробуйте снова или напишите в WhatsApp.', ar: 'حدث خطأ. حاول مجددًا أو راسلنا على واتساب.' }
     },
     banner: {
       success: { icon: '✅', title: { he: 'חזרת מהתשלום', en: 'Back from payment', ru: 'Вы вернулись с оплаты', ar: 'عدت من الدفع' }, msg: { he: 'רגע, מאמתים מול קארדקום.', en: 'One moment, verifying with CardCom.', ru: 'Секунду, проверяем в CardCom.', ar: 'لحظة، نتحقق مع كاردكوم.' } },
       failed: { icon: '❌', title: { he: 'התשלום לא אושר', en: 'Payment not approved', ru: 'Оплата не одобрена', ar: 'لم تتم الموافقة على الدفع' }, msg: { he: 'לא חויבת. אפשר לנסות שוב.', en: 'You were not charged. You can try again.', ru: 'Списания не было. Попробуйте снова.', ar: 'لم يتم الخصم. يمكنك المحاولة مجددًا.' } },
-      cancel: { icon: '↩️', title: { he: 'התשלום בוטל', en: 'Payment cancelled', ru: 'Оплата отменена', ar: 'تم إلغاء الدفع' }, msg: { he: 'המועד עדיין שמור לך לכמה דקות.', en: 'Your slot is still held for a few minutes.', ru: 'Слот ещё удержан несколько минут.', ar: 'موعدك محجوز لدقائق قليلة.' } }
+      cancel: { icon: '↩️', title: { he: 'התשלום בוטל', en: 'Payment cancelled', ru: 'Оплата отменена', ar: 'تم إلغاء الدفع' }, msg: { he: 'המועד עדיין שמור לך לכמה דקות.', en: 'Your slot is still held for a few minutes.', ru: 'Слот ещё удержан несколько минут.', ar: 'موعدك محجوز لدقائق قليلة.' } },
+      released: { icon: '✔️', title: { he: 'המועד שוחרר', en: 'Slot released', ru: 'Слот освобождён', ar: 'تم تحرير الموعد' }, msg: { he: 'אפשר לבחור מועד חדש.', en: 'You can pick a new slot.', ru: 'Можно выбрать новое время.', ar: 'يمكنك اختيار موعد جديد.' } }
     }
   };
 
@@ -65,6 +78,7 @@
     if (typeof v === 'string' && vars) Object.keys(vars).forEach(function (k) { v = v.split('{' + k + '}').join(vars[k]); });
     return v;
   }
+  function errText(code, vars) { var n = I18N.err[code] || I18N.err.generic; var v = n[lang] || n.he; if (vars) Object.keys(vars).forEach(function (k) { v = v.split('{' + k + '}').join(vars[k]); }); return v; }
   function applyLanguage(l) {
     lang = l; document.documentElement.lang = l; document.documentElement.dir = RTL[l] ? 'rtl' : 'ltr';
     document.querySelectorAll('[data-he]').forEach(function (el) { var v = el.getAttribute('data-' + l) || el.getAttribute('data-he'); if (el.tagName === 'TITLE') document.title = v; else el.innerHTML = v; });
@@ -72,8 +86,10 @@
     document.querySelectorAll('[data-aria-label-he]').forEach(function (el) { el.setAttribute('aria-label', el.getAttribute('data-aria-label-' + l) || el.getAttribute('data-aria-label-he')); });
     document.querySelectorAll('[data-cur-lang]').forEach(function (el) { el.textContent = l.toUpperCase(); });
     document.querySelectorAll('.lang-menu button[data-lang]').forEach(function (b) { if (b.getAttribute('data-lang') === l) b.setAttribute('aria-current', 'true'); else b.removeAttribute('aria-current'); });
+    // month arrows follow the reading direction (previous = towards the start side)
+    $('cal-prev').textContent = RTL[l] ? '›' : '‹'; $('cal-next').textContent = RTL[l] ? '‹' : '›';
     try { localStorage.setItem(STORAGE_KEY, l); } catch (e) {}
-    renderPkg(); renderCalendar(); renderSummary(); renderChosen();
+    renderPkg(); renderCalendar(); renderSummary(); renderChosen(); renderResume();
   }
   document.addEventListener('click', function (e) {
     var item = e.target.closest('.lang-menu button[data-lang]');
@@ -87,22 +103,43 @@
   if (ham && mob) ham.addEventListener('click', function () { ham.classList.toggle('active'); mob.classList.toggle('open'); });
 
   /* ---------- state ---------- */
-  var S = { pkg: null, avail: null, dayMap: {}, month: null, date: null, time: null, submitting: false, hold: null, timerId: null, serverOffsetMs: 0 };
+  var S = { pkg: null, avail: null, dayMap: {}, month: null, date: null, time: null, submitting: false, hold: null, timerId: null, serverOffsetMs: 0, resume: null };
   var $ = function (id) { return document.getElementById(id); };
   var params = new URLSearchParams(location.search);
+  if (/^(localhost|127\.0\.0\.1)$/.test(location.hostname) && params.get('api')) CONFIG.url = params.get('api'); // local QA against a test deployment only
   var fmtNum = function (n) { return Number(n).toLocaleString('en-US'); };
   function ddmmyyyy(ymd) { return ymd.slice(8, 10) + '/' + ymd.slice(5, 7) + '/' + ymd.slice(0, 4); }
-  function addMin(hm, min) { var p = hm.split(':'); var m = (Number(p[0]) * 60 + Number(p[1]) + min) % 1440; return ('0' + Math.floor(m / 60)).slice(-2) + ':' + ('0' + (m % 60)).slice(-2); }
+  function addMin(hm, min) { var p = hm.split(':'); var m = Math.min(1439, Number(p[0]) * 60 + Number(p[1]) + min); return ('0' + Math.floor(m / 60)).slice(-2) + ':' + ('0' + (m % 60)).slice(-2); }
   function wall(ts) { var m = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})/.exec(ts || ''); return m ? Date.UTC(+m[1], +m[2] - 1, +m[3], +m[4], +m[5], +m[6]) : 0; }
   function show(id, on) { var el = $(id); if (el) el.hidden = !on; }
   function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+  function readHold() { try { return JSON.parse(sessionStorage.getItem('dksBk') || 'null'); } catch (e) { return null; } }
+  function clearHold() { S.hold = null; try { sessionStorage.removeItem('dksBk'); } catch (e) {} }
+  function postJson(payload) {
+    return fetch(CONFIG.url, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(payload), redirect: 'follow' }).then(function (r) { return r.json(); });
+  }
+
+  /* ---------- banner (errors + payment return) ---------- */
+  function showBanner(status) {
+    var b = I18N.banner[status]; if (!b) return;
+    var el = $('status-banner'); el.className = status; el.hidden = false;
+    $('status-icon').textContent = b.icon; $('status-title').textContent = b.title[lang] || b.title.he; $('status-msg').textContent = b.msg[lang] || b.msg.he;
+    show('status-link', false);
+  }
+  function showError(code, vars, waText) {
+    var el = $('status-banner'); el.className = 'failed'; el.hidden = false;
+    $('status-icon').textContent = '⚠️'; $('status-title').textContent = t('errTitle'); $('status-msg').textContent = errText(code, vars);
+    var link = $('status-link');
+    if (link) { link.hidden = !waText; if (waText) { link.href = CONFIG.wa + '?text=' + encodeURIComponent(waText); link.textContent = t('errHelp'); } }
+    el.scrollIntoView({ block: 'nearest' });
+  }
+  $('status-close').addEventListener('click', function () { $('status-banner').hidden = true; });
 
   /* ---------- package panel ---------- */
   function humanDuration(min) {
     if (min < 60) return t('mins', { n: min });
     var h = min / 60, arr = I18N.hours[lang] || I18N.hours.he;
-    var s = h === 1 ? arr[0] : (h === 2 ? arr[1] : arr[2].split('{n}').join(h % 1 ? h.toFixed(1) : h));
-    return s;
+    return h === 1 ? arr[0] : (h === 2 ? arr[1] : arr[2].split('{n}').join(h % 1 ? h.toFixed(1) : h));
   }
   function renderPkg() {
     if (!S.pkg || !S.avail) return;
@@ -129,11 +166,18 @@
     });
     show('pkg-picker', true); show('pkg-card', false); show('avail-loading', false);
   }
+  var changeBtn = $('pkg-change');
+  if (changeBtn) changeBtn.addEventListener('click', function (e) { e.preventDefault(); renderPicker(); });
 
   /* ---------- availability + calendar ---------- */
+  function availUrl() {
+    var u = CONFIG.url + '?avail=' + encodeURIComponent(S.pkg) + '&_=' + Date.now();
+    var h = S.hold || readHold(); if (h && h.bk) u += '&bk=' + encodeURIComponent(h.bk); // the customer's own hold never blocks them
+    return u;
+  }
   function loadAvailability() {
     show('avail-loading', true); show('avail-error', false); show('calendar', false); show('avail-closed', false);
-    fetch(CONFIG.url + '?avail=' + encodeURIComponent(S.pkg), { redirect: 'follow' })
+    fetch(availUrl(), { redirect: 'follow' })
       .then(function (r) { return r.json(); })
       .then(function (j) {
         if (!j.ok) throw new Error(j.error || 'avail');
@@ -155,10 +199,11 @@
     $('cal-month').textContent = monthLabel(S.month);
     var y = +S.month.slice(0, 4), m = +S.month.slice(5, 7);
     var first = new Date(Date.UTC(y, m - 1, 1)), firstDow = first.getUTCDay(), daysIn = new Date(Date.UTC(y, m, 0)).getUTCDate();
-    var grid = $('day-grid'); grid.innerHTML = '';
+    var grid = $('day-grid'); grid.innerHTML = ''; var anyInMonth = false;
     for (var i = 0; i < firstDow; i++) { var pad = document.createElement('button'); pad.type = 'button'; pad.className = 'day pad'; pad.disabled = true; grid.appendChild(pad); }
     for (var d = 1; d <= daysIn; d++) {
       var ymd = S.month + '-' + ('0' + d).slice(-2);
+      if (S.dayMap[ymd]) anyInMonth = true;
       var b = document.createElement('button'); b.type = 'button'; b.className = 'day' + (S.dayMap[ymd] ? ' has' : '') + (S.date === ymd ? ' selected' : '');
       b.textContent = d; b.disabled = !S.dayMap[ymd]; b.setAttribute('data-d', ymd);
       b.addEventListener('click', function () { S.date = this.getAttribute('data-d'); S.time = null; renderCalendar(); renderSlots(); renderChosen(); });
@@ -167,14 +212,14 @@
     var months = Object.keys(S.dayMap).map(function (k) { return k.slice(0, 7); }).sort();
     $('cal-prev').disabled = !months.length || S.month <= months[0];
     $('cal-next').disabled = !months.length || S.month >= months[months.length - 1];
-    renderSlots();
+    renderSlots(anyInMonth);
   }
   function shiftMonth(delta) { var y = +S.month.slice(0, 4), m = +S.month.slice(5, 7) - 1 + delta; var d = new Date(Date.UTC(y, m, 1)); S.month = d.toISOString().slice(0, 7); renderCalendar(); }
   $('cal-prev').addEventListener('click', function () { shiftMonth(-1); });
   $('cal-next').addEventListener('click', function () { shiftMonth(1); });
-  function renderSlots() {
+  function renderSlots(anyInMonth) {
     var g = $('slot-grid'); g.innerHTML = '';
-    if (!S.date) { g.innerHTML = '<span class="slot-empty">' + esc(t('pickDay')) + '</span>'; show('slot-title', false); return; }
+    if (!S.date) { g.innerHTML = '<span class="slot-empty">' + esc(anyInMonth === false ? t('noMonth') : t('pickDay')) + '</span>'; show('slot-title', false); return; }
     var slots = S.dayMap[S.date] || [];
     show('slot-title', true);
     if (!slots.length) { g.innerHTML = '<span class="slot-empty">' + esc(t('noSlots')) + '</span>'; return; }
@@ -191,10 +236,11 @@
   }
 
   /* ---------- steps + summary ---------- */
+  function scrollToForm() { var f = document.querySelector('.book-form'); if (f) window.scrollTo({ top: f.getBoundingClientRect().top + window.pageYOffset - 90, behavior: 'smooth' }); }
   function showStep(n) {
     document.querySelectorAll('.form-step').forEach(function (f) { f.classList.toggle('active', +f.getAttribute('data-step') === n); });
     document.querySelectorAll('.progress-step').forEach(function (p) { var s = +p.getAttribute('data-step'); p.classList.toggle('active', s === n); p.classList.toggle('done', s < n); });
-    window.scrollTo({ top: document.querySelector('.book-form').offsetTop - 90, behavior: 'smooth' });
+    scrollToForm();
   }
   function payMode() { var r = document.querySelector('input[name="payMode"]:checked'); return r ? r.value : 'full'; }
   function renderSummary() {
@@ -211,7 +257,7 @@
     var ok = true;
     ['fullName', 'phone', 'email'].forEach(function (n) {
       var el = document.querySelector('[name="' + n + '"]'); if (n === 'phone') el.value = el.value.replace(/[\s-]/g, '');
-      var valid = el.checkValidity() && (n !== 'phone' || /^05\d{8}$/.test(el.value));
+      var valid = el.checkValidity() && (n !== 'phone' || /^05\d{8}$/.test(el.value)) && (n !== 'email' || !/[<>]/.test(el.value));
       el.classList.toggle('invalid', !valid); document.querySelector('[data-error="' + n + '"]').classList.toggle('show', !valid); if (!valid) ok = false;
     });
     return ok;
@@ -224,12 +270,13 @@
     var btn = $('submit-btn'), orig = btn.textContent; btn.disabled = true; btn.textContent = t('sending');
     var f = $('booking-form');
     var payload = existingPayload || { formType: 'booking', pkg: S.pkg, date: S.date, time: S.time, payMode: payMode(), fullName: f.fullName.value.trim(), phone: f.phone.value.trim(), email: f.email.value.trim(), website: f.website.value, lang: lang, userAgent: navigator.userAgent };
-    fetch(CONFIG.url, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(payload), redirect: 'follow' })
-      .then(function (r) { return r.json(); })
+    payload.lang = lang;
+    postJson(payload)
       .then(function (res) {
-        if (!res.ok) { var err = new Error(res.error || 'generic'); err.code = res.code || 'generic'; throw err; }
+        if (res.ok && res.code === 'ignored') { hideFormViews(); show('view-pending', true); show('pending-long', true); S.submitting = false; return; } // honeypot: quiet exit, no WhatsApp
+        if (!res.ok) { var err = new Error(res.error || 'generic'); err.code = res.code || 'generic'; err.waitMin = res.waitMin; throw err; }
         if (!res.lpUrl || !/^https:\/\/secure\.cardcom\.solutions\//.test(res.lpUrl)) { var e2 = new Error('cardcom'); e2.code = 'cardcom'; throw e2; }
-        S.hold = { bk: res.bk, expiresAt: res.expiresAt, serverNow: res.serverNow, receivedAt: Date.now(), lpUrl: res.lpUrl, payload: payload, pkgName: res.pkg, date: res.date, time: res.time, endTime: res.endTime, amount: res.amount, price: res.price, mode: res.mode };
+        S.hold = { bk: res.bk, expiresAt: res.expiresAt, serverNow: res.serverNow, receivedAt: Date.now(), lpUrl: res.lpUrl, payload: payload, pkg: payload.pkg, pkgName: res.pkg, date: res.date, time: res.time, endTime: res.endTime, amount: res.amount, price: res.price, mode: res.mode };
         try { sessionStorage.setItem('dksBk', JSON.stringify(S.hold)); } catch (e) {}
         f.hidden = true; document.querySelector('.form-progress').hidden = true;
         show('view-hold', true); $('hold-manual-link').href = res.lpUrl;
@@ -239,9 +286,10 @@
       .catch(function (err) {
         S.submitting = false; btn.disabled = false; btn.textContent = orig;
         var code = err && err.code && I18N.err[err.code] ? err.code : 'generic';
-        alert(t('err') && I18N.err[code][lang] || I18N.err[code].he);
-        if (code === 'slot_taken') { S.date = null; S.time = null; showStep(1); loadAvailability(); }
-        if (code === 'cardcom' || code === 'generic') window.open(CONFIG.wa + '?text=' + encodeURIComponent('היי, ניסיתי להזמין ' + (S.avail ? S.avail.pkg.name : '') + ' ל-' + (S.date || '') + ' ' + (S.time || '') + ' ונתקלתי בבעיה בתשלום. שם: ' + payload.fullName + ' טלפון: ' + payload.phone), '_blank');
+        var waText = (code === 'cardcom' || code === 'generic' || code === 'rate') ? t('waHelp', { p: S.avail ? S.avail.pkg.name : '', d: S.date ? ddmmyyyy(S.date) : '', t: S.time || '', n: payload.fullName, ph: payload.phone }) : '';
+        showError(code, { m: err && err.waitMin ? err.waitMin : 60 }, waText);
+        if (code === 'slot_taken' || code === 'slot') { S.date = null; S.time = null; showStep(1); loadAvailability(); }
+        if (code === 'phone' || code === 'email') { var el = document.querySelector('[name="' + code + '"]'); if (el) { el.classList.add('invalid'); } var m = document.querySelector('[data-error="' + code + '"]'); if (m) m.classList.add('show'); }
       });
   }
   $('booking-form').addEventListener('submit', function (e) { e.preventDefault(); if (!validateStep2()) return; if (!(S.date && S.time)) { showStep(1); return; } submit(null); });
@@ -249,7 +297,7 @@
   /* ---------- 13-minute timer ---------- */
   function startTimer(elId, hold, onExpire) {
     if (S.timerId) clearInterval(S.timerId);
-    var el = $(elId); if (!el || !hold || !hold.expiresAt) return;
+    var el = $(elId); if (!el || !hold || !hold.expiresAt || !wall(hold.expiresAt)) { if (el) el.textContent = '--:--'; return; }
     var remainingAtReceive = wall(hold.expiresAt) - wall(hold.serverNow || hold.expiresAt);
     function tick() {
       var left = remainingAtReceive - (Date.now() - hold.receivedAt);
@@ -260,34 +308,46 @@
     tick(); S.timerId = setInterval(tick, 500);
   }
 
-  /* ---------- return from CardCom ---------- */
-  function showBanner(status) {
-    var b = I18N.banner[status]; if (!b) return;
-    var el = $('status-banner'); el.className = status; el.hidden = false;
-    $('status-icon').textContent = b.icon; $('status-title').textContent = b.title[lang] || b.title.he; $('status-msg').textContent = b.msg[lang] || b.msg.he;
+  /* ---------- release my own hold (instant, no approval) ---------- */
+  function releaseHold(bk, cb) {
+    if (!bk) { clearHold(); cb(true); return; }
+    postJson({ formType: 'booking', action: 'release', bk: bk })
+      .then(function (res) { clearHold(); cb(!!(res && (res.ok || res.code === 'missing'))); })
+      .catch(function () { clearHold(); cb(false); });
   }
-  $('status-close').addEventListener('click', function () { $('status-banner').hidden = true; });
-  function hideFormViews() { $('booking-form').hidden = true; document.querySelector('.form-progress').hidden = true; ['view-hold', 'view-pending', 'view-success', 'view-failed', 'view-released'].forEach(function (v) { show(v, false); }); }
+  function pickAgain() {
+    var h = S.hold || readHold(); var bk = h && h.bk ? h.bk : (params.get('bk') || '');
+    var pkg = (h && h.pkg) || params.get('pkg') || S.pkg || '';
+    releaseHold(bk, function () { location.href = location.pathname + '?pkg=' + encodeURIComponent(pkg); });
+  }
+  ['pick-again-btn', 'released-pick-btn', 'resume-pick-btn'].forEach(function (id) { var b = $(id); if (b) b.addEventListener('click', pickAgain); });
+  var cancelBtn = $('resume-cancel-btn');
+  if (cancelBtn) cancelBtn.addEventListener('click', function () {
+    var h = S.hold || readHold(); cancelBtn.disabled = true; cancelBtn.textContent = t('releasing');
+    releaseHold(h && h.bk, function () { hideFormViews(); showBanner('released'); location.href = location.pathname + '?pkg=' + encodeURIComponent((h && h.pkg) || S.pkg || ''); });
+  });
+
+  /* ---------- return from CardCom ---------- */
+  function hideFormViews() { $('booking-form').hidden = true; document.querySelector('.form-progress').hidden = true; ['view-hold', 'view-pending', 'view-success', 'view-failed', 'view-released', 'view-resume'].forEach(function (v) { show(v, false); }); }
   function renderConfirmed(st) {
     hideFormViews(); show('view-success', true);
     var pay = st.mode === 'deposit' ? t('paidDep', { a: fmtNum(st.amount), l: fmtNum(st.price - st.amount) }) : t('paidFull', { a: fmtNum(st.amount) });
     $('confirm-box').innerHTML = t('confirm', { p: esc(st.pkg), d: ddmmyyyy(st.date), t: st.time, e: st.endTime, pay: pay, bk: esc(st.bk) });
-    try { sessionStorage.removeItem('dksBk'); } catch (e) {}
+    clearHold();
   }
   function pollStatus(bk, status) {
-    var tries = 0, cached = null;
-    try { cached = JSON.parse(sessionStorage.getItem('dksBk') || 'null'); } catch (e) {}
+    var tries = 0, cached = readHold();
     function once() {
       tries++;
       fetch(CONFIG.url + '?bk=' + encodeURIComponent(bk) + '&_=' + Date.now(), { redirect: 'follow' }).then(function (r) { return r.json(); }).then(function (st) {
         if (st.state === 'confirmed') { renderConfirmed(st); return; }
-        if (st.state === 'released' || st.state === 'missing' || st.state === 'dropped') { hideFormViews(); show('view-released', true); return; }
+        if (st.state === 'released' || st.state === 'missing' || st.state === 'dropped' || st.state === 'released_manual') { clearHold(); hideFormViews(); show('view-released', true); return; }
         if (status === 'success') {
           hideFormViews(); show('view-pending', true);
-          if (tries >= 15) { show('pending-long', true); return; }
+          if (tries >= 15) { show('pending-long', true); var rb = $('pending-recheck'); if (rb) { rb.hidden = false; rb.onclick = function () { rb.hidden = true; show('pending-long', false); tries = 0; once(); }; } return; }
           setTimeout(once, 4000); return;
         }
-        // failed / cancel: keep the hold alive and offer retry
+        // failed / cancel: the hold is still alive; offer retry, another slot, or help
         hideFormViews(); show('view-failed', true);
         $('failed-title').textContent = status === 'cancel' ? t('cancelTitle') : t('failedTitle');
         var hold = (cached && cached.bk === bk) ? cached : null;
@@ -295,15 +355,32 @@
         startTimer('timer-failed', h, function () { hideFormViews(); show('view-released', true); });
         $('retry-btn').onclick = function () {
           if (hold && hold.payload) { S.submitting = false; hideFormViews(); $('booking-form').hidden = false; submit(hold.payload); }
-          else location.href = location.pathname + '?pkg=' + encodeURIComponent(params.get('pkg') || '');
+          else pickAgain();
         };
       }).catch(function () { if (status === 'success' && tries < 15) setTimeout(once, 4000); else { hideFormViews(); show('view-pending', true); show('pending-long', true); } });
     }
     once();
   }
-  function pickAgain() { location.href = location.pathname + '?pkg=' + encodeURIComponent(params.get('pkg') || (S.pkg || '')); }
-  $('pick-again-btn').addEventListener('click', pickAgain);
-  $('released-pick-btn').addEventListener('click', pickAgain);
+
+  /* ---------- resume a live hold (page reload, back button, new tab) ---------- */
+  function renderResume() {
+    var h = S.resume; if (!h) return;
+    var txt = t('resumeChosen', { p: h.pkgName || '', d: h.date ? ddmmyyyy(h.date) : '', t: h.time || '' });
+    var el = $('resume-chosen'); if (el) el.textContent = txt;
+  }
+  function tryResume() {
+    var h = readHold(); if (!h || !h.bk || !h.expiresAt || !h.lpUrl) return false;
+    var remaining = (wall(h.expiresAt) - wall(h.serverNow || h.expiresAt)) - (Date.now() - (h.receivedAt || Date.now()));
+    if (remaining <= 0) { clearHold(); return false; }
+    S.hold = h; S.resume = h; S.pkg = PKG_UI[h.pkg] ? h.pkg : S.pkg;
+    hideFormViews(); show('view-resume', true); renderResume();
+    var pay = $('resume-pay-link'); if (pay) pay.href = h.lpUrl;
+    startTimer('timer-resume', { expiresAt: h.expiresAt, serverNow: h.serverNow, receivedAt: h.receivedAt }, function () { hideFormViews(); show('view-released', true); });
+    if (S.pkg) fetch(availUrl(), { redirect: 'follow' }).then(function (r) { return r.json(); }).then(function (j) { if (j.ok) { S.avail = j; show('pkg-card', true); show('pkg-picker', false); renderPkg(); } }).catch(function () {});
+    show('avail-loading', false);
+    return true;
+  }
+  window.addEventListener('pageshow', function (e) { if (e.persisted) location.reload(); }); // bfcache: never show a stale hold screen
 
   /* ---------- init ---------- */
   applyLanguage(lang);
@@ -312,9 +389,11 @@
   if (bk && status) {
     showBanner(status);
     hideFormViews();
-    if (S.pkg) { fetch(CONFIG.url + '?avail=' + encodeURIComponent(S.pkg), { redirect: 'follow' }).then(function (r) { return r.json(); }).then(function (j) { if (j.ok) { S.avail = j; show('pkg-card', true); show('pkg-picker', false); renderPkg(); } }).catch(function () {}); }
+    if (S.pkg) { fetch(availUrl(), { redirect: 'follow' }).then(function (r) { return r.json(); }).then(function (j) { if (j.ok) { S.avail = j; show('pkg-card', true); show('pkg-picker', false); renderPkg(); } }).catch(function () {}); }
     show('avail-loading', false);
     pollStatus(bk, status);
+  } else if (tryResume()) {
+    // a live hold from this session is shown with pay / pick another / cancel
   } else if (S.pkg) {
     loadAvailability();
   } else {

@@ -87,7 +87,8 @@
         <span id="status-icon"></span>
         <strong id="status-title"></strong>
         <p id="status-msg"></p>
-        <button type="button" id="status-close" aria-label="סגור">×</button>
+        <a id="status-link" class="status-link" href="#" target="_blank" rel="noopener" hidden></a>
+        <button type="button" id="status-close" aria-label="סגור" data-aria-label-he="סגור" data-aria-label-en="Close" data-aria-label-ru="Закрыть" data-aria-label-ar="إغلاق">×</button>
     </div>
 </div>
 
@@ -112,7 +113,7 @@
                     <li><svg class="icon"><use href="#i-shield"/></svg><span data-he="ציוד בטיחות, מדריך מוסמך, דלק וצמיגים כלולים" data-en="Safety gear, certified instructor, fuel and tires included" data-ru="Экипировка, инструктор, топливо и шины включены" data-ar="معدات الأمان والمدرب والوقود والإطارات مشمولة">ציוד בטיחות, מדריך מוסמך, דלק וצמיגים כלולים</span></li>
                 </ul>
                 <p class="note" id="pkg-deposit-note"></p>
-                <p class="note"><a href="https://driftkingschool.github.io/#packages" data-he="לכל החבילות ←" data-en="All packages ←" data-ru="Все пакеты ←" data-ar="كل الباقات ←">לכל החבילות ←</a></p>
+                <p class="note"><a href="#" id="pkg-change" data-he="החלפת חבילה" data-en="Change package" data-ru="Сменить пакет" data-ar="تغيير الباقة">החלפת חבילה</a> · <a href="https://driftkingschool.github.io/#packages" data-he="לכל החבילות ←" data-en="All packages ←" data-ru="Все пакеты ←" data-ar="كل الباقات ←">לכל החבילות ←</a></p>
             </div>
             <div id="pkg-picker" hidden>
                 <span class="pkg-kicker" data-he="בחרו חבילת דריפט" data-en="Choose a drift package" data-ru="Выберите дрифт-пакет" data-ar="اختر باقة الدرفت">בחרו חבילת דריפט</span>
@@ -134,9 +135,9 @@
                     <div id="avail-closed" class="view" hidden><p data-he="הזמנה אונליין פתוחה עד 22:40. אפשר לחזור אחרי חצות או לכתוב לנו בוואטסאפ." data-en="Online booking is open until 22:40. Come back after midnight or message us on WhatsApp." data-ru="Онлайн-бронирование открыто до 22:40. Возвращайтесь после полуночи или напишите в WhatsApp." data-ar="الحجز أونلاين متاح حتى 22:40. عد بعد منتصف الليل أو راسلنا على واتساب.">הזמנה אונליין פתוחה עד 22:40. אפשר לחזור אחרי חצות או לכתוב לנו בוואטסאפ.</p></div>
                     <div id="calendar" hidden>
                         <div class="cal-head">
-                            <button type="button" class="cal-nav" id="cal-prev" aria-label="חודש קודם">›</button>
+                            <button type="button" class="cal-nav" id="cal-prev" aria-label="חודש קודם" data-aria-label-he="חודש קודם" data-aria-label-en="Previous month" data-aria-label-ru="Предыдущий месяц" data-aria-label-ar="الشهر السابق">›</button>
                             <strong id="cal-month"></strong>
-                            <button type="button" class="cal-nav" id="cal-next" aria-label="חודש הבא">‹</button>
+                            <button type="button" class="cal-nav" id="cal-next" aria-label="חודש הבא" data-aria-label-he="חודש הבא" data-aria-label-en="Next month" data-aria-label-ru="Следующий месяц" data-aria-label-ar="الشهر التالي">‹</button>
                         </div>
                         <div class="day-names" id="day-names"></div>
                         <div class="day-grid" id="day-grid"></div>
@@ -200,7 +201,7 @@
                         <button type="submit" class="btn-submit" id="submit-btn" data-he="לתשלום מאובטח" data-en="Secure payment" data-ru="Безопасная оплата" data-ar="دفع آمن">לתשלום מאובטח</button>
                     </div>
                     <p class="ssl-note"><svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg> <span data-he="תשלום מאובטח בהצפנת SSL 2048bit" data-en="Secure payment with 2048-bit SSL encryption" data-ru="Безопасная оплата с шифрованием SSL 2048 бит" data-ar="دفع آمن بتشفير SSL 2048 بت">תשלום מאובטח בהצפנת SSL 2048bit</span></p>
-                    <p class="note" data-he="אחרי הלחיצה המועד נשמר לך ל-13 דקות עד להשלמת התשלום בדף המאובטח של קארדקום." data-en="After you click, the slot is held for 13 minutes while you complete payment on CardCom's secure page." data-ru="После нажатия слот удерживается 13 минут, пока вы оплачиваете на защищённой странице CardCom." data-ar="بعد النقر يُحجز الموعد 13 دقيقة حتى تكمل الدفع في صفحة كاردكوم الآمنة.">אחרי הלחיצה המועד נשמר לך ל-13 דקות עד להשלמת התשלום בדף המאובטח של קארדקום.</p>
+                    <p class="note" data-he="אחרי הלחיצה המועד נשמר לך ל-13 דקות להשלמת התשלום בדף המאובטח של קארדקום. אפשר לשחרר אותו בכל רגע ולבחור מועד אחר." data-en="After you click, the slot is held for 13 minutes while you complete payment on CardCom's secure page." data-ru="После нажатия слот удерживается 13 минут, пока вы оплачиваете на защищённой странице CardCom." data-ar="بعد النقر يُحجز الموعد 13 دقيقة حتى تكمل الدفع في صفحة كاردكوم الآمنة.">אחרי הלחיצה המועד נשמר לך ל-13 דקות עד להשלמת התשלום בדף המאובטח של קארדקום.</p>
                 </fieldset>
             </form>
 
@@ -216,6 +217,7 @@
                 <div class="spinner"></div>
                 <h2 data-he="מאמתים את התשלום מול קארדקום..." data-en="Verifying your payment with CardCom..." data-ru="Проверяем оплату в CardCom..." data-ar="نتحقق من الدفع مع كاردكوم...">מאמתים את התשלום מול קארדקום...</h2>
                 <p data-he="זה לוקח כמה שניות. אל תסגרו את הדף." data-en="This takes a few seconds. Please keep the page open." data-ru="Это займёт несколько секунд. Не закрывайте страницу." data-ar="يستغرق ذلك ثوانٍ. لا تغلق الصفحة.">זה לוקח כמה שניות. אל תסגרו את הדף.</p>
+                <button type="button" class="a-ghost" id="pending-recheck" hidden style="margin:.4rem auto 0" data-he="בדוק שוב" data-en="Check again" data-ru="Проверить снова" data-ar="تحقق مجددًا">בדוק שוב</button>
                 <p class="note" id="pending-long" hidden data-he="האימות לוקח קצת יותר זמן. אם שילמת - האישור יגיע למייל בדקות הקרובות, והמועד שלך שמור." data-en="Verification is taking longer. If you paid, the confirmation will reach your email within minutes and your slot is safe." data-ru="Проверка занимает больше времени. Если вы оплатили, подтверждение придёт на почту, слот сохранён." data-ar="يستغرق التحقق وقتًا أطول. إذا دفعت فسيصلك التأكيد بالبريد خلال دقائق وموعدك محفوظ.">האימות לוקח קצת יותר זמן. אם שילמת - האישור יגיע למייל בדקות הקרובות, והמועד שלך שמור.</p>
             </div>
 
@@ -242,12 +244,24 @@
             </div>
 
             <div id="view-released" class="view" hidden>
-                <h2 data-he="המועד שוחרר" data-en="The slot was released" data-ru="Слот освобождён" data-ar="تم تحرير الموعد">המועד שוחרר</h2>
-                <p data-he="עברו 13 דקות בלי תשלום, אז המועד חזר להיות פנוי לכולם. אפשר לבחור מועד מחדש." data-en="13 minutes passed without payment, so the slot is open again. You can pick a new one." data-ru="Прошло 13 минут без оплаты, слот снова свободен. Выберите заново." data-ar="مرت 13 دقيقة دون دفع فعاد الموعد متاحًا. يمكنك اختيار موعد جديد.">עברו 13 דקות בלי תשלום, אז המועד חזר להיות פנוי לכולם. אפשר לבחור מועד מחדש.</p>
-                <p class="note" data-he="אם בכל זאת שילמת עכשיו - אל דאגה, נזהה את התשלום ונחזור אליך תוך שעה." data-en="If you did pay just now, don't worry: we detect it and get back to you within an hour." data-ru="Если вы всё же оплатили, не волнуйтесь: мы увидим платёж и свяжемся в течение часа." data-ar="إذا دفعت الآن رغم ذلك فلا تقلق، سنرصد الدفع ونعاود الاتصال خلال ساعة.">אם בכל זאת שילמת עכשיו - אל דאגה, נזהה את התשלום ונחזור אליך תוך שעה.</p>
+                <h2 data-he="הזמן לתשלום עבר" data-en="The payment window has passed" data-ru="Время на оплату истекло" data-ar="انتهت مهلة الدفع">הזמן לתשלום עבר</h2>
+                <p data-he="המועד ששמרנו לך פג. אפשר לבחור מועד אחר עכשיו, או לכתוב לנו ונסגור אותו ביחד." data-en="The slot we held for you has expired. Pick another slot now, or message us and we will sort it out together." data-ru="Удержание слота истекло. Выберите другое время или напишите нам, и мы всё уладим." data-ar="انتهت مدة حجز موعدك. اختر موعدًا آخر الآن أو راسلنا وسنرتّب الأمر معًا.">המועד ששמרנו לך פג. אפשר לבחור מועד אחר עכשיו, או לכתוב לנו ונסגור אותו ביחד.</p>
+                <p class="note" data-he="אם בכל זאת שילמת עכשיו - אל דאגה, נזהה את התשלום ונחזור אליך תוך שעה." data-en="If you did pay just now, don't worry: we detect it and get back to you within an hour." data-ru="Если вы всё же оплатили, не волнуйтесь: мы увидим платёж и свяжемся в течение часа." data-ar="إن كنت قد دفعت للتو فلا تقلق، سنرصد الدفع ونعود إليك خلال ساعة.">אם בכל זאת שילמת עכשיו - אל דאגה, נזהה את התשלום ונחזור אליך תוך שעה.</p>
                 <div class="view-actions">
                     <button type="button" class="a-primary" id="released-pick-btn" data-he="בחר מועד חדש" data-en="Pick a new slot" data-ru="Выбрать новое время" data-ar="اختر موعدًا جديدًا">בחר מועד חדש</button>
                     <a class="a-wa" href="https://wa.me/972537757323" target="_blank" rel="noopener" data-he="וואטסאפ" data-en="WhatsApp" data-ru="WhatsApp" data-ar="واتساب">וואטסאפ</a>
+                </div>
+            </div>
+
+            <div id="view-resume" class="view" hidden>
+                <h2 data-he="יש לך מועד שמור" data-en="You have a slot on hold" data-ru="У вас удержан слот" data-ar="لديك موعد محجوز">יש לך מועד שמור</h2>
+                <div class="chosen" id="resume-chosen"></div>
+                <p data-he="המועד שמור לך עוד:" data-en="Your slot is held for:" data-ru="Слот удержан ещё:" data-ar="موعدك محجوز لمدة:">המועד שמור לך עוד:</p>
+                <div class="timer" id="timer-resume">--:--</div>
+                <div class="view-actions">
+                    <a class="a-primary" id="resume-pay-link" href="#" data-he="לתשלום מאובטח" data-en="Secure payment" data-ru="Безопасная оплата" data-ar="دفع آمن">לתשלום מאובטח</a>
+                    <button type="button" class="a-ghost" id="resume-pick-btn" data-he="בחר מועד אחר" data-en="Pick another slot" data-ru="Выбрать другое время" data-ar="اختر موعدًا آخر">בחר מועד אחר</button>
+                    <button type="button" class="a-ghost" id="resume-cancel-btn" data-he="בטל את ההזמנה" data-en="Cancel this booking" data-ru="Отменить бронь" data-ar="إلغاء هذا الحجز">בטל את ההזמנה</button>
                 </div>
             </div>
         </section>

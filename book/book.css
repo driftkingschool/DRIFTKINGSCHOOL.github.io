@@ -98,9 +98,12 @@ button:disabled { opacity: .6; cursor: wait; }
 .a-ghost { background: #fff; border: 1.5px solid var(--border-medium, rgba(0,0,0,.14)) !important; color: #374151; }
 
 /* status banner (from track-days) */
-#status-banner { position: fixed; top: 84px; left: 50%; transform: translateX(-50%); z-index: 1200; width: min(560px, 92vw); border-radius: 14px; box-shadow: 0 16px 40px rgba(0,0,0,.18); background: #fff; border-right: 6px solid #1c69d4; }
-#status-banner.success { border-right-color: #16a34a; }
-#status-banner.failed, #status-banner.cancel { border-right-color: #e30613; }
+#status-banner { position: fixed; top: 84px; left: 50%; transform: translateX(-50%); z-index: 1200; width: min(560px, 92vw); border-radius: 14px; box-shadow: 0 16px 40px rgba(0,0,0,.18); background: #fff; border-inline-start: 6px solid #1c69d4; }
+#status-banner.success { border-inline-start-color: #16a34a; }
+#status-banner.failed, #status-banner.cancel { border-inline-start-color: #e30613; }
+#status-banner.released { border-inline-start-color: #16a34a; }
+.status-link { grid-column: 2; justify-self: start; font-size: .88rem; font-weight: 700; color: #1c69d4; text-decoration: underline; }
+.view-actions a.a-primary { text-decoration: none; }
 .status-content { display: grid; grid-template-columns: auto 1fr auto; gap: .6rem 1rem; align-items: center; padding: 1rem 1.1rem; }
 .status-content #status-icon { font-size: 1.6rem; }
 .status-content strong { display: block; }
