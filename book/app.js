@@ -47,16 +47,17 @@
     resumeChosen: { he: '{p} · {d} בשעה {t}', en: '{p} · {d} at {t}', ru: '{p} · {d} в {t}', ar: '{p} · {d} الساعة {t}' },
     errTitle: { he: 'לא הצלחנו להמשיך', en: 'We could not continue', ru: 'Не удалось продолжить', ar: 'تعذّر المتابعة' },
     errHelp: { he: 'עזרה בוואטסאפ', en: 'Help on WhatsApp', ru: 'Помощь в WhatsApp', ar: 'مساعدة عبر واتساب' },
-    waHelp: { he: 'היי, ניסיתי להזמין {p} ל-{d} {t} ונתקלתי בבעיה. שם: {n} טלפון: {ph}', en: 'Hi, I tried to book {p} for {d} {t} and hit a problem. Name: {n} phone: {ph}', ru: 'Здравствуйте, я пытался забронировать {p} на {d} {t}, возникла проблема. Имя: {n} телефон: {ph}', ar: 'مرحباً، حاولت حجز {p} ليوم {d} {t} وواجهت مشكلة. الاسم: {n} الهاتف: {ph}' },
+    waHelp: { he: 'היי, ניסיתי להזמין {p} ל-{d} {t} ונתקלתי בבעיה. שם: {n} טלפון: {ph}', en: 'Hi, I tried to book {p} for {d} {t} and hit a problem. Name: {n} phone: {ph}', ru: 'Здравствуйте, мне не удалось забронировать {p} на {d} {t}. Имя: {n}, телефон: {ph}', ar: 'مرحباً، حاولت حجز {p} ليوم {d} {t} وواجهت مشكلة. الاسم: {n} الهاتف: {ph}' },
     err: {
       slot_taken: { he: 'המועד נתפס הרגע. בחרו מועד אחר.', en: 'That slot was just taken. Please pick another.', ru: 'Слот только что заняли. Выберите другой.', ar: 'تم حجز الموعد للتو. اختر موعدًا آخر.' },
       slot: { he: 'המועד לא תקין. בחרו יום ושעה מהלוח.', en: 'Invalid slot. Pick a day and time from the calendar.', ru: 'Неверный слот. Выберите день и время в календаре.', ar: 'الموعد غير صالح. اختر يومًا وساعة من التقويم.' },
       active_hold: { he: 'יש לך כבר מועד שמור בתהליך תשלום.', en: 'You already have a slot on hold.', ru: 'У вас уже есть удержанный слот.', ar: 'لديك موعد محجوز قيد الدفع.' },
-      rate: { he: 'יותר מדי ניסיונות בשעה האחרונה. אפשר לנסות שוב בעוד {m} דקות, או לכתוב לנו בוואטסאפ.', en: 'Too many attempts in the last hour. Try again in {m} minutes, or message us on WhatsApp.', ru: 'Слишком много попыток за последний час. Попробуйте через {m} минут или напишите в WhatsApp.', ar: 'محاولات كثيرة في الساعة الأخيرة. حاول مجددًا بعد {m} دقيقة أو راسلنا على واتساب.' },
+      rate: { he: 'יותר מדי ניסיונות בשעה האחרונה. אפשר לנסות שוב בעוד כ-{m} דקות, או לכתוב לנו בוואטסאפ.', en: 'Too many attempts in the last hour. Try again in about {m} min, or message us on WhatsApp.', ru: 'Слишком много попыток за последний час. Попробуйте снова примерно через {m} мин или напишите в WhatsApp.', ar: 'محاولات كثيرة في الساعة الأخيرة. حاول مجددًا بعد نحو {m} دقيقة أو راسلنا على واتساب.' },
       deposit_not_allowed: { he: 'לחבילה הזו אין מקדמה. בחרו תשלום מלא.', en: 'No deposit for this package. Choose full payment.', ru: 'Для этого пакета нет аванса. Выберите полную оплату.', ar: 'لا عربون لهذه الباقة. اختر الدفع الكامل.' },
       booking_closed: { he: 'הזמנה אונליין פתוחה עד 22:40. חזרו אחרי חצות או כתבו לנו בוואטסאפ.', en: 'Online booking is open until 22:40. Come back after midnight or WhatsApp us.', ru: 'Онлайн-бронирование открыто до 22:40. Возвращайтесь после полуночи или напишите в WhatsApp.', ar: 'الحجز أونلاين حتى 22:40. عد بعد منتصف الليل أو راسلنا.' },
       cardcom: { he: 'לא הצלחנו לפתוח דף תשלום. המועד לא נשמר. כתבו לנו בוואטסאפ ונסגור אותו ידנית.', en: 'Could not open the payment page. Slot not held. WhatsApp us and we will book it manually.', ru: 'Не удалось открыть страницу оплаты. Напишите в WhatsApp.', ar: 'تعذّر فتح صفحة الدفع. راسلنا على واتساب.' },
-      busy: { he: 'המערכת עמוסה כרגע. נסו שוב בעוד רגע.', en: 'The system is busy. Try again in a moment.', ru: 'Система занята. Попробуйте через минуту.', ar: 'النظام مشغول. حاول بعد لحظة.' },
+      busy: { he: 'המערכת עמוסה כרגע או שיש כבר כמה הזמנות ממתינות ליום הזה. נסו יום אחר או כתבו לנו בוואטסאפ.', en: 'The system is busy or this day already has several pending bookings. Try another day or message us on WhatsApp.', ru: 'Система занята или на этот день уже есть несколько ожидающих броней. Попробуйте другой день или напишите в WhatsApp.', ar: 'النظام مشغول أو يوجد لهذا اليوم عدة حجوزات معلّقة. جرّب يومًا آخر أو راسلنا على واتساب.' },
+      paid: { he: 'ההזמנה הזו כבר שולמה.', en: 'This booking is already paid.', ru: 'Эта бронь уже оплачена.', ar: 'هذا الحجز مدفوع بالفعل.' },
       phone: { he: 'טלפון ישראלי, 10 ספרות שמתחילות ב-05', en: 'Israeli mobile, 10 digits starting with 05', ru: 'Израильский номер, 10 цифр, начинается с 05', ar: 'هاتف إسرائيلي، 10 أرقام تبدأ بـ 05' },
       email: { he: 'נא להזין אימייל תקין', en: 'Please enter a valid email', ru: 'Введите корректный email', ar: 'أدخل بريدًا إلكترونيًا صالحًا' },
       generic: { he: 'משהו השתבש. נסו שוב או כתבו לנו בוואטסאפ 053-775-7323.', en: 'Something went wrong. Try again or WhatsApp 053-775-7323.', ru: 'Что-то пошло не так. Попробуйте снова или напишите в WhatsApp.', ar: 'حدث خطأ. حاول مجددًا أو راسلنا على واتساب.' }
@@ -90,6 +91,7 @@
     $('cal-prev').textContent = RTL[l] ? '›' : '‹'; $('cal-next').textContent = RTL[l] ? '‹' : '›';
     try { localStorage.setItem(STORAGE_KEY, l); } catch (e) {}
     renderPkg(); renderCalendar(); renderSummary(); renderChosen(); renderResume();
+    if (S.lastStatus && !$('view-failed').hidden) $('failed-title').textContent = S.lastStatus === 'cancel' ? t('cancelTitle') : t('failedTitle');
   }
   document.addEventListener('click', function (e) {
     var item = e.target.closest('.lang-menu button[data-lang]');
@@ -103,7 +105,7 @@
   if (ham && mob) ham.addEventListener('click', function () { ham.classList.toggle('active'); mob.classList.toggle('open'); });
 
   /* ---------- state ---------- */
-  var S = { pkg: null, avail: null, dayMap: {}, month: null, date: null, time: null, submitting: false, hold: null, timerId: null, serverOffsetMs: 0, resume: null };
+  var S = { pkg: null, avail: null, dayMap: {}, month: null, date: null, time: null, submitting: false, hold: null, timerId: null, serverOffsetMs: 0, resume: null, lastStatus: null };
   var $ = function (id) { return document.getElementById(id); };
   var params = new URLSearchParams(location.search);
   if (/^(localhost|127\.0\.0\.1)$/.test(location.hostname) && params.get('api')) CONFIG.url = params.get('api'); // local QA against a test deployment only
@@ -272,9 +274,11 @@
     var f = $('booking-form');
     var payload = existingPayload || { formType: 'booking', pkg: S.pkg, date: S.date, time: S.time, payMode: payMode(), fullName: f.fullName.value.trim(), phone: f.phone.value.trim(), email: f.email.value.trim(), website: f.website.value, lang: lang, userAgent: navigator.userAgent };
     payload.lang = lang;
+    var own = S.hold || readHold(); if (own && own.bk) payload.bk = own.bk; else delete payload.bk; // proof of ownership for retry and rebook
     postJson(payload)
       .then(function (res) {
         if (res.ok && res.code === 'ignored') { hideFormViews(); show('view-pending', true); show('pending-long', true); S.submitting = false; return; } // honeypot: quiet exit, no WhatsApp
+        if (!res.ok && res.code === 'paid') { pollStatus(payload.bk || (own && own.bk) || '', 'success'); S.submitting = false; return; }
         if (!res.ok) { var err = new Error(res.error || 'generic'); err.code = res.code || 'generic'; err.waitMin = res.waitMin; throw err; }
         if (!res.lpUrl || !/^https:\/\/secure\.cardcom\.solutions\//.test(res.lpUrl)) { var e2 = new Error('cardcom'); e2.code = 'cardcom'; throw e2; }
         S.hold = { bk: res.bk, expiresAt: res.expiresAt, serverNow: res.serverNow, receivedAt: Date.now(), lpUrl: res.lpUrl, payload: payload, pkg: payload.pkg, pkgName: res.pkg, date: res.date, time: res.time, endTime: res.endTime, amount: res.amount, price: res.price, mode: res.mode };
@@ -289,7 +293,8 @@
         var code = err && err.code && I18N.err[err.code] ? err.code : 'generic';
         var waText = (code === 'cardcom' || code === 'generic' || code === 'rate') ? t('waHelp', { p: S.avail ? S.avail.pkg.name : '', d: S.date ? ddmmyyyy(S.date) : '', t: S.time || '', n: payload.fullName, ph: payload.phone }) : '';
         showError(code, { m: err && err.waitMin ? err.waitMin : 60 }, waText);
-        if (code === 'slot_taken' || code === 'slot') { S.date = null; S.time = null; showStep(1); loadAvailability(); }
+        if (code === 'slot_taken' || code === 'slot' || code === 'active_hold' || code === 'busy') { S.date = null; S.time = null; renderChosen(); showStep(1); loadAvailability(); }
+        else if (!Object.keys(S.dayMap).length) { showStep(1); loadAvailability(); }
         if (code === 'phone' || code === 'email') { var el = document.querySelector('[name="' + code + '"]'); if (el) { el.classList.add('invalid'); } var m = document.querySelector('[data-error="' + code + '"]'); if (m) m.classList.add('show'); }
       });
   }
@@ -313,7 +318,7 @@
   function releaseHold(bk, cb) {
     if (!bk) { clearHold(); cb(true); return; }
     postJson({ formType: 'booking', action: 'release', bk: bk })
-      .then(function (res) { clearHold(); cb(!!(res && (res.ok || res.code === 'missing'))); })
+      .then(function (res) { if (res && res.code === 'paid') { cb(false); return; } clearHold(); cb(!!(res && (res.ok || res.code === 'missing'))); })
       .catch(function () { clearHold(); cb(false); });
   }
   function pickAgain() {
@@ -324,8 +329,12 @@
   ['pick-again-btn', 'released-pick-btn', 'resume-pick-btn'].forEach(function (id) { var b = $(id); if (b) b.addEventListener('click', pickAgain); });
   var cancelBtn = $('resume-cancel-btn');
   if (cancelBtn) cancelBtn.addEventListener('click', function () {
-    var h = S.hold || readHold(); cancelBtn.disabled = true; cancelBtn.textContent = t('releasing');
-    releaseHold(h && h.bk, function () { hideFormViews(); showBanner('released'); location.href = selfUrl((h && h.pkg) || S.pkg || ''); });
+    var h = S.hold || readHold(); var label = cancelBtn.textContent; cancelBtn.disabled = true; cancelBtn.textContent = t('releasing');
+    releaseHold(h && h.bk, function (ok) {
+      if (!ok) { cancelBtn.disabled = false; cancelBtn.textContent = label; showError('generic', null, ''); return; }
+      showBanner('released');
+      setTimeout(function () { location.href = selfUrl((h && h.pkg) || S.pkg || ''); }, 900);
+    });
   });
 
   /* ---------- return from CardCom ---------- */
@@ -349,18 +358,27 @@
           setTimeout(once, 4000); return;
         }
         // failed / cancel: the hold is still alive; offer retry, another slot, or help
-        hideFormViews(); show('view-failed', true);
-        $('failed-title').textContent = status === 'cancel' ? t('cancelTitle') : t('failedTitle');
-        var hold = (cached && cached.bk === bk) ? cached : null;
-        var h = { expiresAt: st.expiresAt, serverNow: st.serverNow, receivedAt: Date.now() };
-        startTimer('timer-failed', h, function () { hideFormViews(); show('view-released', true); });
-        $('retry-btn').onclick = function () {
-          if (hold && hold.payload) { S.submitting = false; hideFormViews(); $('booking-form').hidden = false; submit(hold.payload); }
-          else pickAgain();
-        };
-      }).catch(function () { if (status === 'success' && tries < 15) setTimeout(once, 4000); else { hideFormViews(); show('view-pending', true); show('pending-long', true); } });
+        renderFailed(st, status, cached, bk);
+      }).catch(function () {
+        if (status === 'success' && tries < 15) { setTimeout(once, 4000); return; }
+        if (status === 'success') { hideFormViews(); show('view-pending', true); show('pending-long', true); return; }
+        renderFailed(null, status, cached, bk); // status fetch failed: still let the customer retry
+      });
     }
     once();
+  }
+  function renderFailed(st, status, cached, bk) {
+    hideFormViews(); show('view-failed', true);
+    S.lastStatus = status;
+    $('failed-title').textContent = status === 'cancel' ? t('cancelTitle') : t('failedTitle');
+    var hold = (cached && cached.bk === bk) ? cached : null;
+    var remaining = st && st.expiresAt ? (wall(st.expiresAt) - wall(st.serverNow || st.expiresAt)) : 0;
+    if (st && remaining > 0) startTimer('timer-failed', { expiresAt: st.expiresAt, serverNow: st.serverNow, receivedAt: Date.now() }, function () { hideFormViews(); show('view-released', true); });
+    else { if (S.timerId) clearInterval(S.timerId); $('timer-failed').textContent = '--:--'; } // the hold is kept for you (Paul decides), the timer just ended
+    $('retry-btn').onclick = function () {
+      if (hold && hold.payload) { hold.payload.bk = bk; S.submitting = false; hideFormViews(); $('booking-form').hidden = false; document.querySelector('.form-progress').hidden = false; submit(hold.payload); }
+      else location.href = selfUrl(params.get('pkg') || S.pkg || ''); // no session memory: back to the form without releasing anything
+    };
   }
 
   /* ---------- resume a live hold (page reload, back button, new tab) ---------- */
