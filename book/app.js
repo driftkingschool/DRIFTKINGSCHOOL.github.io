@@ -118,8 +118,13 @@
   function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
   function readHold() { try { return JSON.parse(sessionStorage.getItem('dksBk') || 'null'); } catch (e) { return null; } }
   function clearHold() { S.hold = null; try { sessionStorage.removeItem('dksBk'); } catch (e) {} }
-  function postJson(payload) {
-    return fetch(CONFIG.url, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(payload), redirect: 'follow' }).then(function (r) { return r.json(); });
+  function postJson(payload, retries) {
+    // Apps Script occasionally answers a POST with an empty body; one quiet retry (the server treats a repeat within two minutes as the same request)
+    var n = retries === undefined ? 1 : retries;
+    return fetch(CONFIG.url, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(payload), redirect: 'follow' })
+      .then(function (r) { return r.text(); })
+      .then(function (txt) { if (!txt) throw new Error('empty'); return JSON.parse(txt); })
+      .catch(function (err) { if (n > 0) return new Promise(function (res) { setTimeout(res, 1500); }).then(function () { return postJson(payload, n - 1); }); throw err; });
   }
 
   /* ---------- banner (errors + payment return) ---------- */
