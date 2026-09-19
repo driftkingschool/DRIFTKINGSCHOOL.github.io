@@ -24,4 +24,6 @@ build/
 
 # Local archive of replaced assets (not for git)
 archive/
-.claude/
+# Claude Code: vendored agent skills are tracked; local session state is not
+.claude/*
+!.claude/skills/
