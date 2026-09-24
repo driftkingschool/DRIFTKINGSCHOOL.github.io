@@ -15,7 +15,8 @@
     duo:      { sub: { he: 'חבילה זוגית', en: 'Couple package', ru: 'Парный пакет', ar: 'باقة زوجية' }, sessions: 4, net: 60 },
     king:     { sub: { he: 'מלך הדריפט', en: 'Drift King', ru: 'Король дрифта', ar: 'ملك الدرفت' }, sessions: 10, net: 150 },
     owncar:   { sub: { he: 'על הרכב שלך', en: 'Your own car', ru: 'На вашем авто', ar: 'بسيارتك' }, sessions: 2, net: 30 },
-    taxi:     { sub: { he: 'טקסי דריפט', en: 'Drift taxi', ru: 'Дрифт-такси', ar: 'تاكسي درفت' }, sessions: 1, net: 5 }
+    taxi:     { sub: { he: 'טקסי דריפט', en: 'Drift taxi', ru: 'Дрифт-такси', ar: 'تاكسي درفت' }, sessions: 1, net: 5 },
+    women:    { sub: { he: 'טעימת דריפט לנשים · מחיר מסובסד', en: 'Drift taster for women · subsidized', ru: 'Знакомство с дрифтом для женщин · субсидия', ar: 'تذوق الدرفت للنساء · سعر مدعوم' }, sessions: 2, net: 30 } // reachable only via ?pkg=women (not in PKG_ORDER picker)
   };
   var PKG_ORDER = ['taste', 'advanced', 'pro', 'duo', 'king', 'owncar', 'taxi'];
   var I18N = {
