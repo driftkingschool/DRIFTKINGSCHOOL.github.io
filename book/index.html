@@ -28,6 +28,24 @@
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800;900&family=Inter:wght@400;600;700;800&family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="book.css">
+    <!-- Google Analytics 4 (DKS Landing Pages) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9BLNS7E34C"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-9BLNS7E34C');
+        // WhatsApp, phone and booking clicks, sent as events that can be marked as key events in GA
+        document.addEventListener('click', function (e) {
+            var a = e.target.closest && e.target.closest('a[href]');
+            if (!a) return;
+            var h = a.getAttribute('href') || '';
+            var name = /wa\.me|whatsapp\.com|^whatsapp:/i.test(h) ? 'whatsapp_click'
+                : /^tel:/i.test(h) ? 'phone_click'
+                : /\/book\//i.test(h) ? 'booking_click' : null;
+            if (name) gtag('event', name, { link_url: a.href, link_text: (a.textContent || '').trim().slice(0, 100) });
+        }, true);
+    </script>
 </head>
 <body class="intro-done">
 
