@@ -30,6 +30,24 @@
   footer{color:var(--muted);font-size:13px;text-align:center;margin-top:28px}
   .back{display:inline-block;margin-top:8px;color:var(--blue)}
 </style>
+    <!-- Google Analytics 4 (DKS Landing Pages) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9BLNS7E34C"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-9BLNS7E34C');
+        // WhatsApp, phone and booking clicks, sent as events that can be marked as key events in GA
+        document.addEventListener('click', function (e) {
+            var a = e.target.closest && e.target.closest('a[href]');
+            if (!a) return;
+            var h = a.getAttribute('href') || '';
+            var name = /wa\.me|whatsapp\.com|^whatsapp:/i.test(h) ? 'whatsapp_click'
+                : /^tel:/i.test(h) ? 'phone_click'
+                : /\/book\//i.test(h) ? 'booking_click' : null;
+            if (name) gtag('event', name, { link_url: a.href, link_text: (a.textContent || '').trim().slice(0, 100) });
+        }, true);
+    </script>
 </head>
 <body>
 <div class="wrap">
