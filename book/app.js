@@ -46,6 +46,9 @@
     paidFull: { he: 'שולם במלואו: {a} ₪', en: 'Paid in full: {a} ₪', ru: 'Оплачено полностью: {a} ₪', ar: 'مدفوع بالكامل: {a} ₪' },
     paidDep: { he: 'שולמה מקדמה {a} ₪ · יתרה במקום: {l} ₪', en: 'Deposit paid {a} ₪ · balance on site: {l} ₪', ru: 'Аванс {a} ₪ · остаток на месте: {l} ₪', ar: 'عربون مدفوع {a} ₪ · المتبقي في الموقع: {l} ₪' },
     resumeChosen: { he: '{p} · {d} בשעה {t}', en: '{p} · {d} at {t}', ru: '{p} · {d} в {t}', ar: '{p} · {d} الساعة {t}' },
+    couponOk: { he: '✓ קופון {c} הופעל: {n} ₪ הנחה', en: '✓ Coupon {c} applied: {n} ₪ off', ru: '✓ Промокод {c} применён: скидка {n} ₪', ar: '✓ تم تطبيق القسيمة {c}: خصم {n} ₪' },
+    couponLine: { he: 'הנחת קופון ({c})', en: 'Coupon discount ({c})', ru: 'Скидка по промокоду ({c})', ar: 'خصم القسيمة ({c})' },
+    couponChecking: { he: 'בודקים...', en: 'Checking...', ru: 'Проверяем...', ar: 'نتحقق...' },
     errTitle: { he: 'לא הצלחנו להמשיך', en: 'We could not continue', ru: 'Не удалось продолжить', ar: 'تعذّر المتابعة' },
     errHelp: { he: 'עזרה בוואטסאפ', en: 'Help on WhatsApp', ru: 'Помощь в WhatsApp', ar: 'مساعدة عبر واتساب' },
     waHelp: { he: 'היי, ניסיתי להזמין {p} ל-{d} {t} ונתקלתי בבעיה. שם: {n} טלפון: {ph}', en: 'Hi, I tried to book {p} for {d} {t} and hit a problem. Name: {n} phone: {ph}', ru: 'Здравствуйте, мне не удалось забронировать {p} на {d} {t}. Имя: {n}, телефон: {ph}', ar: 'مرحباً، حاولت حجز {p} ليوم {d} {t} وواجهت مشكلة. الاسم: {n} الهاتف: {ph}' },
@@ -61,6 +64,10 @@
       paid: { he: 'ההזמנה הזו כבר שולמה.', en: 'This booking is already paid.', ru: 'Эта бронь уже оплачена.', ar: 'هذا الحجز مدفوع بالفعل.' },
       phone: { he: 'טלפון ישראלי, 10 ספרות שמתחילות ב-05', en: 'Israeli mobile, 10 digits starting with 05', ru: 'Израильский номер, 10 цифр, начинается с 05', ar: 'هاتف إسرائيلي، 10 أرقام تبدأ بـ 05' },
       email: { he: 'נא להזין אימייל תקין', en: 'Please enter a valid email', ru: 'Введите корректный email', ar: 'أدخل بريدًا إلكترونيًا صالحًا' },
+      coupon: { he: 'קוד הקופון לא תקין', en: 'This coupon code is not valid', ru: 'Неверный промокод', ar: 'رمز القسيمة غير صالح' },
+      coupon_pkg: { he: 'הקופון לא תקף לחבילה הזו', en: 'This coupon does not apply to this package', ru: 'Промокод не действует для этого пакета', ar: 'القسيمة لا تنطبق على هذه الباقة' },
+      coupon_empty: { he: 'הזינו קוד קופון', en: 'Enter a coupon code', ru: 'Введите промокод', ar: 'أدخل رمز القسيمة' },
+      coupon_net: { he: 'לא הצלחנו לבדוק את הקופון. נסו שוב בעוד רגע.', en: 'Could not check the coupon. Try again in a moment.', ru: 'Не удалось проверить промокод. Попробуйте ещё раз.', ar: 'تعذّر التحقق من القسيمة. حاول مجددًا بعد قليل.' },
       generic: { he: 'משהו השתבש. נסו שוב או כתבו לנו בוואטסאפ 053-775-7323.', en: 'Something went wrong. Try again or WhatsApp 053-775-7323.', ru: 'Что-то пошло не так. Попробуйте снова или напишите в WhatsApp.', ar: 'حدث خطأ. حاول مجددًا أو راسلنا على واتساب.' }
     },
     banner: {
@@ -91,7 +98,7 @@
     // month arrows follow the reading direction (previous = towards the start side)
     $('cal-prev').textContent = RTL[l] ? '›' : '‹'; $('cal-next').textContent = RTL[l] ? '‹' : '›';
     try { localStorage.setItem(STORAGE_KEY, l); } catch (e) {}
-    renderPkg(); renderCalendar(); renderSummary(); renderChosen(); renderResume();
+    renderPkg(); renderCalendar(); renderSummary(); renderChosen(); renderResume(); renderCoupon();
     if (S.lastStatus && !$('view-failed').hidden) $('failed-title').textContent = S.lastStatus === 'cancel' ? t('cancelTitle') : t('failedTitle');
   }
   document.addEventListener('click', function (e) {
@@ -106,11 +113,18 @@
   if (ham && mob) ham.addEventListener('click', function () { ham.classList.toggle('active'); mob.classList.toggle('open'); });
 
   /* ---------- state ---------- */
-  var S = { pkg: null, avail: null, dayMap: {}, month: null, date: null, time: null, submitting: false, hold: null, timerId: null, serverOffsetMs: 0, resume: null, lastStatus: null };
+  var S = { pkg: null, avail: null, dayMap: {}, month: null, date: null, time: null, submitting: false, hold: null, timerId: null, serverOffsetMs: 0, resume: null, lastStatus: null,
+    coupon: null, couponErr: null, couponOpen: false, couponBusy: false, couponTried: false }; // coupon = the server's answer { coupon, off, price }, never computed here
   var $ = function (id) { return document.getElementById(id); };
   var params = new URLSearchParams(location.search);
   if (/^(localhost|127\.0\.0\.1)$/.test(location.hostname) && params.get('api')) CONFIG.url = params.get('api'); // local QA against a test deployment only
-  function selfUrl(pkg) { var u = location.pathname + '?pkg=' + encodeURIComponent(pkg || ''); if (/^(localhost|127\.0\.0\.1)$/.test(location.hostname) && params.get('api')) u += '&api=' + encodeURIComponent(params.get('api')); return u; }
+  var urlCoupon = (params.get('coupon') || '').replace(/\s+/g, '').slice(0, 30); // ?coupon=CODE prefills and applies the code
+  function selfUrl(pkg) {
+    var u = location.pathname + '?pkg=' + encodeURIComponent(pkg || '');
+    var cp = S.coupon ? S.coupon.coupon : urlCoupon; if (cp) u += '&coupon=' + encodeURIComponent(cp); // a package switch keeps the coupon
+    if (/^(localhost|127\.0\.0\.1)$/.test(location.hostname) && params.get('api')) u += '&api=' + encodeURIComponent(params.get('api'));
+    return u;
+  }
   var fmtNum = function (n) { return Number(n).toLocaleString('en-US'); };
   function ddmmyyyy(ymd) { return ymd.slice(8, 10) + '/' + ymd.slice(5, 7) + '/' + ymd.slice(0, 4); }
   function addMin(hm, min) { var p = hm.split(':'); var m = Math.min(1439, Number(p[0]) * 60 + Number(p[1]) + min); return ('0' + Math.floor(m / 60)).slice(-2) + ':' + ('0' + (m % 60)).slice(-2); }
@@ -150,18 +164,20 @@
     var h = min / 60, arr = I18N.hours[lang] || I18N.hours.he;
     return h === 1 ? arr[0] : (h === 2 ? arr[1] : arr[2].split('{n}').join(h % 1 ? h.toFixed(1) : h));
   }
+  function effPrice() { return S.coupon ? S.coupon.price : S.avail.pkg.price; }
   function renderPkg() {
     if (!S.pkg || !S.avail) return;
-    var p = S.avail.pkg, ui = PKG_UI[S.pkg];
+    var p = S.avail.pkg, ui = PKG_UI[S.pkg], price = effPrice();
     $('pkg-name').textContent = p.name;
     $('pkg-sub').textContent = ui.sub[lang] || ui.sub.he;
-    $('pkg-price').textContent = fmtNum(p.price);
+    $('pkg-price').textContent = fmtNum(price);
+    $('pkg-price-old').hidden = !S.coupon; $('pkg-price-old').textContent = S.coupon ? fmtNum(p.price) : '';
     $('pkg-sessions').textContent = ui.sessions === 1 ? t('session1') : t('sessions', { n: ui.sessions });
     $('pkg-net').textContent = t('net', { n: ui.net });
     $('pkg-dur').textContent = t('dur', { h: humanDuration(p.minutes) });
     $('pkg-deposit-note').textContent = p.depositAllowed ? t('depositOk') : t('depositNo');
-    $('tile-full-sub').textContent = t('fullSub', { n: fmtNum(p.price) });
-    $('tile-deposit-sub').textContent = t('depSub', { n: fmtNum(p.price - p.deposit) });
+    $('tile-full-sub').textContent = t('fullSub', { n: fmtNum(price) });
+    $('tile-deposit-sub').textContent = t('depSub', { n: fmtNum(price - p.deposit) });
     $('tile-deposit').hidden = !p.depositAllowed;
     if (!p.depositAllowed) $('tile-full').querySelector('input').checked = true;
   }
@@ -197,6 +213,7 @@
         if (!j.bookingOpen) { show('avail-closed', true); return; }
         var first = j.days.length ? j.days[0].d : j.serverNow.slice(0, 10);
         S.month = first.slice(0, 7); renderCalendar(); show('calendar', true);
+        if (urlCoupon && !S.coupon && !S.couponTried) { S.couponTried = true; $('coupon-input').value = urlCoupon; S.couponOpen = true; renderCoupon(); applyCoupon(); }
       })
       .catch(function () { show('avail-loading', false); show('avail-error', true); });
   }
@@ -253,10 +270,48 @@
   }
   function payMode() { var r = document.querySelector('input[name="payMode"]:checked'); return r ? r.value : 'full'; }
   function renderSummary() {
-    if (!S.avail) return; var p = S.avail.pkg; var dep = payMode() === 'deposit' && p.depositAllowed; var now = dep ? p.deposit : p.price;
-    $('sum-price').textContent = fmtNum(p.price) + ' ₪'; $('sum-later').textContent = fmtNum(p.price - now) + ' ₪'; $('sum-now').textContent = fmtNum(now) + ' ₪';
+    if (!S.avail) return; var p = S.avail.pkg, price = effPrice(); var dep = payMode() === 'deposit' && p.depositAllowed; var now = dep ? p.deposit : price;
+    $('sum-price').textContent = fmtNum(p.price) + ' ₪'; $('sum-later').textContent = fmtNum(price - now) + ' ₪'; $('sum-now').textContent = fmtNum(now) + ' ₪';
+    show('sum-coupon-row', !!S.coupon);
+    if (S.coupon) { $('sum-coupon-label').textContent = t('couponLine', { c: S.coupon.coupon }); $('sum-coupon').textContent = '−' + fmtNum(S.coupon.off) + ' ₪'; }
   }
   document.querySelectorAll('input[name="payMode"]').forEach(function (r) { r.addEventListener('change', renderSummary); });
+
+  /* ---------- coupon: the server checks the code and returns the price; nothing is discounted on its own here ---------- */
+  function renderCoupon() {
+    var box = $('coupon-ok'); if (!box) return;
+    $('coupon-toggle').hidden = !!S.coupon || S.couponOpen;
+    $('coupon-row').hidden = !!S.coupon || !S.couponOpen;
+    box.hidden = !S.coupon;
+    if (S.coupon) $('coupon-ok-text').textContent = t('couponOk', { c: S.coupon.coupon, n: fmtNum(S.coupon.off) });
+    var em = document.querySelector('[data-error="coupon"]');
+    em.textContent = S.couponErr ? errText(S.couponErr) : ''; em.classList.toggle('show', !!S.couponErr);
+    $('coupon-input').classList.toggle('invalid', !!S.couponErr);
+    var btn = $('coupon-apply'); btn.disabled = S.couponBusy; btn.textContent = S.couponBusy ? t('couponChecking') : (btn.getAttribute('data-' + lang) || btn.getAttribute('data-he'));
+  }
+  function couponCode() { return $('coupon-input').value.replace(/\s+/g, '').slice(0, 30); }
+  function couponPending() { var c = couponCode(); return !!c && !(S.coupon && S.coupon.coupon === c.toUpperCase()); } // typed but not applied yet
+  function applyCoupon(cb) {
+    var code = couponCode();
+    if (!code) { S.coupon = null; S.couponErr = 'coupon_empty'; renderCoupon(); if (cb) cb(false); return; }
+    if (S.couponBusy || !S.pkg) return;
+    S.couponBusy = true; S.couponErr = null; renderCoupon();
+    fetch(CONFIG.url + '?coupon=' + encodeURIComponent(code) + '&pkg=' + encodeURIComponent(S.pkg) + '&_=' + Date.now(), { redirect: 'follow' })
+      .then(function (r) { return r.json(); })
+      .then(function (j) {
+        // only an answer that carries a price counts as a discount (a backend without coupons answers ok:true without one)
+        if (j && j.ok && j.coupon && typeof j.price === 'number' && typeof j.off === 'number') { S.coupon = { coupon: String(j.coupon), off: j.off, price: j.price }; S.couponErr = null; }
+        else { S.coupon = null; S.couponErr = j && (j.code === 'coupon' || j.code === 'coupon_pkg') ? j.code : (j && j.ok === false ? 'coupon' : 'coupon_net'); }
+      })
+      .catch(function () { S.coupon = null; S.couponErr = 'coupon_net'; })
+      .then(function () { S.couponBusy = false; renderCoupon(); renderPkg(); renderSummary(); if (cb) cb(!!S.coupon); });
+  }
+  function clearCoupon(errCode) { S.coupon = null; S.couponErr = errCode || null; S.couponOpen = true; renderCoupon(); renderPkg(); renderSummary(); }
+  function restoreCoupon(h) { if (h && h.coupon && typeof h.price === 'number' && typeof h.listPrice === 'number') S.coupon = { coupon: h.coupon, off: h.listPrice - h.price, price: h.price }; } // a held booking keeps the price it was held at
+  $('coupon-toggle').addEventListener('click', function () { S.couponOpen = true; renderCoupon(); $('coupon-input').focus(); });
+  $('coupon-apply').addEventListener('click', function () { applyCoupon(); });
+  $('coupon-input').addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); applyCoupon(); } }); // Enter applies the code, it does not submit the booking
+  $('coupon-remove').addEventListener('click', function () { $('coupon-input').value = ''; urlCoupon = ''; clearCoupon(null); $('coupon-input').focus(); });
   document.querySelectorAll('.btn-next').forEach(function (b) { b.addEventListener('click', function () {
     if (!(S.date && S.time)) { $('booking-form').querySelector('[data-error="slot"]').classList.add('show'); return; }
     renderChosen(); renderSummary(); showStep(2);
@@ -278,7 +333,7 @@
     if (S.submitting) return; S.submitting = true;
     var btn = $('submit-btn'), orig = btn.textContent; btn.disabled = true; btn.textContent = t('sending');
     var f = $('booking-form');
-    var payload = existingPayload || { formType: 'booking', pkg: S.pkg, date: S.date, time: S.time, payMode: payMode(), fullName: f.fullName.value.trim(), phone: f.phone.value.trim(), email: f.email.value.trim(), website: f.website.value, lang: lang, userAgent: navigator.userAgent };
+    var payload = existingPayload || { formType: 'booking', pkg: S.pkg, date: S.date, time: S.time, payMode: payMode(), fullName: f.fullName.value.trim(), phone: f.phone.value.trim(), email: f.email.value.trim(), website: f.website.value, coupon: S.coupon ? S.coupon.coupon : '', lang: lang, userAgent: navigator.userAgent };
     payload.lang = lang;
     var own = S.hold || readHold(); if (own && own.bk) payload.bk = own.bk; else delete payload.bk; // proof of ownership for retry and rebook
     postJson(payload)
@@ -287,7 +342,7 @@
         if (!res.ok && res.code === 'paid') { pollStatus(payload.bk || (own && own.bk) || '', 'success'); S.submitting = false; return; }
         if (!res.ok) { var err = new Error(res.error || 'generic'); err.code = res.code || 'generic'; err.waitMin = res.waitMin; throw err; }
         if (!res.lpUrl || !/^https:\/\/secure\.cardcom\.solutions\//.test(res.lpUrl)) { var e2 = new Error('cardcom'); e2.code = 'cardcom'; throw e2; }
-        S.hold = { bk: res.bk, expiresAt: res.expiresAt, serverNow: res.serverNow, receivedAt: Date.now(), lpUrl: res.lpUrl, payload: payload, pkg: payload.pkg, pkgName: res.pkg, date: res.date, time: res.time, endTime: res.endTime, amount: res.amount, price: res.price, mode: res.mode };
+        S.hold = { bk: res.bk, expiresAt: res.expiresAt, serverNow: res.serverNow, receivedAt: Date.now(), lpUrl: res.lpUrl, payload: payload, pkg: payload.pkg, pkgName: res.pkg, date: res.date, time: res.time, endTime: res.endTime, amount: res.amount, price: res.price, mode: res.mode, coupon: res.coupon || '', listPrice: res.listPrice };
         try { sessionStorage.setItem('dksBk', JSON.stringify(S.hold)); } catch (e) {}
         f.hidden = true; document.querySelector('.form-progress').hidden = true;
         show('view-hold', true); $('hold-manual-link').href = res.lpUrl;
@@ -302,9 +357,14 @@
         if (code === 'slot_taken' || code === 'slot' || code === 'active_hold' || code === 'busy') { S.date = null; S.time = null; renderChosen(); showStep(1); loadAvailability(); }
         else if (!Object.keys(S.dayMap).length) { showStep(1); loadAvailability(); }
         if (code === 'phone' || code === 'email') { var el = document.querySelector('[name="' + code + '"]'); if (el) { el.classList.add('invalid'); } var m = document.querySelector('[data-error="' + code + '"]'); if (m) m.classList.add('show'); }
+        if (code === 'coupon' || code === 'coupon_pkg') clearCoupon(code); // the server refused the code: show the full price again before a retry
       });
   }
-  $('booking-form').addEventListener('submit', function (e) { e.preventDefault(); if (!validateStep2()) return; if (!(S.date && S.time)) { showStep(1); return; } submit(null); });
+  $('booking-form').addEventListener('submit', function (e) {
+    e.preventDefault(); if (!validateStep2()) return; if (!(S.date && S.time)) { showStep(1); return; }
+    if (couponPending()) { applyCoupon(function (ok) { if (ok) submit(null); }); return; } // a typed code is checked first, so nobody pays full price by accident
+    submit(null);
+  });
 
   /* ---------- 13-minute timer ---------- */
   function startTimer(elId, hold, onExpire) {
@@ -397,7 +457,7 @@
     var h = readHold(); if (!h || !h.bk || !h.expiresAt || !h.lpUrl) return false;
     var remaining = (wall(h.expiresAt) - wall(h.serverNow || h.expiresAt)) - (Date.now() - (h.receivedAt || Date.now()));
     if (remaining <= 0) { clearHold(); return false; }
-    S.hold = h; S.resume = h; S.pkg = PKG_UI[h.pkg] ? h.pkg : S.pkg;
+    S.hold = h; S.resume = h; S.pkg = PKG_UI[h.pkg] ? h.pkg : S.pkg; restoreCoupon(h);
     hideFormViews(); show('view-resume', true); renderResume();
     var pay = $('resume-pay-link'); if (pay) pay.href = h.lpUrl;
     startTimer('timer-resume', { expiresAt: h.expiresAt, serverNow: h.serverNow, receivedAt: h.receivedAt }, function () { hideFormViews(); show('view-released', true); });
@@ -414,6 +474,7 @@
   if (bk && status) {
     showBanner(status);
     hideFormViews();
+    var held = readHold(); if (held && held.bk === bk) restoreCoupon(held);
     if (S.pkg) { fetch(availUrl(), { redirect: 'follow' }).then(function (r) { return r.json(); }).then(function (j) { if (j.ok) { S.avail = j; show('pkg-card', true); show('pkg-picker', false); renderPkg(); } }).catch(function () {}); }
     show('avail-loading', false);
     pollStatus(bk, status);
