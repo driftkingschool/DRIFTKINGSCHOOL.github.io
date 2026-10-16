@@ -62,6 +62,11 @@ Deploy אוטומטי — האתר החי מתעדכן תוך 1-2 דקות.
 | 7 | Drift King (MASTER) | מלך הדריפט | 6,499 ₪ |
 | 8 | Your Own Car | על הרכב שלך | 1,299 ₪ |
 
+## Coupons (/book/)
+
+הקופונים מוגדרים רק בצד השרת (Apps Script של ההזמנות, `BK_COUPONS`). הדף שולח את הקוד, השרת מחזיר את המחיר וגובה אותו בקארדקום.
+קישור שמפעיל קופון אוטומטית: `/book/?pkg=taste&coupon=yahel300K`
+
 ## Known Tech Debt
 
 - `hero-bg.mp4` — נדחס מ-45MB ל-11MB (H.264 CRF 28, preset slow). המקור שמור ב-`archive/` לוקלית (לא ב-git).

@@ -74,6 +74,23 @@ body { background: var(--bg-soft, #f5f5f7); }
 .summary { display: grid; gap: .3rem; padding: .9rem 1rem; border-radius: 12px; background: rgba(28,105,212,.06); margin-bottom: 1rem; }
 .summary div { display: flex; justify-content: space-between; }
 .summary .big { font-size: 1.15rem; font-weight: 900; color: var(--text-dark, #0a0a0a); }
+.summary div[hidden] { display: none; }
+#sum-coupon { color: #15803d; font-weight: 800; direction: ltr; unicode-bidi: isolate; white-space: nowrap; flex: none; margin-inline-start: .6rem; }
+
+/* coupon (the server checks the code and sets the price; the page only shows its answer) */
+.coupon { margin-bottom: 1rem; }
+.coupon-toggle { background: none; border: 0; padding: 0; font: inherit; font-size: .92rem; font-weight: 700; color: var(--blue-primary, #1c69d4); text-decoration: underline; cursor: pointer; }
+.coupon-row { display: flex; gap: .5rem; }
+.coupon-toggle[hidden], .coupon-row[hidden], .coupon-ok[hidden] { display: none; }
+.coupon-row input { flex: 1; min-width: 0; padding: .8rem 1rem; border: 1.5px solid var(--border-medium, rgba(0,0,0,.14)); border-radius: 10px; font: inherit; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; background: #fff; }
+.coupon-row input::placeholder { text-transform: none; letter-spacing: 0; font-weight: 500; }
+.coupon-row input:focus { outline: none; border-color: var(--blue-primary, #1c69d4); box-shadow: 0 0 0 3px rgba(28,105,212,.15); }
+.coupon-row input.invalid { border-color: #e30613; background: rgba(227,6,19,.04); }
+.coupon-apply { flex: none; padding: .8rem 1.2rem; border-radius: 10px; border: 1.5px solid var(--blue-primary, #1c69d4); background: #fff; color: var(--blue-primary, #1c69d4); font: inherit; font-weight: 800; cursor: pointer; }
+.coupon-ok { display: flex; align-items: center; justify-content: space-between; gap: .6rem; padding: .75rem 1rem; border-radius: 10px; border: 1.5px dashed #16a34a; background: rgba(22,163,74,.07); color: #15803d; font-weight: 700; }
+.coupon-remove { flex: none; background: none; border: 0; padding: 0; font: inherit; font-size: .85rem; font-weight: 600; color: #6b7280; text-decoration: underline; cursor: pointer; }
+.book-pkg .pkg-price-row .old { font-size: 1.2rem; font-weight: 700; color: #9ca3af; }
+
 .form-actions { display: flex; gap: .6rem; margin-top: 1.2rem; flex-wrap: wrap; }
 .btn-next, .btn-submit, .btn-back { flex: 1; padding: 1rem 1.3rem; border-radius: 12px; border: 0; font: inherit; font-weight: 800; font-size: 1rem; cursor: pointer; }
 .btn-next, .btn-submit { background: var(--gradient-blue, linear-gradient(135deg,#1c69d4,#00AEEF)); color: #fff; }

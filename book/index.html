@@ -139,7 +139,7 @@
                 <span class="pkg-kicker" data-he="החבילה שבחרת" data-en="Your package" data-ru="Ваш пакет" data-ar="الباقة المختارة">החבילה שבחרת</span>
                 <h2 id="pkg-name"></h2>
                 <p class="pkg-sub" id="pkg-sub"></p>
-                <div class="pkg-price-row"><span class="amt" id="pkg-price"></span><span class="cur">₪</span></div>
+                <div class="pkg-price-row"><s class="old" id="pkg-price-old" hidden></s><span class="amt" id="pkg-price"></span><span class="cur">₪</span></div>
                 <ul>
                     <li><svg class="icon"><use href="#i-repeat"/></svg><span id="pkg-sessions"></span></li>
                     <li><svg class="icon"><use href="#i-timer"/></svg><span id="pkg-net"></span></li>
@@ -225,8 +225,22 @@
                         </label>
                     </fieldset>
 
+                    <div class="coupon">
+                        <button type="button" class="coupon-toggle" id="coupon-toggle" aria-controls="coupon-row" data-he="יש לך קוד קופון?" data-en="Have a coupon code?" data-ru="Есть промокод?" data-ar="لديك رمز قسيمة؟">יש לך קוד קופון?</button>
+                        <div class="coupon-row" id="coupon-row" hidden>
+                            <input type="text" id="coupon-input" name="coupon" maxlength="30" autocomplete="off" autocapitalize="characters" spellcheck="false" data-placeholder-he="קוד קופון" data-placeholder-en="Coupon code" data-placeholder-ru="Промокод" data-placeholder-ar="رمز القسيمة" placeholder="קוד קופון" aria-label="קוד קופון" data-aria-label-he="קוד קופון" data-aria-label-en="Coupon code" data-aria-label-ru="Промокод" data-aria-label-ar="رمز القسيمة">
+                            <button type="button" class="coupon-apply" id="coupon-apply" data-he="הפעלה" data-en="Apply" data-ru="Применить" data-ar="تطبيق">הפעלה</button>
+                        </div>
+                        <small class="error-msg" data-error="coupon" role="alert"></small>
+                        <div class="coupon-ok" id="coupon-ok" hidden>
+                            <span id="coupon-ok-text"></span>
+                            <button type="button" class="coupon-remove" id="coupon-remove" data-he="הסרה" data-en="Remove" data-ru="Убрать" data-ar="إزالة">הסרה</button>
+                        </div>
+                    </div>
+
                     <div class="summary">
                         <div><span data-he="מחיר החבילה" data-en="Package price" data-ru="Цена пакета" data-ar="سعر الباقة">מחיר החבילה</span><span id="sum-price"></span></div>
+                        <div id="sum-coupon-row" hidden><span id="sum-coupon-label"></span><span id="sum-coupon"></span></div>
                         <div><span data-he="יתרה לתשלום במקום" data-en="Balance due on site" data-ru="Остаток на месте" data-ar="المتبقي يُدفع في الموقع">יתרה לתשלום במקום</span><span id="sum-later"></span></div>
                         <div class="big"><span data-he="לתשלום עכשיו" data-en="Pay now" data-ru="К оплате сейчас" data-ar="للدفع الآن">לתשלום עכשיו</span><span id="sum-now"></span></div>
                     </div>
