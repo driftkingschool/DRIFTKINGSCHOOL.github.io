@@ -214,6 +214,10 @@ img { max-width: 100%; }
     background: var(--gradient-blue); color: #fff;
     box-shadow: var(--shadow-brand);
 }
+.btn-gift {
+    background: linear-gradient(135deg, #ffd700, #f5a623); color: #1a1200;
+    box-shadow: 0 8px 30px rgba(245,166,35,0.3);
+}
 .btn-outline {
     background: rgba(255,255,255,0.08); color: #ffffff;
     border: 1.5px solid rgba(255,255,255,0.5);
