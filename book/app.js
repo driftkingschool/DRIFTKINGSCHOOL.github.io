@@ -8,20 +8,21 @@
     wa: 'https://wa.me/972537757323',
     home: 'https://driftkingschool.github.io/'
   };
+  // 21/10/26: new package ladder. Names, prices and calendar minutes come from the server; price here is for the picker only.
+  // Drift + Track packages are booked on WhatsApp (circuit time is coordinated by hand).
   var PKG_UI = {
-    taste:    { sub: { he: 'טעימת דריפט', en: 'Drift taster', ru: 'Знакомство с дрифтом', ar: 'تذوق الدرفت' }, sessions: 2, net: 30 },
-    advanced: { sub: { he: 'דריפט מתקדם', en: 'Advanced drift', ru: 'Продвинутый дрифт', ar: 'درفت متقدم' }, sessions: 3, net: 45 },
-    pro:      { sub: { he: 'דריפט מקצועי', en: 'Pro drift', ru: 'Профессиональный дрифт', ar: 'درفت احترافي' }, sessions: 5, net: 75 },
-    duo:      { sub: { he: 'חבילה זוגית', en: 'Couple package', ru: 'Парный пакет', ar: 'باقة زوجية' }, sessions: 4, net: 60 },
-    king:     { sub: { he: 'מלך הדריפט', en: 'Drift King', ru: 'Король дрифта', ar: 'ملك الدرفت' }, sessions: 10, net: 150 },
-    owncar:   { sub: { he: 'על הרכב שלך', en: 'Your own car', ru: 'На вашем авто', ar: 'بسيارتك' }, sessions: 2, net: 30 },
-    taxi:     { sub: { he: 'טקסי דריפט', en: 'Drift taxi', ru: 'Дрифт-такси', ar: 'تاكسي درفت' }, sessions: 1, net: 5 },
-    women:    { sub: { he: 'טעימת דריפט לנשים · מחיר מסובסד', en: 'Drift taster for women · subsidized', ru: 'Знакомство с дрифтом для женщин · субсидия', ar: 'تذوق الدرفت للنساء · سعر مدعوم' }, sessions: 2, net: 30 } // reachable only via ?pkg=women (not in PKG_ORDER picker)
+    first:         { name: 'First Drift', price: 1500, sub: { he: 'הדריפט הראשון שלך', en: 'Your first drift', ru: 'Ваш первый дрифт', ar: 'أول درفت لك' }, sessions: 1, net: 15, durMin: 45 },
+    classic:       { name: 'CLASSIC', price: 1800, sub: { he: 'טעימת דריפט + טקסי · חבילת הדגל', en: 'Drift taster + taxi · flagship', ru: 'Знакомство с дрифтом + такси · флагман', ar: 'تذوق الدرفت + تاكسي · الباقة الرئيسية' }, sessions: 2, net: 30 },
+    driftadvanced: { name: 'Drift Advanced', price: 3100, sub: { he: 'דריפט מתקדם + טקסי', en: 'Advanced drift + taxi', ru: 'Продвинутый дрифт + такси', ar: 'درفت متقدم + تاكسي' }, sessions: 4, net: 60 },
+    king:          { name: 'Drift King', price: 7000, sub: { he: 'מלך הדריפט · יום שלם', en: 'King of Drift · full day', ru: 'Король дрифта · целый день', ar: 'ملك الدرفت · يوم كامل' }, sessions: 10, net: 150 },
+    women:         { name: 'Drift Taste for Women', sub: { he: 'טעימת דריפט לנשים · מחיר מסובסד', en: 'Drift taster for women · subsidized', ru: 'Знакомство с дрифтом для женщин · субсидия', ar: 'تذوق الدرفت للنساء · سعر مدعوم' }, sessions: 2, net: 30 } // reachable only via ?pkg=women (not in PKG_ORDER picker)
   };
-  var PKG_ORDER = ['taste', 'advanced', 'pro', 'duo', 'king', 'owncar', 'taxi'];
+  var PKG_ORDER = ['first', 'classic', 'driftadvanced', 'king'];
+  // old links (ads, WhatsApp, saved bookmarks) land on the nearest current package
+  var PKG_ALIAS = { taste: 'classic', advanced: 'driftadvanced', pro: 'driftadvanced', duo: 'driftadvanced' };
   var I18N = {
     sessions: { he: '{n} מקצי נהיגה', en: '{n} driving sessions', ru: '{n} заезда', ar: '{n} جلسات قيادة' },
-    session1: { he: 'מקצה אחד כנוסע', en: 'One ride as passenger', ru: 'Один заезд пассажиром', ar: 'جلسة واحدة كراكب' },
+    session1: { he: 'מקצה נהיגה אחד', en: 'One driving session', ru: 'Один заезд', ar: 'جلسة قيادة واحدة' },
     net: { he: '{n} דק׳ נהיגה נטו', en: '{n} min net driving', ru: '{n} мин чистой езды', ar: '{n} دقيقة قيادة فعلية' },
     dur: { he: 'משך: כ-{h}', en: 'Duration: about {h}', ru: 'Длительность: около {h}', ar: 'المدة: حوالي {h}' },
     hours: { he: ['שעה', 'שעתיים', '{n} שעות'], en: ['1 hour', '2 hours', '{n} hours'], ru: ['1 час', '2 часа', '{n} часов'], ar: ['ساعة', 'ساعتان', '{n} ساعات'] },
@@ -158,7 +159,7 @@
     $('pkg-price').textContent = fmtNum(p.price);
     $('pkg-sessions').textContent = ui.sessions === 1 ? t('session1') : t('sessions', { n: ui.sessions });
     $('pkg-net').textContent = t('net', { n: ui.net });
-    $('pkg-dur').textContent = t('dur', { h: humanDuration(p.minutes) });
+    $('pkg-dur').textContent = t('dur', { h: ui.durMin ? t('mins', { n: ui.durMin }) : humanDuration(p.minutes) }).replace('כ-שעה', 'כשעה').replace('כ-שעתיים', 'כשעתיים');
     $('pkg-deposit-note').textContent = p.depositAllowed ? t('depositOk') : t('depositNo');
     $('tile-full-sub').textContent = t('fullSub', { n: fmtNum(p.price) });
     $('tile-deposit-sub').textContent = t('depSub', { n: fmtNum(p.price - p.deposit) });
@@ -169,7 +170,8 @@
     var list = $('pkg-picker-list'); list.innerHTML = '';
     PKG_ORDER.forEach(function (k) {
       var b = document.createElement('button'); b.type = 'button'; b.className = 'pkg-pick';
-      b.innerHTML = '<span>' + esc(PKG_UI[k].sub[lang] || PKG_UI[k].sub.he) + '</span><small>' + k.toUpperCase() + '</small>';
+      var u = PKG_UI[k];
+      b.innerHTML = '<span><bdi>' + esc(u.name) + '</bdi><em>' + esc(u.sub[lang] || u.sub.he) + '</em></span><small>' + fmtNum(u.price) + ' ₪</small>';
       b.addEventListener('click', function () { location.href = selfUrl(k); });
       list.appendChild(b);
     });
@@ -410,6 +412,7 @@
   /* ---------- init ---------- */
   applyLanguage(lang);
   var status = params.get('status'), bk = params.get('bk'), pkg = params.get('pkg');
+  if (!bk && PKG_ALIAS[pkg]) { pkg = PKG_ALIAS[pkg]; try { history.replaceState(null, '', selfUrl(pkg)); } catch (e) {} }
   S.pkg = PKG_UI[pkg] ? pkg : null;
   if (bk && status) {
     showBanner(status);

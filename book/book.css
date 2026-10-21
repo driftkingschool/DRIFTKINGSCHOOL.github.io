@@ -21,7 +21,9 @@ body { background: var(--bg-soft, #f5f5f7); }
 .book-pkg li .icon { width: 18px; height: 18px; color: var(--blue-primary, #1c69d4); flex: none; }
 .pkg-picker { display: grid; gap: .5rem; }
 .pkg-pick { display: flex; justify-content: space-between; align-items: center; padding: .85rem 1rem; border: 1.5px solid var(--border-medium, rgba(0,0,0,.14)); border-radius: 12px; background: #fff; cursor: pointer; font-family: inherit; font-size: 1rem; font-weight: 700; color: var(--text-dark, #0a0a0a); text-align: start; }
-.pkg-pick small { font-weight: 600; color: var(--blue-primary, #1c69d4); }
+.pkg-pick small { font-weight: 600; color: var(--blue-primary, #1c69d4); white-space: nowrap; margin-inline-start: .75rem; }
+.pkg-pick > span { display: flex; flex-direction: column; gap: .15rem; min-width: 0; }
+.pkg-pick em { font-style: normal; font-weight: 500; font-size: .85rem; color: var(--text-body, #4a4a4a); }
 
 /* steps */
 .book-form { background: #fff; border: 1px solid var(--border-medium, rgba(0,0,0,.14)); border-radius: 18px; padding: 1.6rem; box-shadow: 0 10px 30px rgba(0,0,0,.06); }
