@@ -922,3 +922,10 @@ html[dir="ltr"] .cross-nav-header { text-align: left; }
 
 /* 06/09/26: secondary WhatsApp CTA under the online booking button */
 .pkg-cta-alt { display: block; text-align: center; margin-top: 0.55rem; padding: 0.7rem 1rem; border: 1.5px solid var(--border-medium); border-radius: 10px; font-weight: 700; font-size: 0.92rem; color: var(--text-body); text-decoration: none; background: transparent; }
+
+/* package cards: keep model names whole, balance short lines, badges on small phones */
+.pkg-card bdi { white-space: nowrap; }
+.pkg-outcome, .pkg-pain { text-wrap: balance; }
+@media (max-width: 380px) {
+    .pkg-badge { position: static; display: inline-block; width: auto; align-self: flex-start; margin-bottom: 0.6rem; }
+}
