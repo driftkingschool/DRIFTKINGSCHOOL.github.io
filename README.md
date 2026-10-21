@@ -49,18 +49,20 @@ Deploy אוטומטי — האתר החי מתעדכן תוך 1-2 דקות.
 - **Motto:** בלי גבולות, רק עשן
 - **Tone:** מקצועי + חברותי + קורט הומור
 
-## Packages (8)
+## Packages (8) · updated 21/10/2026
 
-| # | Name | Subtitle | Price |
-|---|---|---|---|
-| 1 | Taste Of Drift | טעימת דריפט | 1,799 ₪ |
-| 2 | Drift Advanced | דריפט מתקדם | 2,199 ₪ |
-| 3 | Drift PRO | דריפט מקצועי | 3,399 ₪ |
-| 4 | Drift + Track | דריפט ומסלול | 2,199 ₪ |
-| 5 | Drift + Track Premium | דריפט ומסלול פרימיום | 2,699 ₪ |
-| 6 | Drift + Track VIP | דריפט ומסלול VIP | 4,499 ₪ |
-| 7 | Drift King (MASTER) | מלך הדריפט | 6,499 ₪ |
-| 8 | Your Own Car | על הרכב שלך | 1,299 ₪ |
+| # | Name | What's in it | Price | Booking |
+|---|---|---|---|---|
+| 1 | First Drift | 2 drift sessions × 10 min | 1,500 ₪ | online `/book/?pkg=first` |
+| 2 | CLASSIC (flagship) | 2 drift sessions × 15 min + taxi | 1,800 ₪ | online `/book/?pkg=classic` |
+| 3 | Drift + Track | 15-min drift + Mazda MX-5 track session (6 laps) | 2,300 ₪ | WhatsApp |
+| 4 | Drift + Track BRZ | 15-min drift + supercharged Subaru BRZ track session | 2,500 ₪ | WhatsApp |
+| 5 | Drift + Track Premium | 15-min drift + Porsche 718-S track session | 2,800 ₪ | WhatsApp |
+| 6 | Drift Advanced | 4 drift sessions + taxi, can be split between two drivers | 3,100 ₪ | online `/book/?pkg=driftadvanced` |
+| 7 | Grand Prix Drift | 3 drift sessions + 2 Porsche track sessions + taxi | 4,500 ₪ | WhatsApp |
+| 8 | Drift King | 10 sessions, full day, video review, certificate | 7,000 ₪ | online `/book/?pkg=king` |
+
+Online prices live in the booking Apps Script (`BK_PACKAGES`), not in this repo. A price change has to be made in both places.
 
 ## Known Tech Debt
 

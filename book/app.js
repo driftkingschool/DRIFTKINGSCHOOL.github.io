@@ -11,10 +11,10 @@
   // 21/10/26: new package ladder. Names, prices and calendar minutes come from the server; price here is for the picker only.
   // Drift + Track packages are booked on WhatsApp (circuit time is coordinated by hand).
   var PKG_UI = {
-    first:         { name: 'First Drift', price: 1500, sub: { he: 'הדריפט הראשון שלך', en: 'Your first drift', ru: 'Ваш первый дрифт', ar: 'أول درفت لك' }, sessions: 1, net: 15, durMin: 45 },
+    first:         { name: 'First Drift', price: 1500, sub: { he: 'הדריפט הראשון שלך', en: 'Your first drift', ru: 'Ваш первый дрифт', ar: 'أول درفت لك' }, sessions: 2, net: 20, durMin: 45 }, // 21/10/26 Paul: 2 sessions of 10 min
     classic:       { name: 'CLASSIC', price: 1800, sub: { he: 'טעימת דריפט + טקסי · חבילת הדגל', en: 'Drift taster + taxi · flagship', ru: 'Знакомство с дрифтом + такси · флагман', ar: 'تذوق الدرفت + تاكسي · الباقة الرئيسية' }, sessions: 2, net: 30 },
     driftadvanced: { name: 'Drift Advanced', price: 3100, sub: { he: 'דריפט מתקדם + טקסי', en: 'Advanced drift + taxi', ru: 'Продвинутый дрифт + такси', ar: 'درفت متقدم + تاكسي' }, sessions: 4, net: 60 },
-    king:          { name: 'Drift King', price: 7000, sub: { he: 'מלך הדריפט · יום שלם', en: 'King of Drift · full day', ru: 'Король дрифта · целый день', ar: 'ملك الدرفت · يوم كامل' }, sessions: 10, net: 150 },
+    king:          { name: 'Drift King', price: 7000, sub: { he: 'מלך הדריפט · יום שלם', en: 'King of Drift · full day', ru: 'Король дрифта · целый день', ar: 'ملك الدرفت · يوم كامل' }, sessions: 10, net: 150, fullDay: true },
     women:         { name: 'Drift Taste for Women', sub: { he: 'טעימת דריפט לנשים · מחיר מסובסד', en: 'Drift taster for women · subsidized', ru: 'Знакомство с дрифтом для женщин · субсидия', ar: 'تذوق الدرفت للنساء · سعر مدعوم' }, sessions: 2, net: 30 } // reachable only via ?pkg=women (not in PKG_ORDER picker)
   };
   var PKG_ORDER = ['first', 'classic', 'driftadvanced', 'king'];
@@ -25,7 +25,8 @@
     session1: { he: 'מקצה נהיגה אחד', en: 'One driving session', ru: 'Один заезд', ar: 'جلسة قيادة واحدة' },
     net: { he: '{n} דק׳ נהיגה נטו', en: '{n} min net driving', ru: '{n} мин чистой езды', ar: '{n} دقيقة قيادة فعلية' },
     dur: { he: 'משך: כ-{h}', en: 'Duration: about {h}', ru: 'Длительность: около {h}', ar: 'المدة: حوالي {h}' },
-    hours: { he: ['שעה', 'שעתיים', '{n} שעות'], en: ['1 hour', '2 hours', '{n} hours'], ru: ['1 час', '2 часа', '{n} часов'], ar: ['ساعة', 'ساعتان', '{n} ساعات'] },
+    hours: { he: ['שעה', 'שעתיים', '{n} שעות'], en: ['1 hour', '2 hours', '{n} hours'], ru: ['часа', '2 часов', '{n} часов'], ar: ['ساعة', 'ساعتين', '{n} ساعات'] },
+    durFull: { he: 'משך: יום שלם', en: 'Duration: full day', ru: 'Длительность: целый день', ar: 'المدة: يوم كامل' },
     mins: { he: '{n} דקות', en: '{n} minutes', ru: '{n} минут', ar: '{n} دقيقة' },
     depositOk: { he: 'אפשר לשריין במקדמה של 350 ₪ ולשלם את היתרה במקום.', en: 'You can hold your slot with a 350 ₪ deposit and pay the balance on site.', ru: 'Можно забронировать авансом 350 ₪ и доплатить на месте.', ar: 'يمكنك الحجز بعربون 350 ₪ ودفع الباقي في الموقع.' },
     depositNo: { he: 'חבילה זו נמכרת בתשלום מלא בלבד.', en: 'This package is sold with full payment only.', ru: 'Этот пакет оплачивается только полностью.', ar: 'هذه الباقة تُباع بالدفع الكامل فقط.' },
@@ -151,15 +152,21 @@
     var h = min / 60, arr = I18N.hours[lang] || I18N.hours.he;
     return h === 1 ? arr[0] : (h === 2 ? arr[1] : arr[2].split('{n}').join(h % 1 ? h.toFixed(1) : h));
   }
+  function sessionsText(n) {
+    if (n === 1) return t('session1');
+    if (lang === 'ru' && n >= 5) return n + ' заездов'; // 2-4 заезда, 5+ заездов
+    if (lang === 'ar' && n === 2) return 'جلستا قيادة'; // Arabic dual
+    return t('sessions', { n: n });
+  }
   function renderPkg() {
     if (!S.pkg || !S.avail) return;
     var p = S.avail.pkg, ui = PKG_UI[S.pkg];
     $('pkg-name').textContent = p.name;
     $('pkg-sub').textContent = ui.sub[lang] || ui.sub.he;
     $('pkg-price').textContent = fmtNum(p.price);
-    $('pkg-sessions').textContent = ui.sessions === 1 ? t('session1') : t('sessions', { n: ui.sessions });
+    $('pkg-sessions').textContent = sessionsText(ui.sessions);
     $('pkg-net').textContent = t('net', { n: ui.net });
-    $('pkg-dur').textContent = t('dur', { h: ui.durMin ? t('mins', { n: ui.durMin }) : humanDuration(p.minutes) }).replace('כ-שעה', 'כשעה').replace('כ-שעתיים', 'כשעתיים');
+    $('pkg-dur').textContent = ui.fullDay ? t('durFull') : t('dur', { h: ui.durMin ? t('mins', { n: ui.durMin }) : humanDuration(p.minutes) }).replace('כ-שעה', 'כשעה').replace('כ-שעתיים', 'כשעתיים');
     $('pkg-deposit-note').textContent = p.depositAllowed ? t('depositOk') : t('depositNo');
     $('tile-full-sub').textContent = t('fullSub', { n: fmtNum(p.price) });
     $('tile-deposit-sub').textContent = t('depSub', { n: fmtNum(p.price - p.deposit) });
