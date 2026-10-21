@@ -26,7 +26,7 @@
 ├── style.css           טמה לבנה-יוקרתית (BMW-inspired)
 ├── script.js           חלקיקים, scroll, mobile menu
 ├── hero-bg.mp4         סרטון רקע ל-hero (11MB, H.264 CRF 28)
-├── logo.png
+├── logo.webp
 └── *.jpg               תמונות רקע לכרטיסי יתרונות
 ```
 
