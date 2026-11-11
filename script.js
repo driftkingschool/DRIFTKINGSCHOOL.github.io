@@ -191,6 +191,12 @@ applyLanguage(getStoredLang());
 (function heroVideoLoop() {
     const video = document.querySelector('.hero-video');
     if (!video) return;
+    // phones get the light portrait cut (car stays in frame), wide screens the full clip
+    if (!video.currentSrc && video.dataset.srcWide) {
+        const tall = window.innerWidth / window.innerHeight < 1;
+        if (tall && video.dataset.posterTall) video.poster = video.dataset.posterTall;
+        video.src = tall ? video.dataset.srcTall : video.dataset.srcWide;
+    }
     const safePlay = () => {
         const p = video.play();
         if (p && typeof p.catch === 'function') p.catch(() => {});
@@ -206,6 +212,66 @@ applyLanguage(getStoredLang());
     });
     window.addEventListener('focus', safePlay);
     safePlay();
+})();
+
+// ===== DRIFT STORY: the scroll position drives the video =====
+(function driftStory() {
+    const story = document.getElementById('driftStory');
+    const video = document.getElementById('driftVideo');
+    if (!story || !video) return;
+    const steps = [].slice.call(story.querySelectorAll('.drift-step'));
+    const bar = story.querySelector('.drift-progress span');
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let orient = '', loaded = false, primed = false, ticking = false;
+
+    const setOrient = () => {
+        const o = window.innerWidth / window.innerHeight < 1 ? 'portrait' : 'landscape';
+        if (o === orient) return;
+        orient = o;
+        story.setAttribute('data-orient', o);
+        if (loaded) load();
+    };
+    const load = () => {
+        if (reduced) return;
+        loaded = true; primed = false;
+        video.preload = 'auto';
+        video.src = 'assets/video/drift-scroll-' + orient + '.mp4';
+        try { video.load(); } catch (e) {}
+    };
+    // iOS only decodes frames after a play() call: play muted once, then pause and scrub
+    const prime = () => {
+        if (primed || reduced) return;
+        primed = true;
+        const p = video.play();
+        if (p && typeof p.then === 'function') p.then(() => { video.pause(); update(); }).catch(() => {});
+    };
+    const update = () => {
+        ticking = false;
+        const rect = story.getBoundingClientRect();
+        const vh = window.innerHeight;
+        if (!loaded && rect.top < vh * 2.5) load();
+        const dist = story.offsetHeight - vh;
+        const p = dist > 0 ? Math.min(1, Math.max(0, -rect.top / dist)) : 0;
+        const dur = video.duration;
+        if (!reduced && dur && isFinite(dur)) {
+            const t = p * (dur - 0.05);
+            if (Math.abs(video.currentTime - t) > 0.01) { try { video.currentTime = t; } catch (e) {} }
+        }
+        if (!reduced) {
+            const idx = Math.min(steps.length - 1, Math.max(0, Math.floor(p * steps.length - 0.0001)));
+            steps.forEach((s, i) => s.classList.toggle('active', i === idx));
+            story.classList.toggle('last', p > 0.86);
+        }
+        if (bar) bar.style.transform = 'scaleX(' + p + ')';
+    };
+    const onScroll = () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } };
+
+    if (reduced) steps.forEach(s => s.classList.add('active'));
+    setOrient();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', () => { setOrient(); update(); });
+    ['loadedmetadata', 'loadeddata', 'durationchange', 'canplay'].forEach(ev => video.addEventListener(ev, () => { prime(); update(); }));
+    update();
 })();
 
 // ===== NAVBAR SCROLL =====
