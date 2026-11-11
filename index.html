@@ -227,9 +227,9 @@
 
 <!-- ===== HERO SECTION ===== -->
 <section class="hero" id="hero">
-    <video class="hero-video" autoplay muted loop playsinline poster="Gleb-Smirnov-Productions-01714.jpg">
-        <source src="hero-bg.mp4" type="video/mp4">
-    </video>
+    <!-- Hero clip: script.js picks the portrait cut on phones, the full clip on wide screens -->
+    <video class="hero-video" muted loop playsinline preload="metadata" poster="Gleb-Smirnov-Productions-01714.jpg"
+           data-src-wide="hero-bg.mp4" data-src-tall="assets/video/drift-scroll-portrait.mp4" data-poster-tall="assets/video/drift-scroll-portrait.jpg"></video>
     <div class="hero-overlay"></div>
     <div class="hero-particles" id="heroParticles"></div>
     <div class="hero-content">
@@ -274,6 +274,28 @@
         <div class="scroll-arrow"></div>
     </div>
 </section>
+
+<!-- ===== DRIFT STORY: one video, scrubbed by the scroll (5 moments) ===== -->
+<section class="drift-story" id="driftStory" aria-label="חמישה רגעים בתוך דריפט">
+    <div class="drift-sticky">
+        <video class="drift-video" id="driftVideo" muted playsinline preload="none" disablepictureinpicture aria-hidden="true"></video>
+        <div class="drift-scrim" aria-hidden="true"></div>
+        <div class="drift-head">
+            <span class="drift-kicker" data-he="דריפט אחד. חמישה רגעים." data-en="One drift. Five moments." data-ru="Один занос. Пять моментов." data-ar="انزلاق واحد. خمس لحظات.">דריפט אחד. חמישה רגעים.</span>
+            <span class="drift-cue" data-he="גללו לאט" data-en="Scroll slowly" data-ru="Листайте медленно" data-ar="مرّروا ببطء">גללו לאט</span>
+        </div>
+        <ol class="drift-steps">
+            <li class="drift-step active"><span class="drift-num">01</span><h3 data-he="הכניסה" data-en="The entry" data-ru="Вход" data-ar="الدخول">הכניסה</h3><p data-he="מגיעים לפנייה עם מהירות ומעבירים משקל קדימה. ככה מתחילה כל החלקה." data-en="You arrive at the corner with speed and shift the weight forward. Every slide starts here." data-ru="Подходим к повороту на скорости и переносим вес вперёд. Так начинается любой занос." data-ar="نصل إلى المنعطف بسرعة وننقل الوزن إلى الأمام. هكذا يبدأ كل انزلاق.">מגיעים לפנייה עם מהירות ומעבירים משקל קדימה. ככה מתחילה כל החלקה.</p></li>
+            <li class="drift-step"><span class="drift-num">02</span><h3 data-he="הזווית" data-en="The angle" data-ru="Угол" data-ar="الزاوية">הזווית</h3><p data-he="האחוריים משתחררים והרכב פונה הצידה. ההגה כבר מסתובב לכיוון ההפוך." data-en="The rear lets go and the car turns sideways. The wheel is already turning the other way." data-ru="Задняя ось срывается, машина встаёт боком. Руль уже крутится в обратную сторону." data-ar="تنفلت العجلات الخلفية وتميل السيارة جانباً. المقود يدور بالفعل في الاتجاه المعاكس.">האחוריים משתחררים והרכב פונה הצידה. ההגה כבר מסתובב לכיוון ההפוך.</p></li>
+            <li class="drift-step"><span class="drift-num">03</span><h3 data-he="הגז" data-en="The throttle" data-ru="Газ" data-ar="الوقود">הגז</h3><p data-he="לא מורידים רגל. הגז הוא מה שמחזיק את הרכב בתוך ההחלקה." data-en="You do not lift. The throttle is what holds the car in the slide." data-ru="Ногу не отпускаем. Именно газ удерживает машину в заносе." data-ar="لا نرفع القدم. دواسة الوقود هي ما يُبقي السيارة داخل الانزلاق.">לא מורידים רגל. הגז הוא מה שמחזיק את הרכב בתוך ההחלקה.</p></li>
+            <li class="drift-step"><span class="drift-num">04</span><h3 data-he="השליטה" data-en="The control" data-ru="Контроль" data-ar="التحكم">השליטה</h3><p data-he="ידיים רכות, עיניים לאן שרוצים להגיע. הרכב הולך אחרי המבט." data-en="Soft hands, eyes where you want to go. The car follows your eyes." data-ru="Мягкие руки, взгляд туда, куда хотим приехать. Машина едет за взглядом." data-ar="يدان مرنتان، والعينان نحو المكان الذي نريد الوصول إليه. السيارة تتبع النظر.">ידיים רכות, עיניים לאן שרוצים להגיע. הרכב הולך אחרי המבט.</p></li>
+            <li class="drift-step"><span class="drift-num">05</span><h3 data-he="העשן" data-en="The smoke" data-ru="Дым" data-ar="الدخان">העשן</h3><p data-he="ככה זה נראה מבחוץ. מבפנים, זה מרגיש עוד יותר." data-en="This is how it looks from outside. From inside, it feels even bigger." data-ru="Так это выглядит снаружи. Изнутри ощущения ещё сильнее." data-ar="هكذا يبدو من الخارج. من الداخل، الإحساس أقوى بكثير.">ככה זה נראה מבחוץ. מבפנים, זה מרגיש עוד יותר.</p></li>
+        </ol>
+        <a href="#packages" class="drift-cta"><span data-he="תורכם להיכנס לפנייה" data-en="Your turn to take the corner" data-ru="Ваша очередь войти в поворот" data-ar="دوركم لدخول المنعطف">תורכם להיכנס לפנייה</span> <svg class="icon icon-sm"><use href="#i-arrow-left"/></svg></a>
+        <div class="drift-progress" aria-hidden="true"><span></span></div>
+    </div>
+</section>
+
 
 <!-- ===== ADVANTAGES ===== -->
 <section class="advantages" id="advantages">
